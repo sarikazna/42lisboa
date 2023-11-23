@@ -10,4 +10,28 @@ You can use libft and ft_printf so add them to your project
 STEP 4
 Watch video: https://www.youtube.com/watch?v=OaG81sDEpVk and https://www.youtube.com/watch?v=wRvipSG4Mmk
 
-Write a function for each of the 11 commands
+STEP 5
+Review linked lists from libft project!
+
+
+MAIN FUNCTION
+Write the main function. Handle errors better, so is input correct?
+
+ERROR HANDLING
+Error handling if the input value is not an integer but a word
+Error handling if the you don't receive enough arguemtns in the input
+
+MOVEMENTS
+Write a function for each of the 11 operations/movements
+If you make use of one movement, make sure to print it.
+
+STACKS
+Should be linked lists
+
+STRUCT
+*prev (pointer to the previous node)
+*next (point to the next node)
+current position - current position occupied in the stack
+value - an integer, for example 140 or 134567
+
+Tester: https://github.com/LeoFu9487/push_swap_tester
