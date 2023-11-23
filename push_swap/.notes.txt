@@ -1,0 +1,13 @@
+STEP 1
+Install visualiser from https://github.com/o-reo/push_swap_visualizer
+
+STEP 2
+Create Makefile, header file, main.c
+
+STEP 3 
+You can use libft and ft_printf so add them to your project
+
+STEP 4
+Watch video: https://www.youtube.com/watch?v=OaG81sDEpVk and https://www.youtube.com/watch?v=wRvipSG4Mmk
+
+Write a function for each of the 11 commands
