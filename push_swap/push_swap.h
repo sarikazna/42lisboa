@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:37:29 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 12:57:03 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/25 17:25:05 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <limits.h>
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 
 typedef struct	s_stack_node
 {
 	int		value;
-	int		position;
+	int		index;
 	struct s_stack_node *prev;
 	struct s_stack_node *next;
 	// more meta data missing

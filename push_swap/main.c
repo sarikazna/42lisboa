@@ -6,24 +6,38 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 14:32:53 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/25 19:18:54 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* I decleared two data structures - a and b.
+I set both pointers of the data structures to NuLL to avoid
+undefined behaviour. */
+
+/* In the main function I also handle some of the input errors.
+Namely, the argument count must be 2 or more. The 2nd argument
+must not be a empty string */
+
+/* Handling cases where there are only two arguments - so if one of
+the arguments is a sring. Handling the cases where there are multiple
+arguments.*/
+
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
 	t_stack_node	*b;
+
+	a = NULL;
+	b = NULL;
 	
-	// check if the string is empty
-	if (argc <= 1)
-	{
-		//check if input is correct, still needs some owork
-		// 
-		ft_printf("You have to introduce at least one argument");
-		return ;
-	}
+	if (argc <= 1 || (argc == 2 && !argv[1][0]))
+		return (-1);
+	else if (argc == 2)
+		argv = ft_split(argv[1], ' ');
+	a = stack_init(&a, argc, argv);
+	if (!a)
+		return (-1);
 	return (0);
 }

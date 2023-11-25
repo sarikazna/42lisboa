@@ -10,6 +10,9 @@ You can use libft and ft_printf so add them to your project
 STEP 4
 Watch video: https://www.youtube.com/watch?v=OaG81sDEpVk and https://www.youtube.com/watch?v=wRvipSG4Mmk
 
+STEP 4.1
+Define a struct in your header file
+
 STEP 5
 Review linked lists from libft project!
 
@@ -18,6 +21,10 @@ Create functions for stack, create new stack, add new one at the end, lenght of 
 
 STEP 7
 Create movements 
+
+STEP 8
+Choose one of the algorithms
+Turk Algorith: https://medium.com/@ayogun/push-swap-c1f5d2d41e97
 
 MAIN FUNCTION
 Write the main function. Handle errors better, so is input correct?
@@ -41,3 +48,5 @@ value - an integer, for example 140 or 134567
 
 Tester: https://github.com/LeoFu9487/push_swap_tester
 
+// functions to handle errors and free the stack
+// min, max nodes
