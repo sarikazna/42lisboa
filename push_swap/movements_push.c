@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   movements_push.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 14:32:53 by srudman          ###   ########.fr       */
+/*   Created: 2023/11/25 15:50:59 by srudman           #+#    #+#             */
+/*   Updated: 2023/11/25 15:56:06 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	t_stack_node	*a;
-	t_stack_node	*b;
-	
-	// check if the string is empty
-	if (argc <= 1)
-	{
-		//check if input is correct, still needs some owork
-		// 
-		ft_printf("You have to introduce at least one argument");
-		return ;
-	}
-	return (0);
-}
+// pa (push a): Take the first element at the top of b and put it at the top of a.
+// Do nothing if b is empty.
+
+// pb (push b): Take the first element at the top of a and put it at the top of b.
+// Do nothing if a is empty

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 16:57:32 by srudman           #+#    #+#             */
-/*   Updated: 2023/05/12 15:31:08 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:34:03 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }				t_list;
-/* *content = data contained in the node, any tzpe of data is stored */
+/* *content = data contained in the node, any type of data is stored */
 /* *next = address of the next node or NULL if the next node is the last one.*/
 
 t_list	*ft_lstnew(void *content);

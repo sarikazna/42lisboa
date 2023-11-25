@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:56:33 by srudman           #+#    #+#             */
-/*   Updated: 2023/05/08 21:11:21 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:36:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 ’content’ is initialized with  the value of the parameter ’content’. 
 The variable ’next’ is initialized to NULL. */
 
-/*
-typedef	struct	s_list
+/* this is the header file
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
-*/
+*content = data contained in the node, any type of data is stored
+*next = address of the next node or NULL if the next node is the last one.*/
 
 t_list	*ft_lstnew(void *content)
 {

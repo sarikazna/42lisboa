@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   movements_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 14:32:53 by srudman          ###   ########.fr       */
+/*   Created: 2023/11/25 15:50:26 by srudman           #+#    #+#             */
+/*   Updated: 2023/11/25 15:54:59 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	t_stack_node	*a;
-	t_stack_node	*b;
-	
-	// check if the string is empty
-	if (argc <= 1)
-	{
-		//check if input is correct, still needs some owork
-		// 
-		ft_printf("You have to introduce at least one argument");
-		return ;
-	}
-	return (0);
-}
+// sa (swap a): Swap the first 2 elements at the top of stack a.
+// Do nothing if there is only one or no elements.
+
+// sb (swap b): Swap the first 2 elements at the top of stack b.
+// Do nothing if there is only one or no elements.
+
+// ss : sa and sb at the same time.
