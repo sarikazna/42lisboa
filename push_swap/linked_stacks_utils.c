@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:28:59 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 20:03:09 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/26 18:15:06 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct	s_stack_node
 member variable  ’value’ is initialized with  the value of the 
 parameter ’value’. The variable ’next’ is initialized to NULL. */
 
-t_stack_node	*ft_nodenew(int *nbr)
+t_stack_node	*ft_nodenew(int nbr)
 {
 	t_stack_node	*new;
 
@@ -45,7 +45,7 @@ t_stack_node	*ft_nodenew(int *nbr)
 /* Adds the node ’new’ at the end of the list. 
 **first is the address to the first link of a list */
 
-t_stack_node	ft_nodeadd_back(t_stack_node **first, t_stack_node *new)
+t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new)
 {
 	t_stack_node	*current;
 
@@ -85,17 +85,17 @@ int	ft_stacksize(t_stack_node *first)
 change the index value of the node once I execute
 the movements. */
 
-void	ft_lstiter(t_stack_node *first, void (*f)(void *))
-{
-	t_stack_node	*current;
+// void	ft_stackiter(t_stack_node *first, void (*f)(void *))
+// {
+// 	t_stack_node	*current;
 
-	current = first;
-	while (current != NULL)
-	{
-		f(current->index);
-		current = current->next;
-	}
-}
+// 	current = first;
+// 	while (current != NULL)
+// 	{
+// 		f(current->index);
+// 		current = current->next;
+// 	}
+// }
 
 /* Returns the last node of the stack. */
 
@@ -121,11 +121,11 @@ the node’s content using the function ’del’ given
 as a parameter and free the node. The memory of
 ’next’ must not be freed.*/
 
-void	ft_nodedelone(t_stack_node *first, void (*del)(void *))
-{
-	del(first->content);
-	free(first);
-}
+// void	ft_nodedelone(t_stack_node *first, void (*del)(void *))
+// {
+// 	del(first->value);
+// 	free(first);
+// }
 
 /* Deletes and frees the given node and every
 successor of that node, using the function ’del’
@@ -133,20 +133,20 @@ and free(3).
 Finally, the pointer to the list must be set to
 NULL. */
 
-void	ft_nodesclear(t_stack_node **first, void (*del)(void *))
-{
-	t_stack_node	*current;
-	t_stack_node	*buffer;
+// void	ft_nodesclear(t_stack_node **first, void (*del)(void *))
+// {
+// 	t_stack_node	*current;
+// 	t_stack_node	*buffer;
 
-	if (!first || !del)
-		return ;
-	current = *first;
-	while (current != NULL)
-	{
-		buffer = current->next;
-		del(current->content);
-		free(current);
-		current = buffer;
-	}
-	*first = NULL;
-}
+// 	if (!first || !del)
+// 		return ;
+// 	current = *first;
+// 	while (current != NULL)
+// 	{
+// 		buffer = current->next;
+// 		del(current->value);
+// 		free(current);
+// 		current = buffer;
+// 	}
+// 	*first = NULL;
+// }

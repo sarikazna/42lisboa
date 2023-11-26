@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:33:13 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 20:10:53 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/26 18:21:53 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,70 @@
 // Check for 2 numbers, if yes. Simply swap the numbers.
 // Check for 3 numbers, if so implement our simple 'sort three' algorithm.
 // check if stack has more than 3 numbers, implement our Turk Algorithm.
-//
+
+// Function stack_init checks for syntax errors, converts string arguments into 
+// 'long', then checks for 'int' overflow, and duplicates. If everything is okay,
+// it builds a stack
 
 t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
 {	
-	long tmp;
+	long			tmp;
+	t_stack_node	*current;
 	
-	tmp = 0; // do I have to initialise it?
+	tmp = 0;
 	while (stack_len--)
 	{
-		// write function to handle syntax errors
-		if (syntax_error(*nptr++)) // nptr++ or *nptr++, learn this shit
+		if (!syntax_error(*nptr))
+		{
+			// here I should free the memory of the stack
 			return (NULL);
-		tmp = ft_atol(nptr);
-		/* If ft_atol returns 0, your code currently returns NULL. 
-		This might be misleading because returning NULL typically 
-		indicates a failure related to memory allocation, not 
-		necessarily a failure in parsing the input. Consider using 
-		a different return value or a separate variable to indicate 
-		parsing failure. */
-		if (!tmp || tmp < INT_MIN || tmp > INT_MAX)
+		}
+		tmp = ft_atol(*nptr);
+		if (tmp < INT_MIN || tmp > INT_MAX)
+		{
+			// here I should free the memory of the stack
 			return (NULL);
-		// can a 0 be an input? If yes, then fuck.
+		}
+		current = a;
+		while (current != NULL)
+		{
+			if ((int)tmp == current->value)
+			{
+				// here I should free the memory of the stack
+				return (NULL);
+			}
+			current = current->next;
+		}
 		ft_nodeadd_back(&a, (ft_nodenew((int) tmp)));
-		// run a check or duplicates
+		nptr++;
 	}
 	return (a);
+}
+
+void print_stack(t_stack_node *a);
+
+
+#include <stdio.h>
+int main(void) 
+{
+    t_stack_node *a = NULL;
+    char *arguments[] = {"3", "8", "7", "1", "2"};
+    int argum_len = sizeof(arguments) / sizeof(arguments[0]);
+
+    a = stack_init(a, argum_len, arguments);
+
+    if (!a)
+    {
+        printf("Error initializing the stack.\n");
+        return (1);
+    }
+
+    printf("Stack initialized successfully. Contents:\n");
+    
+	while (a != NULL)
+	{
+    printf("Value: %d, Index: %d\n", a->value, a->index);
+    a = a->next;
+    }
+    return (0);
 }

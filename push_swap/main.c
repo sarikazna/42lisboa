@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 19:18:54 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/26 18:34:37 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ undefined behaviour. */
 /* In the main function I also handle some of the input errors.
 Namely, the argument count must be 2 or more. The 2nd argument
 must not be a empty string */
-
-/* Handling cases where there are only two arguments - so if one of
-the arguments is a sring. Handling the cases where there are multiple
-arguments.*/
 
 int	main(int argc, char **argv)
 {
