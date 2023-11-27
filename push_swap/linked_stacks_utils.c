@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:28:59 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/26 18:15:06 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/27 13:56:54 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new)
 		new->prev = current;
 		current->next = new;
 	}
+	new->position = ft_stacksize(*first);
 	return (new);
 }
 
@@ -82,7 +83,7 @@ int	ft_stacksize(t_stack_node *first)
 
 /*Iterates the stack and applies the function
 ’f’ on the content of each node. I'll use this to 
-change the index value of the node once I execute
+change the position value of the node once I execute
 the movements. */
 
 // void	ft_stackiter(t_stack_node *first, void (*f)(void *))
@@ -92,7 +93,7 @@ the movements. */
 // 	current = first;
 // 	while (current != NULL)
 // 	{
-// 		f(current->index);
+// 		f(current->position);
 // 		current = current->next;
 // 	}
 // }

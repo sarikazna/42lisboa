@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:33:13 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/26 18:21:53 by srudman          ###   ########.fr       */
+/*   Updated: 2023/11/27 15:56:31 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
 		if (!syntax_error(*nptr))
 		{
 			// here I should free the memory of the stack
+			// write(1, "Error\n", 6)
 			return (NULL);
 		}
 		tmp = ft_atol(*nptr);
 		if (tmp < INT_MIN || tmp > INT_MAX)
 		{
 			// here I should free the memory of the stack
+			// write(1, "Error\n", 6)
 			return (NULL);
 		}
 		current = a;
@@ -51,6 +53,7 @@ t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
 			if ((int)tmp == current->value)
 			{
 				// here I should free the memory of the stack
+				// write(1, "Error\n", 6)
 				return (NULL);
 			}
 			current = current->next;
@@ -61,9 +64,7 @@ t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
 	return (a);
 }
 
-void print_stack(t_stack_node *a);
-
-
+/*
 #include <stdio.h>
 int main(void) 
 {
@@ -78,13 +79,13 @@ int main(void)
         printf("Error initializing the stack.\n");
         return (1);
     }
-
     printf("Stack initialized successfully. Contents:\n");
     
 	while (a != NULL)
 	{
-    printf("Value: %d, Index: %d\n", a->value, a->index);
+    printf("Value: %d, Position: %d\n", a->value, a->position);
     a = a->next;
     }
     return (0);
 }
+*/
