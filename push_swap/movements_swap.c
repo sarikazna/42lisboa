@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:50:26 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/27 21:03:29 by srudman          ###   ########.fr       */
+/*   Updated: 2023/12/11 13:27:34 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 // 	// more meta data missing
 // }				t_stack_node;
 
-Should I also check if the len of stack is higher than 1?
+// Should I also check if the len of stack is higher than 1?
 t_stack_node	**swap_movement(t_stack_node **head)
 {
 	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
@@ -38,7 +38,7 @@ t_stack_node	**swap_movement(t_stack_node **head)
 	
 	(*head)->next->next = (*head);
 	return (&(*head));
-	// THIS CODE BELOW WORKS - try it!
+	// THIS CODE BELOW WORKS, the above does not
 	// *head = (*head)->next;
 	// (*head)->prev->prev = *head;
 	// (*head)->prev->next = (*head)->next;
@@ -48,25 +48,6 @@ t_stack_node	**swap_movement(t_stack_node **head)
 	// (*head)->prev = NULL;
 	// return (head);
 }
-
-t_stack_node **swap_movement(t_stack_node **head)
-{
-    if (head == NULL || (*head) == NULL || (*head)->next == NULL)
-        return NULL;
-
-    (*head)->position += 1;
-    (*head)->next->position -= 1;
-
-	*head = (*head)->next;
-	(*head)->prev->prev = *head;
-	(*head)->prev->next = (*head)->next;
-	if ((*head)->next)
-		(*head)->next->prev = (*head)->prev;
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
-	return (head);
-}
-
 
 // sa (swap a): Swap the first 2 elements at the top of stack a.
 // Do nothing if there is only one or no elements.
