@@ -22,8 +22,6 @@ SRC = push_swap.c main.c error_handling.c linked_stacks_utils.c movements_push.c
 
 LIBFT = libft/libft.a
 
-FT_PRINTF = ft_printf/ft_printf.a
-
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -31,17 +29,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar -crs $(NAME) $(OBJ)
 	@make -C libft
-	@make -C ft_printf
-	ar -crs $(NAME) $(LIBFT) $(FT_PRINTF)
+	ar -crs $(NAME) $(LIBFT)
 	
 clean:
 	rm -f $(OBJ)
 	@make -C libft clean
-	@make -C ft_printf clean
 	
 fclean: clean
 	rm -f $(NAME)
 	@make -C libft fclean
-	@make -C ft_printf fclean
 
 re: fclean all

@@ -28,25 +28,14 @@ t_stack_node	**swap_movement(t_stack_node **head)
 		return(NULL);
 	(*head)->position += 1;
 	(*head)->next->position -= 1;
-
-	
-	(*head)->prev = (*head)->next;
-	(*head)->next->prev = NULL;
-	
-	if ((*head)->next->next != NULL)
-		(*head)->next->prev = (*head);
-	
-	(*head)->next->next = (*head);
-	return (&(*head));
-	// THIS CODE BELOW WORKS, the above does not
-	// *head = (*head)->next;
-	// (*head)->prev->prev = *head;
-	// (*head)->prev->next = (*head)->next;
-	// if ((*head)->next)
-	// 	(*head)->next->prev = (*head)->prev;
-	// (*head)->next = (*head)->prev;
-	// (*head)->prev = NULL;
-	// return (head);
+    *head = (*head)->next;
+    if ((*head)->next)
+        (*head)->next->prev = (*head)->prev;
+    (*head)->prev->next = (*head)->next;
+    (*head)->next = (*head)->prev;
+    (*head)->prev->prev = *head;
+    (*head)->prev = NULL; 
+    return (head);
 }
 
 // sa (swap a): Swap the first 2 elements at the top of stack a.
@@ -90,7 +79,7 @@ int ss(t_stack_node **a, t_stack_node **b)
 	return (0);
 }
 
-
+/*
 void free_list(t_stack_node *head) {
     t_stack_node *current = head;
     t_stack_node *next;
@@ -102,51 +91,41 @@ void free_list(t_stack_node *head) {
     }
 }
 
-void print_list(t_stack_node *head)
+void print_stack(t_stack_node *head)
 {
     while (head != NULL)
     {
-        printf("Value: %d, Position: %d\n", head->value, head->position);
+        printf("Value: %d, Pos.: %d\n", head->value, head->position);
         head = head->next;
     }
+    printf("\n");
 }
 
-int main()
-{
-    // Create two nodes
-    t_stack_node *node1 = malloc(sizeof(t_stack_node));
-    t_stack_node *node2 = malloc(sizeof(t_stack_node));
+int main() {
+    // Create a stack with a few elements
+    t_stack_node *stack = malloc(sizeof(t_stack_node));
+    stack->value = 3;
+    stack->position = 1;
+    stack->prev = NULL;
+    stack->next = malloc(sizeof(t_stack_node));
+    stack->next->value = 7;
+    stack->next->position = 2;
+    stack->next->prev = stack;
+    stack->next->next = NULL;
 
-    // Initialize node values and positions
-    node1->value = 1;
-    node1->position = 1;
-    node1->prev = NULL;
-    node1->next = node2;
+    // Print the original stack
+    printf("Original Stack: \n");
+    print_stack(stack);
 
-    node2->value = 2;
-    node2->position = 2;
-    node2->prev = node1;
-    node2->next = NULL;
+    // Apply sa function
+    sa(&stack);
 
-    // Print the initial list
-    printf("Before swap:\n");
-    print_list(node1);
+    // Print the modified stack
+    printf("Modified Stack: \n");
+    print_stack(stack);
 
-    // Perform swap operation
-    t_stack_node **result = swap_movement(&node1);
-
-    // Update the head of the list after swap
-    if (result != NULL && *result != NULL) {
-        node1 = *result;
-    }
-
-    // Print the list after swap
-    printf("\nAfter swap:\n");
-    print_list(node1);
-
-    // Free allocated memory
-    free(node1);
-    free(node2);
-
+    // Free the allocated memory for the stack
+    free_list(stack);
     return 0;
 }
+*/

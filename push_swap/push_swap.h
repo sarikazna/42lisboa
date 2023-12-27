@@ -19,7 +19,6 @@
 # include <stdbool.h>
 # include <limits.h>
 # include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
 
 typedef struct	s_stack_node
 {
@@ -35,6 +34,14 @@ long			ft_atol(const char *nptr);
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new);
 t_stack_node	*ft_nodenew(int nbr);
 int				ft_stacksize(t_stack_node *first);
+t_stack_node	**swap_movement(t_stack_node **head)
 int				sa(t_stack_node **a);
+int				sb(t_stack_node **b);
+int				ss(t_stack_node **a, t_stack_node **b);
+t_stack_node	**rotate_movement(t_stack_node **head);
+int				ra(t_stack_node **a);
+int				rb(t_stack_node **b);
+int				rr(t_stack_node **a, t_stack_node **b);
+
 
 #endif
