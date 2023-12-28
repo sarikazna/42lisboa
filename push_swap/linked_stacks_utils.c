@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_stacks_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:28:59 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/27 13:56:54 by srudman          ###   ########.fr       */
+/*   Updated: 2023/12/28 14:03:36 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,18 @@ the movements. */
 // 		current = current->next;
 // 	}
 // }
+
+void	ft_position_nbr(t_stack_node *first, int nbr)
+{
+	t_stack_node	*current;
+
+	current = first;
+	while (current != NULL)
+	{
+		current->position = nbr++;
+		current = current->next;
+	}
+}
 
 /* Returns the last node of the stack. */
 
