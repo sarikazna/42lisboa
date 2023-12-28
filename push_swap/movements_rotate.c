@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_rotate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:53:14 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 15:56:37 by srudman          ###   ########.fr       */
+/*   Updated: 2023/12/28 13:45:36 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,15 @@
 // }				t_stack_node;
 
 // Should I also check if the len of stack is higher than 1?
+// TO DO: change position numbering as well.
 t_stack_node	**rotate_movement(t_stack_node **head)
 {
+    (*head)->prev = (ft_nodelast(*head));
+    (*head)->next->prev = NULL;
+    (ft_nodelast(*head))->next = *head;
+    (*head)->next = NULL;
+    while ((*head)->prev)
+        (*head) = (*head)->prev;
     return (head);
 }
 
@@ -69,7 +76,7 @@ int rr(t_stack_node **a, t_stack_node **b)
 	return (0);
 }
 
-/*
+// Question does freeing stack automatically delete its values?
 void free_list(t_stack_node *head) {
     t_stack_node *current = head;
     t_stack_node *next;
@@ -92,7 +99,7 @@ void print_stack(t_stack_node *head)
 }
 
 int main() {
-    // Create a stack with a few elements
+    // I add 4 nodes
     t_stack_node *stack = malloc(sizeof(t_stack_node));
     stack->value = 3;
     stack->position = 1;
@@ -123,7 +130,7 @@ int main() {
     printf("Original Stack: \n");
     print_stack(stack);
 
-    // Apply sa function
+    // Apply ra function
     ra(&stack);
 
     // Print the modified stack
@@ -134,4 +141,3 @@ int main() {
     free_list(stack);
     return 0;
 }
-*/
