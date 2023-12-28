@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:53:14 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/28 13:49:21 by srudman          ###   ########.fr       */
+/*   Updated: 2023/12/28 13:56:52 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 // TO DO: change position numbering as well.
 t_stack_node	**rotate_movement(t_stack_node **head)
 {
+    (*head)->position = ft_stacksize(*head);
+    while (*head)
+    
     (*head)->prev = (ft_nodelast(*head));
     (*head)->next->prev = NULL;
     (ft_nodelast(*head))->next = *head;
@@ -76,7 +79,6 @@ int rr(t_stack_node **a, t_stack_node **b)
 	return (0);
 }
 
-/*
 // Question does freeing stack automatically delete its values?
 void free_list(t_stack_node *head) {
     t_stack_node *current = head;
@@ -142,4 +144,3 @@ int main() {
     free_list(stack);
     return 0;
 }
-*/
