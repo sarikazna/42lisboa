@@ -6,23 +6,39 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:53:11 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/28 13:52:35 by srudman          ###   ########.fr       */
+/*   Updated: 2023/12/28 15:36:34 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Should I also check if the len of stack is higher than 1?
-// TO DO: change position numbering as well.
+// TO DO: protections needed
+
 t_stack_node	**rev_rotate_movement(t_stack_node **head)
 {
-    // (*head)->prev = (ft_nodelast(*head));
-    // (*head)->next->prev = NULL;
-    // (ft_nodelast(*head))->next = *head;
-    // (*head)->next = NULL;
-    // while ((*head)->prev)
-    //     (*head) = (*head)->prev;
+    // ft_position_nbr(*head, 2);
+    // (ft_nodelast(*head))->position = 1;
+    (*head)->prev = (ft_nodelast(*head));
+    (ft_nodelast(*head))->prev->next = NULL;
+    ft_nodelast(*head)->next = *head;
+    (*head) = (*head)->prev;
+    (*head)->prev = NULL;
     return (head);
+
+    // THIS BELOW WORKS
+    
+    // t_stack_node *last = *head;
+    // while (last->next != NULL)
+    //     last = last->next;
+
+    // // Perform the reverse rotation
+    // (*head)->prev = last;
+    // last->prev->next = NULL;
+    // last->next = *head;
+    // *head = (*head)->prev;
+    // (*head)->prev = NULL;
+    // return head;
 }
 
 // rra (reverse rotate a): Shift down all elements of stack a by 1.
@@ -33,7 +49,7 @@ int rra(t_stack_node **a)
 	a = rev_rotate_movement(a);
 	if (a)
 	{
- 		write(1, "ra\n", 3);
+ 		write(1, "rra\n", 4);
 		return (1);
 	}
 	return (0);
@@ -47,7 +63,7 @@ int rrb(t_stack_node **b)
 	b = rev_rotate_movement(b);
 	if (b)
 	{
- 		write(1, "rb\n", 3);
+ 		write(1, "rrb\n", 4);
 		return (1);
 	}
 	return (0);
@@ -61,13 +77,12 @@ int rrr(t_stack_node **a, t_stack_node **b)
 	b = rev_rotate_movement(b);
 	if (a && b)
 	{
- 		write(1, "rr\n", 3);
+ 		write(1, "rrr\n", 4);
 		return (1);
 	}
 	return (0);
 }
 
-/*
 // Question does freeing stack automatically delete its values?
 void free_list(t_stack_node *head) {
     t_stack_node *current = head;
@@ -82,10 +97,12 @@ void free_list(t_stack_node *head) {
 
 void print_stack(t_stack_node *head)
 {
-    while (head != NULL)
+    t_stack_node *current = head;
+
+    while (current != NULL)
     {
-        printf("Value: %d, Pos.: %d\n", head->value, head->position);
-        head = head->next;
+        printf("Value: %d, Pos.: %d\n", current->value, current->position);
+        current = current->next;
     }
     printf("\n");
 }
@@ -133,4 +150,3 @@ int main() {
     free_list(stack);
     return 0;
 }
-*/
