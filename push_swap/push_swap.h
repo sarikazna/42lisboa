@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:37:29 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/28 13:22:47 by srudman          ###   ########.fr       */
+/*   Updated: 2023/12/28 13:53:12 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ t_stack_node	**rotate_movement(t_stack_node **head);
 int				ra(t_stack_node **a);
 int				rb(t_stack_node **b);
 int				rr(t_stack_node **a, t_stack_node **b);
+t_stack_node	**rev_rotate_movement(t_stack_node **head);
+int				rra(t_stack_node **a);
+int				rrb(t_stack_node **b);
+int				rrr(t_stack_node **a, t_stack_node **b);
 
 
 #endif
