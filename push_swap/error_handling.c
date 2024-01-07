@@ -34,6 +34,19 @@ int	syntax_error(char *nptr)
 	return (0);
 }
 
+int	contains_duplicate(t_stack_node *a, int tmp)
+{
+	t_stack_node	*current;
+	
+	current = a;
+	while (current)
+	{
+		if (tmp == current->value)
+			return (1);
+		current = current->next;
+	}
+	return (0);
+}
 
 // #include <stdio.h>
 // int main(void)

@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	
 	if (argc <= 1 || (argc == 2 && !argv[1][0]))
 		return (-1);
 	else if (argc == 2)
@@ -35,5 +34,15 @@ int	main(int argc, char **argv)
 	a = stack_init(&a, argc, argv);
 	if (!a)
 		return (-1);
+	if (!stack_is_sorted(a))
+	{
+    	if (ft_stacksize(a) == 2)
+			sa(&a);
+    	else if (ft_stacksize(a) == 3)
+        	sort_three(a);  // &a?
+    	else
+        	run_algorithm(a, b); // &a?
+	}
+	free_list(a);
 	return (0);
 }

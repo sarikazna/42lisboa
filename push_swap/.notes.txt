@@ -27,6 +27,22 @@ Choose one of the algorithms
 Turk Algorith: https://medium.com/@ayogun/push-swap-c1f5d2d41e97
 Best friend alogirth: https://github.com/duarte3333/Push_Swap
 
+
+check if numbers are already sorted
+
+STEP 9 - Turk Algorithm
+1. Push the nodes from A to B until there are only three nodes left in A.
+Each time a node is pushed to B, B is sorted in a descending order.
+The first two nodes are pushed without checking anything. We now have
+the two numbers in B - a current min and a current max.
+2. Everytime you make the push, you check if there are 3 nodes in stack A
+3. Every A needs a ´closest smaller nbr to A' from stack B. 
+A has to have a larger number to B when we push it.
+If A is smaller to B, then the 'closes smaller number to A' is the max_value in B.
+Every A node is assigned a ´closest smallest number to A´
+
+
+
 MAIN FUNCTION
 Write the main function. Handle errors better, so is input correct?
 

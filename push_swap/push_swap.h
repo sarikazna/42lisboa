@@ -24,18 +24,34 @@ typedef struct	s_stack_node
 {
 	int		value;
 	int		position;
+	int		push_cost;
+	bool	above_median;
+	bool	cheapest;
+	struct s_stack_node *near_b_val;
 	struct s_stack_node *prev;
 	struct s_stack_node *next;
-	// more meta data missing
 }				t_stack_node;
 
+// Error handling
 int				syntax_error(char *nptr);
-long			ft_atol(const char *nptr);
+int				contains_duplicate(t_stack_node *a, int tmp);
+
+// Stack initialisation
+t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr);
+
+// Linked list utils
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new);
 t_stack_node	*ft_nodenew(int nbr);
 int				ft_stacksize(t_stack_node *first);
 void			ft_position_nbr(t_stack_node *first, int nbr);
 t_stack_node	*ft_nodelast(t_stack_node *first);
+void			free_list(t_stack_node *head)
+
+int				find_mean(t_stack_node *head);
+long			ft_atol(const char *nptr);
+int				stack_is_sorted(t_stack_node *a);
+
+// Movements
 t_stack_node	**swap_movement(t_stack_node **head);
 int				sa(t_stack_node **a);
 int				sb(t_stack_node **b);

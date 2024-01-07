@@ -29,34 +29,20 @@
 t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
 {	
 	long			tmp;
-	t_stack_node	*current;
 	
 	tmp = 0;
 	while (stack_len--)
 	{
 		if (!syntax_error(*nptr))
 		{
-			// here I should free the memory of the stack
-			// write(1, "Error\n", 6)
+			free_list(a);
 			return (NULL);
 		}
 		tmp = ft_atol(*nptr);
-		if (tmp < INT_MIN || tmp > INT_MAX)
+		if (tmp < INT_MIN || tmp > INT_MAX || contains_duplicate(a, (int) tmp))
 		{
-			// here I should free the memory of the stack
-			// write(1, "Error\n", 6)
+			free_list(a);
 			return (NULL);
-		}
-		current = a;
-		while (current != NULL)
-		{
-			if ((int)tmp == current->value)
-			{
-				// here I should free the memory of the stack
-				// write(1, "Error\n", 6)
-				return (NULL);
-			}
-			current = current->next;
 		}
 		ft_nodeadd_back(&a, (ft_nodenew((int) tmp)));
 		nptr++;

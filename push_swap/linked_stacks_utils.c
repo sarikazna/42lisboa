@@ -127,39 +127,33 @@ t_stack_node	*ft_nodelast(t_stack_node *first)
 	return (previous);
 }
 
-// STILL NEED TO FIGURE OUT BOTTOM TWO
+// TO DO, free the "target node" as wellif it's dynamically allocated
+void	free_list(t_stack_node *head)
+{
+    t_stack_node	*current;
+    t_stack_node	*buffer;
 
-/*Takes as a parameter a node and frees the memory of
-the node’s content using the function ’del’ given
-as a parameter and free the node. The memory of
-’next’ must not be freed.*/
+	current = head;
+    while (current)
+	{
+        buffer = current->next;
+        free(current);
+        current = buffer;
+    }
+}
 
-// void	ft_nodedelone(t_stack_node *first, void (*del)(void *))
-// {
-// 	del(first->value);
-// 	free(first);
-// }
+int	stack_is_sorted(t_stack_node *a)
+{
+	t_stack_node	*current;
 
-/* Deletes and frees the given node and every
-successor of that node, using the function ’del’
-and free(3).
-Finally, the pointer to the list must be set to
-NULL. */
-
-// void	ft_nodesclear(t_stack_node **first, void (*del)(void *))
-// {
-// 	t_stack_node	*current;
-// 	t_stack_node	*buffer;
-
-// 	if (!first || !del)
-// 		return ;
-// 	current = *first;
-// 	while (current != NULL)
-// 	{
-// 		buffer = current->next;
-// 		del(current->value);
-// 		free(current);
-// 		current = buffer;
-// 	}
-// 	*first = NULL;
-// }
+	if(!stack)
+		return (0);
+	current = a;
+	while (current)
+	{
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
