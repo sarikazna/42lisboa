@@ -27,6 +27,8 @@ void			ft_position_nbr(t_stack_node *first, int nbr);
 // TO DO: protections needed
 t_stack_node	**rotate_movement(t_stack_node **head)
 {
+	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
+		return(NULL);
     (*head)->position = ft_stacksize(*head);
     ft_position_nbr((*head)->next, 1);
     (*head)->prev = (ft_nodelast(*head));

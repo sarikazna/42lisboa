@@ -17,28 +17,19 @@
 
 t_stack_node	**rev_rotate_movement(t_stack_node **head)
 {
-    // ft_position_nbr(*head, 2);
-    // (ft_nodelast(*head))->position = 1;
-    (*head)->prev = (ft_nodelast(*head));
-    (ft_nodelast(*head))->prev->next = NULL;
-    ft_nodelast(*head)->next = *head;
+    t_stack_node *last;
+
+	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
+		return(NULL);
+    last = ft_nodelast(*head);
+    ft_position_nbr(*head, 2);
+    last->position = 1;
+    (*head)->prev = last;
+    last->prev->next = NULL;
+    last->next = *head;
     (*head) = (*head)->prev;
     (*head)->prev = NULL;
     return (head);
-
-    // THIS BELOW WORKS
-    
-    // t_stack_node *last = *head;
-    // while (last->next != NULL)
-    //     last = last->next;
-
-    // // Perform the reverse rotation
-    // (*head)->prev = last;
-    // last->prev->next = NULL;
-    // last->next = *head;
-    // *head = (*head)->prev;
-    // (*head)->prev = NULL;
-    // return head;
 }
 
 // rra (reverse rotate a): Shift down all elements of stack a by 1.
@@ -129,7 +120,7 @@ int main() {
     node2->next = node3;
 
     t_stack_node *node4 = malloc(sizeof(t_stack_node));
-    node4->value = 12;
+    node4->value = 16;
     node4->position = 4;
     node4->prev = node3;
     node4->next = NULL;
