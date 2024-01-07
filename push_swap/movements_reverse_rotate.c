@@ -74,6 +74,7 @@ int rrr(t_stack_node **a, t_stack_node **b)
 	return (0);
 }
 
+/*
 // Question does freeing stack automatically delete its values?
 void free_list(t_stack_node *head) {
     t_stack_node *current = head;
@@ -141,3 +142,4 @@ int main() {
     free_list(stack);
     return 0;
 }
+*/

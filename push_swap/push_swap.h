@@ -48,6 +48,8 @@ t_stack_node	**rev_rotate_movement(t_stack_node **head);
 int				rra(t_stack_node **a);
 int				rrb(t_stack_node **b);
 int				rrr(t_stack_node **a, t_stack_node **b);
-
+int				push_movement(t_stack_node **a_head, t_stack_node **b_head);
+int				pa(t_stack_node **a, t_stack_node **b);
+int				pb(t_stack_node **a, t_stack_node **b);
 
 #endif
