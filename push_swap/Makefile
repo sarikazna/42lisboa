@@ -17,7 +17,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = push_swap.c main.c error_handling.c linked_stacks_utils.c movements_push.c \
-	movements_reverse_rotate.c movements_rotate.c movements_swap.c other_utils.c \
+	movements_reverse_rotate.c movements_rotate.c movements_swap.c math_operations.c \
 	stack_init.c
 
 LIBFT = libft/libft.a

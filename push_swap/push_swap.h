@@ -45,11 +45,15 @@ t_stack_node	*ft_nodenew(int nbr);
 int				ft_stacksize(t_stack_node *first);
 void			ft_position_nbr(t_stack_node *first, int nbr);
 t_stack_node	*ft_nodelast(t_stack_node *first);
-void			free_list(t_stack_node *head)
+void			free_list(t_stack_node *head);
 
+int				stack_is_sorted(t_stack_node *a);
+
+// Math operations
 int				find_mean(t_stack_node *head);
 long			ft_atol(const char *nptr);
-int				stack_is_sorted(t_stack_node *a);
+t_stack_node	*get_min(t_stack_node *head);
+t_stack_node	*get_max(t_stack_node *head);
 
 // Movements
 t_stack_node	**swap_movement(t_stack_node **head);

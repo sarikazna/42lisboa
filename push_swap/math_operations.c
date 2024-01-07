@@ -39,6 +39,7 @@ long	ft_atol(const char *nptr)
 	return (result * minus);
 }
 
+// not sure if needed
 int	find_mean(t_stack_node *head)
 {
 	t_stack_node	*current;
@@ -58,12 +59,34 @@ int	find_mean(t_stack_node *head)
 
 t_stack_node	*get_min(t_stack_node *head)
 {
+	t_stack_node	*current;
 	t_stack_node	*min_node;
+
+	min_node = head;
+    current = head;
+	while (current)
+	{	
+		if (current->value < min_node->value)
+			min_node = current;
+		current = current->next;
+	}
+	return (min_node);
 }
 
 t_stack_node	*get_max(t_stack_node *head)
 {
+	t_stack_node	*current;
+	t_stack_node	*max_node;
 
+	max_node = head;
+    current = head;
+	while (current)
+	{	
+		if (current->value > max_node->value)
+			max_node = current;
+		current = current->next;
+	}
+	return (max_node);
 }
 
 // #include <stdio.h>
@@ -113,6 +136,46 @@ int main() {
 
     // Free the allocated memory
     free_list(head);
+
+    return 0;
+}
+
+
+
+
+void print_stack(t_stack_node *head) {
+    t_stack_node *current = head;
+
+    while (current != NULL) {
+        printf("%d ", current->value);
+        current = current->next;
+    }
+
+    printf("\n");
+}
+
+int main() {
+    // Create a sample stack
+    t_stack_node *stack = malloc(sizeof(t_stack_node));
+    stack->value = 5;
+    stack->next = malloc(sizeof(t_stack_node));
+    stack->next->value = -2;
+    stack->next->next = malloc(sizeof(t_stack_node));
+    stack->next->next->value = 8;
+    stack->next->next->next = NULL;
+
+    // Print the original stack
+    printf("Original Stack:\n");
+    print_stack(stack);
+
+    // Get the minimum node
+    t_stack_node *min_node = get_min(stack);
+
+    // Print the minimum node's value
+    printf("Minimum Node Value: %d\n", min_node->value);
+
+    // Free the allocated memory
+    free_list(stack);
 
     return 0;
 }
