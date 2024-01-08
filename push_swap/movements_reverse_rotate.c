@@ -15,6 +15,9 @@
 // Should I also check if the len of stack is higher than 1?
 // TO DO: protections needed
 
+t_stack_node	*ft_nodelast(t_stack_node *first);
+int				ft_stacksize(t_stack_node *first);
+
 t_stack_node	**rev_rotate_movement(t_stack_node **head)
 {
     t_stack_node *last;

@@ -39,6 +39,9 @@ int				contains_duplicate(t_stack_node *a, int tmp);
 // Stack initialisation
 t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr);
 
+// Sorting algorithms
+t_stack_node	*sort_three(t_stack_node *a);
+
 // Linked list utils
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new);
 t_stack_node	*ft_nodenew(int nbr);
@@ -46,7 +49,6 @@ int				ft_stacksize(t_stack_node *first);
 void			ft_position_nbr(t_stack_node *first, int nbr);
 t_stack_node	*ft_nodelast(t_stack_node *first);
 void			free_list(t_stack_node *head);
-
 int				stack_is_sorted(t_stack_node *a);
 
 // Math operations

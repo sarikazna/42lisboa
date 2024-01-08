@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+int				ft_stacksize(t_stack_node *first);
+
 long	ft_atol(const char *nptr)
 {
 	int	minus;

@@ -17,8 +17,9 @@ I set both pointers of the data structures to NuLL to avoid
 undefined behaviour. */
 
 /* In the main function I also handle some of the input errors.
-Namely, the argument count must be 2 or more. The 2nd argument
+Namely, the argument count must be 2 or t_stack_node	*get_max(t_stack_node *head)more. The 2nd argument
 must not be a empty string */
+
 
 int	main(int argc, char **argv)
 {
@@ -35,7 +36,7 @@ int	main(int argc, char **argv)
 	if (!a)
 		return (-1);
 	if (!stack_is_sorted(a))
-	{
+	{t_stack_node	*get_max(t_stack_node *head)
     	if (ft_stacksize(a) == 2)
 			sa(&a);
     	else if (ft_stacksize(a) == 3)

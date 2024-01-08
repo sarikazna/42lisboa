@@ -21,7 +21,9 @@
 // 	// more meta data missing
 // }				t_stack_node;
 
+int				ft_stacksize(t_stack_node *first);
 void			ft_position_nbr(t_stack_node *first, int nbr);
+t_stack_node	*ft_nodelast(t_stack_node *first);
 
 // Should I also check if the len of stack is higher than 1?
 // TO DO: protections needed
@@ -45,8 +47,7 @@ t_stack_node	**rotate_movement(t_stack_node **head)
 
 int ra(t_stack_node **a)
 {
-	a = rotate_movement(a);
-	if (a)
+	if (rotate_movement(a))
 	{
  		write(1, "ra\n", 3);
 		return (1);
@@ -82,18 +83,7 @@ int rr(t_stack_node **a, t_stack_node **b)
 	return (0);
 }
 
-// Question does freeing stack automatically delete its values?
-void free_list(t_stack_node *head) {
-    t_stack_node *current = head;
-    t_stack_node *next;
-
-    while (current != NULL) {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-}
-
+/*
 void print_stack(t_stack_node *head)
 {
     while (head != NULL)
@@ -103,6 +93,7 @@ void print_stack(t_stack_node *head)
     }
     printf("\n");
 }
+
 
 int main() {
     // I add 4 nodes
@@ -147,3 +138,4 @@ int main() {
     free_list(stack);
     return 0;
 }
+*/

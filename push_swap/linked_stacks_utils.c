@@ -146,10 +146,10 @@ int	stack_is_sorted(t_stack_node *a)
 {
 	t_stack_node	*current;
 
-	if(!stack)
+	if(!a)
 		return (0);
 	current = a;
-	while (current)
+	while (current->next)
 	{
 		if (current->value > current->next->value)
 			return (0);
@@ -157,3 +157,44 @@ int	stack_is_sorted(t_stack_node *a)
 	}
 	return (1);
 }
+
+/*
+void print_stack(t_stack_node *head) {
+    t_stack_node *current = head;
+
+    while (current != NULL) {
+        printf("%d ", current->value);
+        current = current->next;
+    }
+
+    printf("\n");
+}
+
+int main() {
+    // Create a sample sorted stack
+    t_stack_node *sorted_stack = malloc(sizeof(t_stack_node));
+    sorted_stack->value = 1;
+    sorted_stack->next = malloc(sizeof(t_stack_node));
+    sorted_stack->next->value = 5;
+    sorted_stack->next->next = malloc(sizeof(t_stack_node));
+    sorted_stack->next->next->value = 3;
+    sorted_stack->next->next->next = NULL;
+
+    // Print the sorted stack
+    printf("Sorted Stack:\n");
+    print_stack(sorted_stack);
+
+    // Check if the stack is sorted
+    if (stack_is_sorted(sorted_stack)) {
+        printf("The stack is sorted.\n");
+    } else {
+        printf("The stack is not sorted.\n");
+    }
+
+    // Free the allocated memory
+    free_list(sorted_stack);
+
+    return 0;
+}
+
+*/
