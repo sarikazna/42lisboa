@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
     	if (ft_stacksize(a) == 2)
 			sa(&a);
     	else if (ft_stacksize(a) == 3)
-        	sort_three(a);  // &a?
+        	sort_three(&a);  // &a?
     	else
         	run_algorithm(a, b); // &a?
 	}

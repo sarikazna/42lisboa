@@ -21,24 +21,28 @@
 // 	// more meta data missing
 // }				t_stack_node;
 
-int				ft_stacksize(t_stack_node *first);
-void			ft_position_nbr(t_stack_node *first, int nbr);
-t_stack_node	*ft_nodelast(t_stack_node *first);
+// int				ft_stacksize(t_stack_node *first);
+// void			ft_position_nbr(t_stack_node *first, int nbr);
+// t_stack_node	*ft_nodelast(t_stack_node *first);
+// void            print_stack(t_stack_node *head);
 
 // Should I also check if the len of stack is higher than 1?
 // TO DO: protections needed
 t_stack_node	**rotate_movement(t_stack_node **head)
 {
-	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
+    t_stack_node *last;
+    t_stack_node *second;
+
+    if (head == NULL || (*head) == NULL || (*head)->next == NULL)
 		return(NULL);
-    (*head)->position = ft_stacksize(*head);
-    ft_position_nbr((*head)->next, 1);
-    (*head)->prev = (ft_nodelast(*head));
+    last = ft_nodelast(*head);
+    second = (*head)->next;
+    (*head)->prev = last;
     (*head)->next->prev = NULL;
-    (ft_nodelast(*head))->next = *head;
+    last->next = *head;
     (*head)->next = NULL;
-    while ((*head)->prev)
-        (*head) = (*head)->prev;
+    *head = second;
+    ft_position_nbr((*head), 1);
     return (head);
 }
 
@@ -60,8 +64,7 @@ int ra(t_stack_node **a)
 
 int rb(t_stack_node **b)
 {
-	b = rotate_movement(b);
-	if (b)
+	if (rotate_movement(b))
 	{
  		write(1, "rb\n", 3);
 		return (1);
@@ -73,9 +76,7 @@ int rb(t_stack_node **b)
 
 int rr(t_stack_node **a, t_stack_node **b)
 {
-	a = rotate_movement(a);
-	b = rotate_movement(b);
-	if (a && b)
+	if (rotate_movement(a) && rotate_movement(b))
 	{
  		write(1, "rr\n", 3);
 		return (1);
@@ -84,6 +85,7 @@ int rr(t_stack_node **a, t_stack_node **b)
 }
 
 /*
+
 void print_stack(t_stack_node *head)
 {
     while (head != NULL)

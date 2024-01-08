@@ -17,21 +17,26 @@
 
 t_stack_node	*ft_nodelast(t_stack_node *first);
 int				ft_stacksize(t_stack_node *first);
+void            print_stack(t_stack_node *head);
 
 t_stack_node	**rev_rotate_movement(t_stack_node **head)
 {
     t_stack_node *last;
+    t_stack_node *sec_to_last;
 
 	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
 		return(NULL);
     last = ft_nodelast(*head);
-    ft_position_nbr(*head, 2);
-    last->position = 1;
+    sec_to_last = last->prev;
+
+    
+
     (*head)->prev = last;
     last->prev->next = NULL;
     last->next = *head;
     (*head) = (*head)->prev;
     (*head)->prev = NULL;
+    ft_position_nbr(*head, 1);
     return (head);
 }
 
@@ -40,8 +45,8 @@ t_stack_node	**rev_rotate_movement(t_stack_node **head)
 
 int rra(t_stack_node **a)
 {
-	a = rev_rotate_movement(a);
-	if (a)
+    printf("We're in rra function\n");
+	if (rev_rotate_movement(a))
 	{
  		write(1, "rra\n", 4);
 		return (1);
@@ -54,8 +59,7 @@ int rra(t_stack_node **a)
 
 int rrb(t_stack_node **b)
 {
-	b = rev_rotate_movement(b);
-	if (b)
+	if (rev_rotate_movement(b))
 	{
  		write(1, "rrb\n", 4);
 		return (1);
@@ -67,9 +71,7 @@ int rrb(t_stack_node **b)
 
 int rrr(t_stack_node **a, t_stack_node **b)
 {
-	a = rev_rotate_movement(a);
-	b = rev_rotate_movement(b);
-	if (a && b)
+	if (rev_rotate_movement(a) && rev_rotate_movement(b))
 	{
  		write(1, "rrr\n", 4);
 		return (1);

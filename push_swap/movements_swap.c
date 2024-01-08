@@ -56,8 +56,7 @@ int sa(t_stack_node **a)
 
 int sb(t_stack_node **b)
 {
-	b = swap_movement(b);
-	if (b)
+	if (swap_movement(b))
 	{
  		write(1, "sb\n", 3);
 		return (1);
@@ -69,9 +68,7 @@ int sb(t_stack_node **b)
 
 int ss(t_stack_node **a, t_stack_node **b)
 {
-	a = swap_movement(a);
-	b = swap_movement(b);
-	if (a && b)
+	if (swap_movement(a) && swap_movement(b))
 	{
  		write(1, "ss\n", 3);
 		return (1);
