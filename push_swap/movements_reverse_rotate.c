@@ -29,7 +29,7 @@ t_stack_node	**rev_rotate_movement(t_stack_node **head)
     last = ft_nodelast(*head);
     sec_to_last = last->prev;
 
-    // left off here.
+    // left off here...
     // cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c 
 
     (*head)->prev = last;
