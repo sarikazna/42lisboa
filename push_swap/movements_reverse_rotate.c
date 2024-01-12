@@ -22,21 +22,15 @@ void            print_stack(t_stack_node *head);
 t_stack_node	**rev_rotate_movement(t_stack_node **head)
 {
     t_stack_node *last;
-    t_stack_node *sec_to_last;
 
 	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
 		return(NULL);
     last = ft_nodelast(*head);
-    sec_to_last = last->prev;
-
-    // left off here...
-    // cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c 
-
-    (*head)->prev = last;
     last->prev->next = NULL;
-    last->next = *head;
-    (*head) = (*head)->prev;
-    (*head)->prev = NULL;
+    last->next = (*head);
+    last->prev = NULL;
+    (*head) = last;
+    last->next->prev = last;
     ft_position_nbr(*head, 1);
     return (head);
 }
@@ -46,7 +40,6 @@ t_stack_node	**rev_rotate_movement(t_stack_node **head)
 
 int rra(t_stack_node **a)
 {
-    printf("We're in rra function\n");
 	if (rev_rotate_movement(a))
 	{
  		write(1, "rra\n", 4);
@@ -80,19 +73,10 @@ int rrr(t_stack_node **a, t_stack_node **b)
 	return (0);
 }
 
-/*
+
 // Question does freeing stack automatically delete its values?
-void free_list(t_stack_node *head) {
-    t_stack_node *current = head;
-    t_stack_node *next;
 
-    while (current != NULL) {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-}
-
+/*
 void print_stack(t_stack_node *head)
 {
     t_stack_node *current = head;

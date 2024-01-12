@@ -36,13 +36,13 @@ int	main(int argc, char **argv)
 	if (!a)
 		return (-1);
 	if (!stack_is_sorted(a))
-	{t_stack_node	*get_max(t_stack_node *head)
+	{
     	if (ft_stacksize(a) == 2)
 			sa(&a);
     	else if (ft_stacksize(a) == 3)
-        	sort_three(&a);  // &a?
+        	sort_three(&a); // it has a return value
     	else
-        	run_algorithm(a, b); // &a?
+        	run_algorithm(&a, &b);
 	}
 	free_list(a);
 	return (0);

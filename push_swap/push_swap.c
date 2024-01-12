@@ -14,41 +14,70 @@
 
 void print_stack(t_stack_node *head);
 
-// needs work
 t_stack_node *sort_three(t_stack_node **a)
 {
     t_stack_node    *max_node;
 
     max_node = get_max(*a);
-    print_stack(*a);
     if (max_node == *a)
         ra(a);
-    // this is causing segmenetation fault
-//    else if (max_node->position == 2)
     else if ((*a)->next == max_node)
-    {
         rra(a);
-        printf("Stack after rra(&a):\n");
-        print_stack(*a);
-    }
-    // this is causing segmenetation fault
     if ((*a)->value > (*a)->next->value)
-    {
         sa(a);
-        printf("Stack after sa(&a):\n");
-        print_stack(*a);
-    }
     if (stack_is_sorted(*a))
         return (*a);
     return (NULL);
 }
 
+/*
+STEP 9 - Turk Algorithm
+1. Push the nodes from A to B until there are only three nodes left in A.
+Each time a node is pushed to B, B is sorted in a descending order.
+The first two nodes are pushed without checking anything. We now have
+the two numbers in B - a current min and a current max.
+2. Everytime you make the push, you check if there are 3 nodes in stack A
+3. Every A needs a ´closest smaller nbr to A' from stack B. 
+A has to have a larger number to B when we push it.
+If A is smaller to B, then the 'closes smaller number to A' is the max_value in B.
+Every A node is assigned a ´closest smallest number to A´
+*/
+t_stack_node *run_algorithm(t_stack_node **a, t_stack_node **b)
+{
+    if (t_stacksize(*a) >= 4 && !stack_is_sorted(*a))
+        pb(a, b);        
+    if (t_stacksize(*a) >= 4 && !stack_is_sorted(*a))
+        pb(a, b);
+    while (t_stacksize(*a) > 3)
+    {
+        set_target(a, b);
+        // add more values to A (set target node, calculate push, above or under median)
+        // move everything from A to B
+    }
+    sort_three(a);
+    while (*b)
+    {
+        // add more values to B
+        // move everything from B to A
+    }
+}
+
+void    set_target(t_stack_node **a, t_stack_node **b)
+{
+    long            tmp_best_match;
+    t_stack_node    *current_b;
+    t_stack_node    *target_node;
+
+    tmp_best_match = LONG_MIN;
+    current_b = *b;
+    //  Left off here 37min: https://www.youtube.com/watch?v=wRvipSG4Mmk
+}
 
 void print_stack(t_stack_node *head) {
     t_stack_node *current = head;
 
     while (current != NULL) {
-        printf("Value: %d Position: %d;", current->value, current->position);
+        printf("Value: %d Position: %d; ", current->value, current->position);
         current = current->next;
     }
     printf("\n");
@@ -58,14 +87,17 @@ int main()
 {
     // Create a sample sorted stack
     t_stack_node *sorted_stack = malloc(sizeof(t_stack_node));
-    sorted_stack->value = 17;
+    sorted_stack->value = 5;
     sorted_stack->position = 1;
+    sorted_stack->prev = NULL;  // Initialize prev pointer
     sorted_stack->next = malloc(sizeof(t_stack_node));
-    sorted_stack->next->value = 18;
+    sorted_stack->next->value = 6;
     sorted_stack->next->position = 2;
+    sorted_stack->next->prev = sorted_stack;  // Set prev pointer
     sorted_stack->next->next = malloc(sizeof(t_stack_node));
-    sorted_stack->next->next->value = 15;
+    sorted_stack->next->next->value = 7;
     sorted_stack->next->next->position = 3;
+    sorted_stack->next->next->prev = sorted_stack->next;  // Set prev pointer
     sorted_stack->next->next->next = NULL;
 
     // Print the sorted stack
