@@ -127,6 +127,24 @@ t_stack_node	*ft_nodelast(t_stack_node *first)
 	return (previous);
 }
 
+t_stack_node	*ft_nodefirst(t_stack_node *last)
+{
+	printf("Made it to nodefirst");
+    if (last == NULL)
+	{
+		// push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
+		printf("Made it to nodefirst where NULL activated");
+        return NULL;
+	}
+	while (last->prev != NULL)
+	{
+		last = last->prev;
+	}
+	return (last);
+}
+
+
+
 // TO DO, free the "target node" as wellif it's dynamically allocated
 void	free_list(t_stack_node *head)
 {
