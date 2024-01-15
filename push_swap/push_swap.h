@@ -41,7 +41,7 @@ t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr);
 // Sorting algorithms
 t_stack_node	*sort_three(t_stack_node **a);
 t_stack_node	*run_algorithm(t_stack_node **a, t_stack_node **b);
-static void		set_target(t_stack_node **a, t_stack_node **b);
+t_stack_node    *set_target(t_stack_node **a, t_stack_node **b);
 
 // Linked list utils
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new);
