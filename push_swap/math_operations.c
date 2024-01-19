@@ -14,6 +14,7 @@
 
 int				ft_stacksize(t_stack_node *first);
 
+// handle single plus! if next position exists?
 long	ft_atol(const char *nptr)
 {
 	int	minus;

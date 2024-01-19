@@ -92,7 +92,7 @@ void print_stack(t_stack_node *head)
 {
     while (head != NULL)
     {
-        printf("Value: %d, Pos.: %d\n", head->value, head->position);
+        printf("Value: %d, Pos.: %d\n", void    		no_of_moves_needed(t_stack_node **a, t_stack_node **b);head->value, head->position);
         head = head->next;
     }
     printf("\n");

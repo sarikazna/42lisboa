@@ -99,25 +99,60 @@ t_stack_node    *set_target(t_stack_node **a, t_stack_node **b)
 THIS NEEDS TO OPTIMISED!
 cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
 */
-t_stack_node    *cost_analysis(t_stack_node **a, t_stack_node **b)
+// t_stack_node    *moves_needed(t_stack_node **a, t_stack_node **b)
+// {
+//     int             a_len;
+//     int             b_len;
+//     t_stack_node    *current_a;
+
+//     current_a = *a;
+//     while (current_a)
+//     {
+//         a_len = ft_stacksize(*a);
+//         b_len = ft_stacksize(*b);
+//         if (current_a->position <= a_len/2)        
+//             current_a->push_cost = current_a->position;
+//         else if (current_a->position > a_len/2)   
+//             current_a->push_cost = a_len - (current_a->position) + 1;
+//         if (current_a->target->position <= b_len/2)
+//             current_a->push_cost += current_a->target->position - 1;
+//         else
+//             current_a->push_cost += b_len - (current_a->target->position);
+//         current_a = current_a->next;
+//     }
+//     return (*a);
+// }
+
+t_stack_node    *no_of_moves_needed(t_stack_node **a, t_stack_node **b)
 {
     int             a_len;
     int             b_len;
     t_stack_node    *current_a;
 
-    current_a = *a;
     a_len = ft_stacksize(*a);
     b_len = ft_stacksize(*b);
+    current_a = *a;
     while (current_a)
     {
-        if (current_a->position <= a_len/2)        
-            current_a->push_cost = current_a->position;
-        else if (current_a->position > a_len/2)   
-            current_a->push_cost = a_len - (current_a->position) + 1;
-        if (current_a->target->position <= b_len/2)
-            current_a->push_cost += current_a->target->position - 1;
+        (current_a)->push_cost = 0;
+        if (current_a->position <= a_len/2 && current_a->target->position <= b_len/2)
+        {
+            if (current_a->position >= current_a->target->position)
+                current_a->push_cost = current_a->position - 1;
+            else
+                current_a->push_cost = current_a->target->position - 1;
+        }
+        else if (current_a->position > a_len/2 && current_a->target->position > b_len/2)
+        {
+            if (a_len - (current_a->position) >= b_len - (current_a->target->position))
+                current_a->push_cost = a_len - (current_a->position) + 1;
+            else
+                current_a->push_cost = b_len - (current_a->target->position) + 1;
+        }
+        else if (current_a->position <= a_len/2 && current_a->target->position > b_len/2)
+            current_a->push_cost = current_a->position + b_len - (current_a->target->position);
         else
-            current_a->push_cost += b_len - (current_a->target->position);
+            current_a->push_cost = a_len - (current_a->position) + (current_a->target->position);
         current_a = current_a->next;
     }
     return (*a);
@@ -145,9 +180,7 @@ int main()
     // Print the sorted stack
     printf("Initial Stack:\n");
     print_stack(sorted_stack);
-
-    // Check if the stack is sorted
-    sorted_stack = sort_three(&sorted_stack);
+3&sorted_stack);
     if (sorted_stack)
     {
         printf("Sorted Stack:\n");
@@ -161,11 +194,9 @@ int main()
     // Free the allocated memory
     free_list(sorted_stack);
 
-    return 0;
-}
-*/
+    return 0;void    		no_of_moves_needed(t_stack_node **a, t_stack_node **b);
 
-/*
+
 Main to test out set_target
 void print_list(t_stack_node *head)
 {
@@ -238,19 +269,29 @@ int main()
     t_stack_node node2 = {2, 2, 0, false, NULL, &node1, NULL};
     t_stack_node node3 = {7, 3, 0, false, NULL, &node2, NULL};
     t_stack_node node4 = {5, 4, 0, false, NULL, &node3, NULL};
+    t_stack_node node5 = {10, 5, 0, false, NULL, &node4, NULL};  // Additional nodes
+    t_stack_node node6 = {8, 6, 0, false, NULL, &node5, NULL};   // Additional nodes
     t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL};
     t_stack_node nodeb2 = {6, 2, 0, false, NULL, &nodeb1, NULL};
+    t_stack_node nodeb3 = {12, 3, 0, false, NULL, &nodeb2, NULL};  // Additional nodes
+    t_stack_node nodeb4 = {3, 4, 0, false, NULL, &nodeb3, NULL};
 
     node1.next = &node2;
     node2.next = &node3;
     node3.next = &node4;
+    node4.next = &node5;  // Additional nodes
+    node5.next = &node6;  // Additional nodes
 
     nodeb1.next = &nodeb2;
+    nodeb2.next = &nodeb3;
+    nodeb3.next = &nodeb4;  // Additional nodes
 
-    node1.target = &nodeb1;
+    node1.target = &nodeb4;
     node2.target = &nodeb1;
     node3.target = &nodeb2;
-    node4.target = &nodeb1;
+    node4.target = &nodeb4;
+    node5.target = &nodeb2;  // Additional nodes
+    node6.target = &nodeb2;  // Additional nodes
 
     t_stack_node *a = &node1;
     t_stack_node *b = &nodeb1;
@@ -262,7 +303,7 @@ int main()
     print_list(b);
 
     // Applying cost_analysis function
-    cost_analysis(&a, &b);
+    no_of_moves_needed(&a, &b);
 
     printf("Modified List A (after cost analysis):\n");
     print_list(a);
