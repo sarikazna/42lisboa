@@ -46,7 +46,9 @@ t_stack_node *run_algorithm(t_stack_node **a, t_stack_node **b)
     while (ft_stacksize(*a) > 3)
     {
         set_target(a, b);
-        // add more values to A (set target node, calculate push, above or under median)
+        no_of_moves_needed(a, b);
+        set_cheapest(a);
+        move_a_to_b(a, b); // left off here cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
         // move everything from A to B, one by one
     }
     sort_three(a);
@@ -158,6 +160,26 @@ t_stack_node    *no_of_moves_needed(t_stack_node **a, t_stack_node **b)
     return (*a);
 }
 
+void    set_cheapest(t_stack_node **a)
+{
+    long            cheapest_value;
+    t_stack_node    *current;
+    t_stack_node    *current_cheapest;
+
+    current = (*a);
+    cheapest_value = LONG_MAX;
+    current_cheapest = current;
+    while (current)
+    {
+        if (current->push_cost < cheapest_value)
+        {
+            cheapest_value = current->push_cost;
+            current_cheapest = current;
+        }
+        current = current->next;
+    }
+    current_cheapest->cheapest = true;
+}
 /*
 Main to test sort_three
 int main()
@@ -178,7 +200,7 @@ int main()
     sorted_stack->next->next->next = NULL;
 
     // Print the sorted stack
-    printf("Initial Stack:\n");
+  1  printf("Initial Stack:\n");
     print_stack(sorted_stack);
 3&sorted_stack);
     if (sorted_stack)
@@ -214,18 +236,10 @@ void print_stack(t_stack_node *head)
     {
         printf("%d and target %d; ", head->value, head->target->value);
         head = head->next;
-    }
-    printf("\n");
-}
-
-int main()
-{
-    // Create a sample stack for testing
-    t_stack_node node1 = {4, 1, 0, false, NULL, NULL, NULL};
-    t_stack_node node2 = {2, 2, 0, false, NULL, &node1, NULL};
+    }>
     t_stack_node node3 = {7, 3, 0, false, NULL, &node2, NULL};
     t_stack_node node4 = {5, 4, 0, false, NULL, &node3, NULL};
-    t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL};
+    t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL}1;
     t_stack_node nodeb2 = {6, 2, 0, false, NULL, &nodeb1, NULL};
 
     node1.next = &node2;
@@ -241,7 +255,7 @@ int main()
     print_list(a);
 
     printf("List B: ");
-    print_list(b);
+    print_list(b);1
 
     t_stack_node *modifiedListA = set_target(&a, &b);
 
@@ -252,6 +266,7 @@ int main()
 }
 */
 
+/* Main to test push_cost
 void print_list(t_stack_node *head)
 {
     while (head)
@@ -274,7 +289,7 @@ int main()
     t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL};
     t_stack_node nodeb2 = {6, 2, 0, false, NULL, &nodeb1, NULL};
     t_stack_node nodeb3 = {12, 3, 0, false, NULL, &nodeb2, NULL};  // Additional nodes
-    t_stack_node nodeb4 = {3, 4, 0, false, NULL, &nodeb3, NULL};
+    t_stack_node nodeb4 = {3, 4, 0, false, NULL, &nodeb3, NU>LL};
 
     node1.next = &node2;
     node2.next = &node3;
@@ -306,6 +321,45 @@ int main()
     no_of_moves_needed(&a, &b);
 
     printf("Modified List A (after cost analysis):\n");
+    print_list(a);
+
+    return 0;
+}
+*/
+
+void print_list(t_stack_node *stack) {
+    while (stack != NULL) {
+        printf("Value: %d, Position: %d, Push Cost: %d, Cheapest: %d\n",
+               stack->value, stack->position, stack->push_cost, stack->cheapest);
+        stack = stack->next;
+    }1
+    printf("\n");
+}
+
+int main() {
+    // Create a sample stack for testing
+    t_stack_node node1 = {4, 1, 3, false, NULL, NULL, NULL};
+    t_stack_node node2 = {2, 2, 2, false, NULL, &node1, NULL};
+    t_stack_node node3 = {7, 3, 4, false, NULL, &node2, NULL};
+    t_stack_node node4 = {5, 4, 3, false, NULL, &node3, NULL};
+    t_stack_node node5 = {10, 5, 2, false, NULL, &node4, NULL};
+    t_stack_node node6 = {8, 6, 2, false, NULL, &node5, NULL};
+
+    node1.next = &node2;
+    node2.next = &node3;
+    node3.next = &node4;
+    node4.next = &node5;
+    node5.next = &node6;
+
+    t_stack_node *a = &node1;
+
+    printf("Original List A:\n");
+    print_list(a);
+
+    // Applying set_cheapest function
+    set_cheapest(&a);
+
+    printf("Modified List A (after set_cheapest):\n");
     print_list(a);
 
     return 0;
