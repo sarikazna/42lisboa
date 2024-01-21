@@ -44,6 +44,8 @@ t_stack_node	*run_algorithm(t_stack_node **a, t_stack_node **b);
 t_stack_node    *set_target(t_stack_node **a, t_stack_node **b);
 t_stack_node    *no_of_moves_needed(t_stack_node **a, t_stack_node **b);
 void    		set_cheapest(t_stack_node **a);
+int				ft_push_cost_below_median(t_stack_node *a, int len_b);
+int				ft_push_cost_above_median(t_stack_node *a, int len_a, int len_b);
 
 // Linked list utils
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new);

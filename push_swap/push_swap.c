@@ -48,7 +48,7 @@ t_stack_node *run_algorithm(t_stack_node **a, t_stack_node **b)
         set_target(a, b);
         no_of_moves_needed(a, b);
         set_cheapest(a);
-        move_a_to_b(a, b); // left off here cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
+        //move_a_to_b(a, b); // left off here cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
         // move everything from A to B, one by one
     }
     sort_three(a);
@@ -57,6 +57,13 @@ t_stack_node *run_algorithm(t_stack_node **a, t_stack_node **b)
         // add more values to B
         // move everything from B to A
     }
+}
+
+void    move_a_to_b(t_stack_node **a, t_stack_node **b)
+{
+    t_stack_node    *cheapest_node;
+
+    cheapest_node = find_cheapest(*a);
 }
 
 /*
@@ -97,65 +104,56 @@ t_stack_node    *set_target(t_stack_node **a, t_stack_node **b)
     return (*a);
 }
 
-/*
-THIS NEEDS TO OPTIMISED!
-cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
-*/
-// t_stack_node    *moves_needed(t_stack_node **a, t_stack_node **b)
-// {
-//     int             a_len;
-//     int             b_len;
-//     t_stack_node    *current_a;
 
-//     current_a = *a;
-//     while (current_a)
-//     {
-//         a_len = ft_stacksize(*a);
-//         b_len = ft_stacksize(*b);
-//         if (current_a->position <= a_len/2)        
-//             current_a->push_cost = current_a->position;
-//         else if (current_a->position > a_len/2)   
-//             current_a->push_cost = a_len - (current_a->position) + 1;
-//         if (current_a->target->position <= b_len/2)
-//             current_a->push_cost += current_a->target->position - 1;
-//         else
-//             current_a->push_cost += b_len - (current_a->target->position);
-//         current_a = current_a->next;
-//     }
-//     return (*a);
-// }
+// cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
+
+
+int ft_push_cost_below_median(t_stack_node *a, int len_b)
+{
+
+    if (a->target->position <= len_b/2)
+    {
+        if (a->position >= a->target->position)
+            return (a->position - 1);
+        else
+            return (a->target->position - 1);
+    }
+    else
+        return (a->position + len_b - (a->target->position));
+}
+
+int ft_push_cost_above_median(t_stack_node *a, int len_a, int len_b)
+{
+
+    if (a->target->position > (len_b/2))
+    {
+        if (len_a - (a->position) >= (len_b - (a->target->position)))
+            return (len_a - (a->position) + 1);
+        else
+            return (len_b - (a->target->position) + 1);
+    }
+    else
+        return (len_a - (a->position) + (a->target->position));
+}  
+
 
 t_stack_node    *no_of_moves_needed(t_stack_node **a, t_stack_node **b)
 {
-    int             a_len;
-    int             b_len;
-    t_stack_node    *current_a;
+    t_stack_node    *curr_a;
+    int             len_a;
+    int             len_b;
 
-    a_len = ft_stacksize(*a);
-    b_len = ft_stacksize(*b);
-    current_a = *a;
-    while (current_a)
+    curr_a = *a;
+    len_a = ft_stacksize(*a);
+    len_b = ft_stacksize(*b);
+    while (curr_a)
     {
-        (current_a)->push_cost = 0;
-        if (current_a->position <= a_len/2 && current_a->target->position <= b_len/2)
-        {
-            if (current_a->position >= current_a->target->position)
-                current_a->push_cost = current_a->position - 1;
-            else
-                current_a->push_cost = current_a->target->position - 1;
-        }
-        else if (current_a->position > a_len/2 && current_a->target->position > b_len/2)
-        {
-            if (a_len - (current_a->position) >= b_len - (current_a->target->position))
-                current_a->push_cost = a_len - (current_a->position) + 1;
-            else
-                current_a->push_cost = b_len - (current_a->target->position) + 1;
-        }
-        else if (current_a->position <= a_len/2 && current_a->target->position > b_len/2)
-            current_a->push_cost = current_a->position + b_len - (current_a->target->position);
+        (curr_a)->push_cost = 0;
+        if (curr_a->position <= (len_a/2))
+            curr_a->push_cost = ft_push_cost_below_median(curr_a, len_b);
         else
-            current_a->push_cost = a_len - (current_a->position) + (current_a->target->position);
-        current_a = current_a->next;
+            curr_a->push_cost = ft_push_cost_above_median(curr_a, len_a, len_b);
+        curr_a = curr_a->next;
     }
     return (*a);
 }
@@ -180,6 +178,7 @@ void    set_cheapest(t_stack_node **a)
     }
     current_cheapest->cheapest = true;
 }
+
 /*
 Main to test sort_three
 int main()
@@ -266,7 +265,8 @@ void print_stack(t_stack_node *head)
 }
 */
 
-/* Main to test push_cost
+/*
+// Main to test push_cost
 void print_list(t_stack_node *head)
 {
     while (head)
@@ -289,7 +289,7 @@ int main()
     t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL};
     t_stack_node nodeb2 = {6, 2, 0, false, NULL, &nodeb1, NULL};
     t_stack_node nodeb3 = {12, 3, 0, false, NULL, &nodeb2, NULL};  // Additional nodes
-    t_stack_node nodeb4 = {3, 4, 0, false, NULL, &nodeb3, NU>LL};
+    t_stack_node nodeb4 = {3, 4, 0, false, NULL, &nodeb3, NULL};
 
     node1.next = &node2;
     node2.next = &node3;
@@ -327,6 +327,7 @@ int main()
 }
 */
 
+/*
 void print_list(t_stack_node *stack) {
     while (stack != NULL) {
         printf("Value: %d, Position: %d, Push Cost: %d, Cheapest: %d\n",
@@ -364,3 +365,4 @@ int main() {
 
     return 0;
 }
+*/
