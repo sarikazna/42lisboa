@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   other_utils.c                                      :+:      :+:    :+:   */
+/*   math_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 18:20:26 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/26 18:38:23 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/21 21:02:12 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,6 @@ long	ft_atol(const char *nptr)
 	return (result * minus);
 }
 
-// not sure if needed
-int	find_mean(t_stack_node *head)
-{
-	t_stack_node	*current;
-	int				stack_len;
-	long long		sum;
-
-	current = head;
-	stack_len = ft_stacksize(current);
-	sum = 0;
-	while (current)
-	{
-		sum += current->value;
-		current = current->next;
-	}
-	return (sum/stack_len);
-}
-
 t_stack_node	*get_min(t_stack_node *head)
 {
 	t_stack_node	*current;
@@ -90,6 +72,28 @@ t_stack_node	*get_max(t_stack_node *head)
 		current = current->next;
 	}
 	return (max_node);
+}
+
+t_stack_node    *set_cheapest(t_stack_node **a)
+{
+    long            cheapest_value;
+    t_stack_node    *current;
+    t_stack_node    *current_cheapest;
+
+    current = (*a);
+    cheapest_value = LONG_MAX;
+    current_cheapest = current;
+    while (current)
+    {
+        if (current->push_cost < cheapest_value)
+        {
+            cheapest_value = current->push_cost;
+            current_cheapest = current;
+        }
+        current = current->next;
+    }
+    current_cheapest->cheapest = true;
+    return (current_cheapest);
 }
 
 // #include <stdio.h>

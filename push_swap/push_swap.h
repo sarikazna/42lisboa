@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:37:29 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/28 14:04:50 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/21 21:07:44 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr);
 
 // Sorting algorithms
 t_stack_node	*sort_three(t_stack_node **a);
-t_stack_node	*run_algorithm(t_stack_node **a, t_stack_node **b);
-t_stack_node    *set_target(t_stack_node **a, t_stack_node **b);
+void			run_algorithm(t_stack_node **a, t_stack_node **b);
+t_stack_node    *set_target_a(t_stack_node **a, t_stack_node **b);
+t_stack_node    *set_target_b(t_stack_node **a, t_stack_node **b);
 t_stack_node    *no_of_moves_needed(t_stack_node **a, t_stack_node **b);
-void    		set_cheapest(t_stack_node **a);
-int				ft_push_cost_below_median(t_stack_node *a, int len_b);
-int				ft_push_cost_above_median(t_stack_node *a, int len_a, int len_b);
+t_stack_node    *set_cheapest(t_stack_node **a);
+void    		move_a_to_b(t_stack_node **a, t_stack_node **b);
+void    		put_min_on_top(t_stack_node **a);
+void    		move_b_to_a(t_stack_node **b, t_stack_node **a);
 
 // Linked list utils
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new);
@@ -58,7 +60,6 @@ void			free_list(t_stack_node *head);
 int				stack_is_sorted(t_stack_node *a);
 
 // Math operations
-int				find_mean(t_stack_node *head);
 long			ft_atol(const char *nptr);
 t_stack_node	*get_min(t_stack_node *head);
 t_stack_node	*get_max(t_stack_node *head);

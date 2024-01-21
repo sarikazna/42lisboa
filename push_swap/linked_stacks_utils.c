@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_stacks_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:28:59 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/28 15:35:22 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/21 21:10:58 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,15 +129,12 @@ t_stack_node	*ft_nodelast(t_stack_node *first)
 
 t_stack_node	*ft_nodefirst(t_stack_node *last)
 {
-    if (last == NULL)
-        return NULL;
+	if (last == NULL)
+		return NULL;
 	while (last->prev != NULL)
-	{
 		last = last->prev;
-	}
 	return (last);
 }
-
 
 
 // TO DO, free the "target node" as wellif it's dynamically allocated

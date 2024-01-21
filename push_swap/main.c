@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/27 16:54:10 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/21 21:08:51 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	else if (argc == 2)
 		argv = ft_split(argv[1], ' ');
-	a = stack_init(&a, argc, argv);
+	a = stack_init(a, argc, argv);
 	if (!a)
 		return (-1);
 	if (!stack_is_sorted(a))
