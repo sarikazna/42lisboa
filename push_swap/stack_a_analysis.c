@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:05:33 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/21 19:59:07 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 14:30:56 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ t_stack_node    *set_target_a(t_stack_node **a, t_stack_node **b)
     t_stack_node    *current_b;
     t_stack_node    *target_node;
 
-    current_a = *a;
-    while (current_a)
+    (current_a) = *a;
+    while ((current_a))
     {
         tmp_best_match = LONG_MIN;
         current_b = *b;
         target_node = NULL;
         while (current_b)
         {
-            if (current_b->value < current_a->value 
+            if (current_b->value < (current_a)->value 
                 && current_b->value > tmp_best_match)
             {
                 tmp_best_match = current_b->value;
@@ -43,10 +43,10 @@ t_stack_node    *set_target_a(t_stack_node **a, t_stack_node **b)
             current_b = current_b->next;
         }
         if (tmp_best_match == LONG_MIN)
-            current_a->target = get_max(*b);
+            (current_a)->target = get_max(*b);
         else 
-            current_a->target = target_node;
-        current_a = current_a->next;
+            (current_a)->target = target_node;
+        (current_a) = (current_a)->next;
     }
     return (*a);
 }
@@ -164,26 +164,21 @@ int main()
 
 /*
 // Main to test out set_target
-void print_list(t_stack_node *head)
-{
-    while (head)
-    {
-        printf("%d ", head->value);
+void print_stack(t_stack_node *head) {
+    while (head) {
+        printf("%d and target %d; ", head->value, head->target->value);
         head = head->next;
     }
     printf("\n");
 }
 
-void print_stack(t_stack_node *head)
-{
-    while (head)
-    {
-        printf("%d and target %d; ", head->value, head->target->value);
-        head = head->next;
-    }>
+int main() {
+    // Create a sample stack for testing
+    t_stack_node node1 = {4, 1, 0, false, NULL, NULL, NULL};
+    t_stack_node node2 = {2, 2, 0, false, NULL, &node1, NULL};
     t_stack_node node3 = {7, 3, 0, false, NULL, &node2, NULL};
     t_stack_node node4 = {5, 4, 0, false, NULL, &node3, NULL};
-    t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL}1;
+    t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL};
     t_stack_node nodeb2 = {6, 2, 0, false, NULL, &nodeb1, NULL};
 
     node1.next = &node2;
@@ -196,17 +191,16 @@ void print_stack(t_stack_node *head)
     t_stack_node *b = &nodeb1;
 
     printf("Original List A: ");
-    print_list(a);
+    print_stack(a);
 
     printf("List B: ");
-    print_list(b);1
+    print_stack(b);
 
-    t_stack_node *modifiedListA = set_target(&a, &b);
+    t_stack_node *modifiedListA = set_target_a(&a, &b);
 
     printf("Modified List A: ");
     print_stack(modifiedListA);
 
     return 0;
 }
-
 */

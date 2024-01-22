@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:50:59 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/25 15:56:06 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 14:17:37 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int pa(t_stack_node **a, t_stack_node **b)
 {
     if (b == NULL || (*b) == NULL)
         return (0);
-	if (push_movement(a, b))
+    if (push_movement(a, b))
 	{
  		write(1, "pa\n", 3);
 		return (1);
@@ -46,7 +46,7 @@ int pb(t_stack_node **a, t_stack_node **b)
 {
     if (a == NULL || (*a) == NULL)
         return (0);
-	if (push_movement(b, a))
+    if (push_movement(b, a))
 	{
  		write(1, "pb\n", 3);
 		return (1);

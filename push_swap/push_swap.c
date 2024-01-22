@@ -6,13 +6,12 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/21 21:08:08 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 14:39:25 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack_node    *set_target(t_stack_node **a, t_stack_node **b);
 
 t_stack_node *sort_three(t_stack_node **a)
 {
@@ -91,8 +90,10 @@ void    move_b_to_a(t_stack_node **a, t_stack_node **b)
             rra(a);
     }
     pa(a, b);
+    best->cheapest = false; // see if that needs changing
 }
 
+// I think I will then need to rest the cheapest to false
 void    move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
     t_stack_node    *best;
@@ -130,6 +131,7 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
         }
     }
     pb(a, b);
+    best->cheapest = false; // see if that needs changing
 }
 
 
@@ -279,3 +281,66 @@ int main()
     return 0;
 }
 */
+
+
+// main to test move_b_to_a
+void print_list(t_stack_node *stack) {
+    while (stack != NULL) {
+        printf("Value: %d, Position: %d, Push Cost: %d, Cheapest: %d\n",
+               stack->value, stack->position, stack->push_cost, stack->cheapest);
+        stack = stack->next;
+    }
+    printf("\n");
+}
+
+int main()
+{
+    // Create a sample stack for testing
+    t_stack_node node1 = {4, 1, 10, false, NULL, NULL, NULL};
+    t_stack_node node2 = {2, 2, 3, false, NULL, &node1, NULL};
+    t_stack_node node3 = {7, 3, 1, false, NULL, &node2, NULL};
+    t_stack_node node4 = {5, 4, 2, false, NULL, &node3, NULL};
+    t_stack_node node5 = {10, 5, 2, false, NULL, &node4, NULL};  // Additional nodes
+    t_stack_node node6 = {8, 6, 7, false, NULL, &node5, NULL};   // Additional nodes
+    t_stack_node nodeb1 = {1, 1, 0, false, NULL, NULL, NULL};
+    t_stack_node nodeb2 = {6, 2, 0, false, NULL, &nodeb1, NULL};
+    t_stack_node nodeb3 = {12, 3, 0, false, NULL, &nodeb2, NULL};  // Additional nodes
+    t_stack_node nodeb4 = {3, 4, 0, false, NULL, &nodeb3, NULL};
+
+    node1.next = &node2;
+    node2.next = &node3;
+    node3.next = &node4;
+    node4.next = &node5;  // Additional nodes
+    node5.next = &node6;  // Additional nodes
+
+    nodeb1.next = &nodeb2;
+    nodeb2.next = &nodeb3;
+    nodeb3.next = &nodeb4;  // Additional nodes
+
+    node1.target = &nodeb4;
+    node2.target = &nodeb1;
+    node3.target = &nodeb2;
+    node4.target = &nodeb4;
+    node5.target = &nodeb2;  // Additional nodes
+    node6.target = &nodeb2;  // Additional nodes
+
+    t_stack_node *a = &node1;
+    t_stack_node *b = &nodeb1;
+
+    printf("Original List A:\n");
+    print_list(b);
+
+    printf("List B:\n");
+    print_list(a);
+
+    // Applying move_b_to_a function
+    move_b_to_a(&b, &a);
+
+    printf("Modified List A (after move_b_to_a):\n");
+    print_list(b);
+
+    printf("Modified List B (after move_b_to_a):\n");
+    print_list(a);
+
+    return 0;
+}
