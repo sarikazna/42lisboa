@@ -6,7 +6,7 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 12:15:01 by srudman           #+#    #+#              #
-#    Updated: 2024/01/22 14:28:52 by srudman          ###   ########.fr        #
+#    Updated: 2024/01/22 17:24:41 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,8 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar -crs $(NAME) $(OBJ)
 	@make -C libft
-	ar -crs $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
 
 clean:
 	rm -f $(OBJ)

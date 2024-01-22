@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 14:39:25 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 21:04:40 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,13 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
         && (best->position != 1 || best->target->position != 1))
         {
             while (best->position != 1 || best->target->position != 1)
-                rr(a, b);
+                rr(a, b); // fix this because this no work: ./push_swap 9 5 69 87 12 34 54 109 456 7 6 -99
+            // also this ./push_swap -1 9 5 69 87 12 34 54 109 456 7 6 -99 -2 3
+            // it doesn't work whenever the corner cases are the biggest or the smallest in the stack
         }
         else
         {
-            while (best->position != 1)
+            while (best->position != 1 && best->position != 1)
                 ra(a);
             while (best->target->position != 1)
                 rrb(b);
@@ -282,7 +284,7 @@ int main()
 }
 */
 
-
+/*
 // main to test move_b_to_a
 void print_list(t_stack_node *stack) {
     while (stack != NULL) {
@@ -344,3 +346,4 @@ int main()
 
     return 0;
 }
+*/

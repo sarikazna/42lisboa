@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:50:59 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 14:17:37 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 20:51:23 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,25 @@
 
 int	push_movement(t_stack_node **a_head, t_stack_node **b_head)
 {
-    (*a_head)->prev = (*b_head);
-    (*b_head) = (*b_head)->next;
+    t_stack_node	*pushed_b;
+    if (!*b_head)
+        return (0);
+    pushed_b = *b_head;
+    *b_head = (*b_head)->next;
+    if (*b_head)
+        (*b_head)->prev = NULL;
+    if (!*a_head)
+    {
+        *a_head = pushed_b;
+        (*a_head)->next = NULL;
+    }
+    else
+    {
+        (*a_head)->prev = pushed_b;
+        pushed_b->next = (*a_head);
+        *a_head = pushed_b;
+    }
     ft_position_nbr(*b_head, 1);
-    (*b_head)->prev->next = (*a_head);
-    (*a_head) = (*b_head)->prev;
-    (*b_head)->prev = NULL;
     ft_position_nbr(*a_head, 1);
     return (1);
 }

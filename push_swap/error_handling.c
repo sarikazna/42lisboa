@@ -6,12 +6,13 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:12:43 by srudman           #+#    #+#             */
-/*   Updated: 2023/11/27 15:55:02 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 18:29:36 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// make sure it handles input of a singe +
 int	syntax_error(char *nptr)
 {
 	int	i;

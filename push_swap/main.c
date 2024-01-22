@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/21 21:08:51 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 19:11:40 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ undefined behaviour. */
 Namely, the argument count must be 2 or t_stack_node	*get_max(t_stack_node *head)more. The 2nd argument
 must not be a empty string */
 
+void print_stack(t_stack_node *head) {
+    while (head) {
+        printf("%d  ", head->value);
+        head = head->next;
+    }
+    printf("\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -30,10 +37,16 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc <= 1 || (argc == 2 && !argv[1][0]))
 		return (-1);
-	else if (argc == 2)
+	if (argc == 2)
+	{
 		argv = ft_split(argv[1], ' ');
-	a = stack_init(a, argc, argv);
-	if (!a)
+		a = stack_init(a, argc, argv);
+		free(argv);
+	}
+	else
+		a = stack_init(a, argc - 1, argv + 1);
+	print_stack(a);
+	if (!a) // if string it doesn´t fire. If arguments, it fires
 		return (-1);
 	if (!stack_is_sorted(a))
 	{
@@ -44,6 +57,7 @@ int	main(int argc, char **argv)
     	else
         	run_algorithm(&a, &b);
 	}
+	print_stack(a); // delete after
 	free_list(a);
 	return (0);
 }

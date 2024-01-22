@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:07:29 by srudman           #+#    #+#             */
-/*   Updated: 2023/05/18 15:46:21 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/22 18:12:15 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	ft_fill_result(const char *s, char c, char **result)
 		}
 	}
 	result[j] = NULL;
+    // I'm freeing the memory for each word
+    i = 0;
+    while (i < j)
+        free(result[i++]);
 }
 
 char	**ft_split(const char *s, char c)
