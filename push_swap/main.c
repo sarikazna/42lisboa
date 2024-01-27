@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 14:57:35 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/27 16:20:29 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@
 I set both pointers of the data structures to NuLL to avoid
 undefined behaviour. */
 
-/* In the main function I also handle some of the input errors.
-Namely, the argument count must be 2 or t_stack_node	*get_max(t_stack_node *head)more. The 2nd argument
-must not be a empty string */
+/* In the main function I also handle some of the input 
+errors. Namely, the argument count must be 2 or 
+t_stack_node	*get_max(t_stack_node *head)more. The 
+2nd argument must not be a empty string */
 
-void print_stack(t_stack_node *head) {
-    while (head) {
-        printf("%d  ", head->value);
-        head = head->next;
-    }
-    printf("\n");
+// delete when submitting
+void	print_stack(t_stack_node *head)
+{
+	while (head)
+	{
+		printf("%d  ", head->value);
+		head = head->next;
+	}
+	printf("\n");
 }
 
 int	main(int argc, char **argv)
@@ -50,12 +54,12 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (!stack_is_sorted(a))
 	{
-    	if (ft_stacksize(a) == 2)
+		if (ft_stacksize(a) == 2)
 			sa(&a);
-    	else if (ft_stacksize(a) == 3)
-        	sort_three(&a);
-    	else
-        	run_algorithm(&a, &b);
+		else if (ft_stacksize(a) == 3)
+			sort_three(&a);
+		else
+			run_algorithm(&a, &b);
 	}
 	print_stack(a); // delete after
 	free_list(a);

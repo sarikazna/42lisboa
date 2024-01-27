@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 15:36:29 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/27 16:11:07 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
     // ./push_swap 2 7 11 5 3 8 4 9 6 
     if (best->position <= ft_stacksize(*a)/2)
     {
-        if (best->target->position <= ft_stacksize(*b))
+        if (best->target->position <= ft_stacksize(*b)/2)
         {
             while (best->position != 1 || best->target->position != 1)
             {
@@ -141,7 +141,7 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
     }
     if (best->position > ft_stacksize(*a)/2)
     {
-        if (best->target->position > ft_stacksize(*b))
+        if (best->target->position > ft_stacksize(*b)/2)
         {
             while (best->position != 1 || best->target->position != 1)
             {
@@ -169,9 +169,6 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
     pb(a, b);
     best->cheapest = false; // see if that needs changing
 }
-
-
-// cc push_swap.c push_swap.h movements_reverse_rotate.c movements_swap.c movements_rotate.c math_operations.c linked_stacks_utils.c movements_push.c
 
 /*
 Main to test sort_three

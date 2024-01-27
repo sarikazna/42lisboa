@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:12:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 18:29:36 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/27 16:06:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	syntax_error(char *nptr)
 	i = 0;
 	operator = 0;
 	if (*nptr == '\0')
-		return(0);
+		return (0);
 	while (nptr[i])
 	{
 		if (!ft_isdigit(nptr[i]) && !(nptr[i] == '+' || nptr[i] == '-'))
@@ -38,7 +38,7 @@ int	syntax_error(char *nptr)
 int	contains_duplicate(t_stack_node *a, int tmp)
 {
 	t_stack_node	*current;
-	
+
 	current = a;
 	while (current)
 	{
