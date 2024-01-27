@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 19:11:40 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/27 14:21:58 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void print_stack(t_stack_node *head) {
     printf("\n");
 }
 
+
+
+
+
+
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
@@ -46,14 +51,14 @@ int	main(int argc, char **argv)
 	else
 		a = stack_init(a, argc - 1, argv + 1);
 	print_stack(a);
-	if (!a) // if string it doesn´t fire. If arguments, it fires
+	if (!a)
 		return (-1);
 	if (!stack_is_sorted(a))
 	{
     	if (ft_stacksize(a) == 2)
 			sa(&a);
     	else if (ft_stacksize(a) == 3)
-        	sort_three(&a); // it has a return value
+        	sort_three(&a);
     	else
         	run_algorithm(&a, &b);
 	}

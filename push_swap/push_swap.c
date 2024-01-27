@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 21:04:40 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/27 14:19:54 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,20 @@ void    move_b_to_a(t_stack_node **a, t_stack_node **b)
     && best->target->position != 1)
     {
         while (best->target->position != 1)
+        {
+            if (best->position == 1 || best->target->position == 1)
+                break ;
             ra(a);
+        }
     }
     else
     {
         while (best->target->position != 1)
+        {
+            if (best->position == 1 || best->target->position == 1)
+                break ;
             rra(a);
+        }
     }
     pa(a, b);
     best->cheapest = false; // see if that needs changing
@@ -101,20 +109,29 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
     best = set_cheapest(a); // handle case if best = NULL
     if (best->position <= ft_stacksize(*a)/2)
     {
-        if (best->target->position <= ft_stacksize(*b) 
-        && (best->position != 1 || best->target->position != 1))
+        if (best->target->position <= ft_stacksize(*b))
         {
             while (best->position != 1 || best->target->position != 1)
-                rr(a, b); // fix this because this no work: ./push_swap 9 5 69 87 12 34 54 109 456 7 6 -99
-            // also this ./push_swap -1 9 5 69 87 12 34 54 109 456 7 6 -99 -2 3
-            // it doesn't work whenever the corner cases are the biggest or the smallest in the stack
+            {
+                if (best->position == 1 || best->target->position == 1)
+                    break ;
+                rr(a, b); 
+            }
         }
         else
         {
             while (best->position != 1 && best->position != 1)
+            {
+                if (best->position == 1 || best->target->position == 1)
+                    break ;
                 ra(a);
+            }
             while (best->target->position != 1)
+            {
+                if (best->position == 1 || best->target->position == 1)
+                    break ;
                 rrb(b);
+            }
         }
     }
     if (best->position > ft_stacksize(*a)/2)
@@ -122,14 +139,26 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
         if (best->target->position > ft_stacksize(*b))
         {
             while (best->position != 1 || best->target->position != 1)
+            {
+                if (best->position == 1 || best->target->position == 1)
+                    break ;
                 rrr(a, b);
+            }
         }
         else
         {
             while (best->position != 1)
+            {
+                if (best->position == 1 || best->target->position == 1)
+                    break ;
                 rra(a);
+            }
             while (best->target->position != 1)
+            {
+                if (best->position == 1 || best->target->position == 1)
+                    break ;
                 rb(b);
+            }
         }
     }
     pb(a, b);
