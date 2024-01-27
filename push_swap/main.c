@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 14:21:58 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/27 14:57:35 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void print_stack(t_stack_node *head) {
     }
     printf("\n");
 }
-
-
-
-
-
 
 int	main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 14:19:54 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/27 15:36:29 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ Everytime you make the push, you check if there are 3 nodes in stack A
 void run_algorithm(t_stack_node **a, t_stack_node **b)
 {
     if (ft_stacksize(*a) >= 4 && !stack_is_sorted(*a))
-        pb(a, b);        
+        pb(a, b);   
     if (ft_stacksize(*a) >= 4 && !stack_is_sorted(*a))
         pb(a, b);
     while (ft_stacksize(*a) > 3)
     {
+        printf("STACK A: \n");
+        print_stack(*a);
+        printf("STACK B: \n");
+        print_stack(*b);
         set_target_a(a, b);
         no_of_moves_needed(a, b);
         move_a_to_b(a, b);
@@ -78,8 +82,7 @@ void    move_b_to_a(t_stack_node **a, t_stack_node **b)
     t_stack_node    *best;
     
     best = set_cheapest(b);
-    if (best->target->position <= ft_stacksize(*a)/2 
-    && best->target->position != 1)
+    if (best->target->position <= ft_stacksize(*a)/2)
     {
         while (best->target->position != 1)
         {
@@ -107,6 +110,8 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
     t_stack_node    *best;
 
     best = set_cheapest(a); // handle case if best = NULL
+    printf("Chepest: %d, its target value: %d\n", best->value, best->target->value);
+    // ./push_swap 2 7 11 5 3 8 4 9 6 
     if (best->position <= ft_stacksize(*a)/2)
     {
         if (best->target->position <= ft_stacksize(*b))
@@ -118,17 +123,17 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
                 rr(a, b); 
             }
         }
-        else
+        else // because of this I'm not doing anything to B which is a problem.
         {
             while (best->position != 1 && best->position != 1)
             {
-                if (best->position == 1 || best->target->position == 1)
+                if (best->position == 1)
                     break ;
                 ra(a);
             }
             while (best->target->position != 1)
             {
-                if (best->position == 1 || best->target->position == 1)
+                if (best->target->position == 1)
                     break ;
                 rrb(b);
             }
@@ -149,13 +154,13 @@ void    move_a_to_b(t_stack_node **a, t_stack_node **b)
         {
             while (best->position != 1)
             {
-                if (best->position == 1 || best->target->position == 1)
+                if (best->position == 1)
                     break ;
                 rra(a);
             }
             while (best->target->position != 1)
             {
-                if (best->position == 1 || best->target->position == 1)
+                if (best->target->position == 1)
                     break ;
                 rb(b);
             }
