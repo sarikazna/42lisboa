@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 16:11:07 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/28 19:51:03 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@ void run_algorithm(t_stack_node **a, t_stack_node **b)
         pb(a, b);
     while (ft_stacksize(*a) > 3)
     {
-        printf("STACK A: \n");
-        print_stack(*a);
-        printf("STACK B: \n");
-        print_stack(*b);
         set_target_a(a, b);
         no_of_moves_needed(a, b);
         move_a_to_b(a, b);
@@ -76,99 +72,7 @@ void    put_min_on_top(t_stack_node **a)
     }
 }
 
-// need to test
-void    move_b_to_a(t_stack_node **a, t_stack_node **b)
-{
-    t_stack_node    *best;
-    
-    best = set_cheapest(b);
-    if (best->target->position <= ft_stacksize(*a)/2)
-    {
-        while (best->target->position != 1)
-        {
-            if (best->position == 1 || best->target->position == 1)
-                break ;
-            ra(a);
-        }
-    }
-    else
-    {
-        while (best->target->position != 1)
-        {
-            if (best->position == 1 || best->target->position == 1)
-                break ;
-            rra(a);
-        }
-    }
-    pa(a, b);
-    best->cheapest = false; // see if that needs changing
-}
 
-// I think I will then need to rest the cheapest to false
-void    move_a_to_b(t_stack_node **a, t_stack_node **b)
-{
-    t_stack_node    *best;
-
-    best = set_cheapest(a); // handle case if best = NULL
-    printf("Chepest: %d, its target value: %d\n", best->value, best->target->value);
-    // ./push_swap 2 7 11 5 3 8 4 9 6 
-    if (best->position <= ft_stacksize(*a)/2)
-    {
-        if (best->target->position <= ft_stacksize(*b)/2)
-        {
-            while (best->position != 1 || best->target->position != 1)
-            {
-                if (best->position == 1 || best->target->position == 1)
-                    break ;
-                rr(a, b); 
-            }
-        }
-        else // because of this I'm not doing anything to B which is a problem.
-        {
-            while (best->position != 1 && best->position != 1)
-            {
-                if (best->position == 1)
-                    break ;
-                ra(a);
-            }
-            while (best->target->position != 1)
-            {
-                if (best->target->position == 1)
-                    break ;
-                rrb(b);
-            }
-        }
-    }
-    if (best->position > ft_stacksize(*a)/2)
-    {
-        if (best->target->position > ft_stacksize(*b)/2)
-        {
-            while (best->position != 1 || best->target->position != 1)
-            {
-                if (best->position == 1 || best->target->position == 1)
-                    break ;
-                rrr(a, b);
-            }
-        }
-        else
-        {
-            while (best->position != 1)
-            {
-                if (best->position == 1)
-                    break ;
-                rra(a);
-            }
-            while (best->target->position != 1)
-            {
-                if (best->target->position == 1)
-                    break ;
-                rb(b);
-            }
-        }
-    }
-    pb(a, b);
-    best->cheapest = false; // see if that needs changing
-}
 
 /*
 Main to test sort_three

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_rotate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:53:14 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/28 15:25:20 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/28 19:03:44 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_stack_node	**rotate_movement(t_stack_node **head)
 
 int ra(t_stack_node **a)
 {
-	if (rotate_movement(a))
+    if (rotate_movement(a))
 	{
  		write(1, "ra\n", 3);
 		return (1);

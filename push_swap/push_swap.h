@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:37:29 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 19:09:01 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/28 19:35:25 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void    		put_min_on_top(t_stack_node **a);
 void    		move_b_to_a(t_stack_node **b, t_stack_node **a);
 void			run_algorithm(t_stack_node **a, t_stack_node **b);
 t_stack_node    *no_of_moves_needed(t_stack_node **a, t_stack_node **b);
+void    		rotate_stack(t_stack_node **a, t_stack_node **b, t_stack_node *best, char c);
+void			rev_rotate_stack(t_stack_node **a, t_stack_node **b, t_stack_node *best, char c);
 
 // Linked list utils
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new);

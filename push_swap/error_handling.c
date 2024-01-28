@@ -6,13 +6,14 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:12:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 16:06:11 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/28 18:31:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// make sure it handles input of a singe +
+// TO DO: make sure it handles input of a singe +, Can be it be a 0 or should
+// it be reported as an error?
 int	syntax_error(char *nptr)
 {
 	int	i;

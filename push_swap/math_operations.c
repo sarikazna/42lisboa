@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 18:20:26 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/21 21:02:12 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/28 18:16:52 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,28 +72,6 @@ t_stack_node	*get_max(t_stack_node *head)
 		current = current->next;
 	}
 	return (max_node);
-}
-
-t_stack_node    *set_cheapest(t_stack_node **a)
-{
-    long            cheapest_value;
-    t_stack_node    *current;
-    t_stack_node    *current_cheapest;
-
-    current = (*a);
-    cheapest_value = LONG_MAX;
-    current_cheapest = current;
-    while (current)
-    {
-        if (current->push_cost < cheapest_value)
-        {
-            cheapest_value = current->push_cost;
-            current_cheapest = current;
-        }
-        current = current->next;
-    }
-    current_cheapest->cheapest = true;
-    return (current_cheapest);
 }
 
 // #include <stdio.h>

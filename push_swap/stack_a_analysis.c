@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:05:33 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 14:30:56 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/28 18:16:57 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,28 @@ t_stack_node    *no_of_moves_needed(t_stack_node **a, t_stack_node **b)
         curr_a = curr_a->next;
     }
     return (*a);
+}
+
+t_stack_node    *set_cheapest(t_stack_node **a)
+{
+    long            cheapest_value;
+    t_stack_node    *current;
+    t_stack_node    *current_cheapest;
+
+    current = (*a);
+    cheapest_value = LONG_MAX;
+    current_cheapest = current;
+    while (current)
+    {
+        if (current->push_cost < cheapest_value)
+        {
+            cheapest_value = current->push_cost;
+            current_cheapest = current;
+        }
+        current = current->next;
+    }
+    current_cheapest->cheapest = true;
+    return (current_cheapest);
 }
 
 /*
