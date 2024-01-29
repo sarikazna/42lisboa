@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:50:26 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/11 13:27:34 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:27:34 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,27 @@
 t_stack_node	**swap_movement(t_stack_node **head)
 {
 	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
-		return(NULL);
+		return (NULL);
 	(*head)->position += 1;
 	(*head)->next->position -= 1;
-    *head = (*head)->next;
-    if ((*head)->next)
-        (*head)->next->prev = (*head)->prev;
-    (*head)->prev->next = (*head)->next;
-    (*head)->next = (*head)->prev;
-    (*head)->prev->prev = *head;
-    (*head)->prev = NULL; 
-    return (head);
+	*head = (*head)->next;
+	if ((*head)->next)
+		(*head)->next->prev = (*head)->prev;
+	(*head)->prev->next = (*head)->next;
+	(*head)->next = (*head)->prev;
+	(*head)->prev->prev = *head;
+	(*head)->prev = NULL; 
+	return (head);
 }
 
 // sa (swap a): Swap the first 2 elements at the top of stack a.
 // Do nothing if there is only one or no elements.
 
-int sa(t_stack_node **a)
+int	sa(t_stack_node **a)
 {
 	if (swap_movement(a))
 	{
- 		write(1, "sa\n", 3);
+		write(1, "sa\n", 3);
 		return (1);
 	}
 	return (0);
@@ -54,11 +54,11 @@ int sa(t_stack_node **a)
 // sb (swap b): Swap the first 2 elements at the top of stack b.
 // Do nothing if there is only one or no elements.
 
-int sb(t_stack_node **b)
+int	sb(t_stack_node **b)
 {
 	if (swap_movement(b))
 	{
- 		write(1, "sb\n", 3);
+		write(1, "sb\n", 3);
 		return (1);
 	}
 	return (0);
@@ -66,11 +66,11 @@ int sb(t_stack_node **b)
 
 // ss : sa and sb at the same time.
 
-int ss(t_stack_node **a, t_stack_node **b)
+int	ss(t_stack_node **a, t_stack_node **b)
 {
 	if (swap_movement(a) && swap_movement(b))
 	{
- 		write(1, "ss\n", 3);
+		write(1, "ss\n", 3);
 		return (1);
 	}
 	return (0);
@@ -92,7 +92,9 @@ void print_stack(t_stack_node *head)
 {
     while (head != NULL)
     {
-        printf("Value: %d, Pos.: %d\n", void    		no_of_moves_needed(t_stack_node **a, t_stack_node **b);head->value, head->position);
+        printf("Value: %d, Pos.: %d\n", 
+			void no_of_moves_needed(t_stack_node **a, 
+			t_stack_node **b);head->value, head->position);
         head = head->next;
     }
     printf("\n");

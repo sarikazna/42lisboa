@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:33:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 18:33:41 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:51:03 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@
 // sorting algoritm
 // ALGORITM
 // Check for 2 numbers, if yes. Simply swap the numbers.
-// Check for 3 numbers, if so implement our simple 'sort three' algorithm.
+// Check for 3 numbers, if so implement our simple 'sort thre
 // check if stack has more than 3 numbers, implement our Turk Algorithm.
 
-// Function stack_init checks for syntax errors, converts string arguments into 
-// 'long', then checks for 'int' overflow, and duplicates. If everything is okay,
-// it builds a stack
+// Function stack_init checks for syntax errors, converts string 
+// arguments into 'long', then checks for 'int' overflow, and 
+// duplicates. If everything is okay, it builds a stack.
 
 t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
-{	
-	long			tmp;
-	
+{
+	long	tmp;
+
 	tmp = 0;
 	while (stack_len--)
 	{

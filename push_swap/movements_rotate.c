@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:53:14 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/28 19:03:44 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:26:43 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,34 @@
 // 	// more meta data missing
 // }				t_stack_node;
 
-// int				ft_stacksize(t_stack_node *first);
-// void			ft_position_nbr(t_stack_node *first, int nbr);
-// t_stack_node	*ft_nodelast(t_stack_node *first);
-// void            print_stack(t_stack_node *head);
-
 // Should I also check if the len of stack is higher than 1?
 // TO DO: protections needed
 t_stack_node	**rotate_movement(t_stack_node **head)
 {
-    t_stack_node *last;
-    t_stack_node *second;
+	t_stack_node	*last;
+	t_stack_node	*second;
 
-    if (head == NULL || (*head) == NULL || (*head)->next == NULL)
-		return(NULL);
-    last = ft_nodelast(*head);
-    second = (*head)->next;
-    (*head)->prev = last;
-    (*head)->next->prev = NULL;
-    last->next = *head;
-    (*head)->next = NULL;
-    *head = second;
-    ft_position_nbr((*head), 1);
-    return (head);
+	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
+		return (NULL);
+	last = ft_nodelast(*head);
+	second = (*head)->next;
+	(*head)->prev = last;
+	(*head)->next->prev = NULL;
+	last->next = *head;
+	(*head)->next = NULL;
+	*head = second;
+	ft_position_nbr((*head), 1);
+	return (head);
 }
 
 // ra (rotate a): Shift up all elements of stack a by 1.
 // The first element becomes the last one.
 
-int ra(t_stack_node **a)
+int	ra(t_stack_node **a)
 {
-    if (rotate_movement(a))
+	if (rotate_movement(a))
 	{
- 		write(1, "ra\n", 3);
+		write(1, "ra\n", 3);
 		return (1);
 	}
 	return (0);
@@ -62,11 +57,11 @@ int ra(t_stack_node **a)
 // rb (rotate b): Shift up all elements of stack b by 1.
 // The first element becomes the last one.
 
-int rb(t_stack_node **b)
+int	rb(t_stack_node **b)
 {
 	if (rotate_movement(b))
 	{
- 		write(1, "rb\n", 3);
+		write(1, "rb\n", 3);
 		return (1);
 	}
 	return (0);
@@ -74,18 +69,17 @@ int rb(t_stack_node **b)
 
 // rr : ra and rb at the same time.
 
-int rr(t_stack_node **a, t_stack_node **b)
+int	rr(t_stack_node **a, t_stack_node **b)
 {
 	if (rotate_movement(a) && rotate_movement(b))
 	{
- 		write(1, "rr\n", 3);
+		write(1, "rr\n", 3);
 		return (1);
 	}
 	return (0);
 }
 
 /*
-
 void print_stack(t_stack_node *head)
 {
     while (head != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_reverse_rotate.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:53:11 by srudman           #+#    #+#             */
-/*   Updated: 2023/12/28 15:36:34 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 13:59:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,30 @@
 // Should I also check if the len of stack is higher than 1?
 // TO DO: protections needed
 
-t_stack_node	*ft_nodelast(t_stack_node *first);
-int				ft_stacksize(t_stack_node *first);
-void            print_stack(t_stack_node *head);
-
 t_stack_node	**rev_rotate_movement(t_stack_node **head)
 {
-    t_stack_node *last;
+	t_stack_node	*last;
 
 	if (head == NULL || (*head) == NULL || (*head)->next == NULL)
-		return(NULL);
-    last = ft_nodelast(*head);
-    last->prev->next = NULL;
-    last->next = (*head);
-    last->prev = NULL;
-    (*head) = last;
-    last->next->prev = last;
-    ft_position_nbr(*head, 1);
-    return (head);
+		return (NULL);
+	last = ft_nodelast(*head);
+	last->prev->next = NULL;
+	last->next = (*head);
+	last->prev = NULL;
+	(*head) = last;
+	last->next->prev = last;
+	ft_position_nbr(*head, 1);
+	return (head);
 }
 
 // rra (reverse rotate a): Shift down all elements of stack a by 1.
 // The last element becomes the first one.
 
-int rra(t_stack_node **a)
+int	rra(t_stack_node **a)
 {
 	if (rev_rotate_movement(a))
 	{
- 		write(1, "rra\n", 4);
+		write(1, "rra\n", 4);
 		return (1);
 	}
 	return (0);
@@ -51,11 +47,11 @@ int rra(t_stack_node **a)
 // rrb (reverse rotate b): Shift down all elements of stack b by 1.
 // The last element becomes the first one.
 
-int rrb(t_stack_node **b)
+int	rrb(t_stack_node **b)
 {
 	if (rev_rotate_movement(b))
 	{
- 		write(1, "rrb\n", 4);
+		write(1, "rrb\n", 4);
 		return (1);
 	}
 	return (0);
@@ -63,18 +59,15 @@ int rrb(t_stack_node **b)
 
 // rrr : rra and rrb at the same time
 
-int rrr(t_stack_node **a, t_stack_node **b)
+int	rrr(t_stack_node **a, t_stack_node **b)
 {
 	if (rev_rotate_movement(a) && rev_rotate_movement(b))
 	{
- 		write(1, "rrr\n", 4);
+		write(1, "rrr\n", 4);
 		return (1);
 	}
 	return (0);
 }
-
-
-// Question does freeing stack automatically delete its values?
 
 /*
 void print_stack(t_stack_node *head)

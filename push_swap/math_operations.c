@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 18:20:26 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/28 18:16:52 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 13:55:58 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				ft_stacksize(t_stack_node *first);
 // handle single plus! if next position exists?
 long	ft_atol(const char *nptr)
 {
-	int	minus;
+	int		minus;
 	long	result;
 
 	minus = 1;
@@ -48,9 +48,9 @@ t_stack_node	*get_min(t_stack_node *head)
 	t_stack_node	*min_node;
 
 	min_node = head;
-    current = head;
+	current = head;
 	while (current)
-	{	
+	{
 		if (current->value < min_node->value)
 			min_node = current;
 		current = current->next;
@@ -64,9 +64,9 @@ t_stack_node	*get_max(t_stack_node *head)
 	t_stack_node	*max_node;
 
 	max_node = head;
-    current = head;
+	current = head;
 	while (current)
-	{	
+	{
 		if (current->value > max_node->value)
 			max_node = current;
 		current = current->next;

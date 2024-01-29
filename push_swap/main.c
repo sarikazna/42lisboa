@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 16:20:29 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:48:54 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,35 @@ void	print_stack(t_stack_node *head)
 	printf("\n");
 }
 
+// also delete print stack below
+int	main(int argc, char **argv)
+{
+	t_stack_node	*a;
+	t_stack_node	*b;
+
+	a = NULL;
+	b = NULL;
+	if (argc <= 1 || (argc == 2 && !argv[1][0]))
+		return (-1);
+	a = stack_init(a, argc - 1, argv + 1);
+	print_stack(a);
+	if (!a)
+		return (-1);
+	if (!stack_is_sorted(a))
+	{
+		if (ft_stacksize(a) == 2)
+			sa(&a);
+		else if (ft_stacksize(a) == 3)
+			sort_three(&a);
+		else
+			run_algorithm(&a, &b);
+	}
+	free_list(a);
+	return (0);
+}
+
+/* 
+// This is just the 
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
@@ -61,7 +90,9 @@ int	main(int argc, char **argv)
 		else
 			run_algorithm(&a, &b);
 	}
-	print_stack(a); // delete after
+//	print_stack(a);
 	free_list(a);
 	return (0);
 }
+
+*/

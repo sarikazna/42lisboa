@@ -6,27 +6,26 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 12:17:18 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:12:55 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-t_stack_node *sort_three(t_stack_node **a)
+t_stack_node	*sort_three(t_stack_node **a)
 {
-    t_stack_node    *max_node;
+	t_stack_node	*max_node;
 
-    max_node = get_max(*a);
-    if (max_node == *a)
-        ra(a);
-    else if ((*a)->next == max_node)
-        rra(a);
-    if ((*a)->value > (*a)->next->value)
-        sa(a);
-    if (stack_is_sorted(*a))
-        return (*a);
-    return (NULL);
+	max_node = get_max(*a);
+	if (max_node == *a)
+		ra(a);
+	else if ((*a)->next == max_node)
+		rra(a);
+	if ((*a)->value > (*a)->next->value)
+		sa(a);
+	if (stack_is_sorted(*a))
+		return (*a);
+	return (NULL);
 }
 
 /*
@@ -34,45 +33,48 @@ Push the nodes from A to B until there are only three nodes left in A.
 Each time a node is pushed to B, B is sorted in a descending order.
 The first two nodes are pushed without checking anything. We now have
 the two numbers in B - a current min and a current max.
-Everytime you make the push, you check if there are 3 nodes in stack A
+Everytime you make the push, you check if there are 3 nodes in stack A.
+Once we have 3 nodes in stack A, we sort those three. Then we start
+the process of pushing each node form node B to A. But first we find
+a target node for each node in B from stack A. The target node is its
+closest bigger number.
+Then we rotate the stack A so we make sure that the first node is on top.
 */
-void run_algorithm(t_stack_node **a, t_stack_node **b)
+
+void	run_algorithm(t_stack_node **a, t_stack_node **b)
 {
-    if (ft_stacksize(*a) >= 4 && !stack_is_sorted(*a))
-        pb(a, b);   
-    if (ft_stacksize(*a) >= 4 && !stack_is_sorted(*a))
-        pb(a, b);
-    while (ft_stacksize(*a) > 3)
-    {
-        set_target_a(a, b);
-        no_of_moves_needed(a, b);
-        move_a_to_b(a, b);
-    }
-    sort_three(a);
-    while (*b)
-    {
-        set_target_b(a, b); // looking for the closest bigger number
-        move_b_to_a(a, b); // move everything from B to A
-    }
-    put_min_on_top(a);// some rotating
+	if (ft_stacksize(*a) >= 4 && !stack_is_sorted(*a))
+		pb(a, b);
+	if (ft_stacksize(*a) >= 4 && !stack_is_sorted(*a))
+		pb(a, b);
+	while (ft_stacksize(*a) > 3)
+	{
+		set_target_a(a, b);
+		no_of_moves_needed(a, b);
+		move_a_to_b(a, b);
+	}
+	sort_three(a);
+	while (*b)
+	{
+		set_target_b(a, b);
+		move_b_to_a(a, b);
+	}
+	put_min_on_top(a);
 }
 
-// need to test
-void    put_min_on_top(t_stack_node **a)
+void	put_min_on_top(t_stack_node **a)
 {
-    int min_value_a;
-    
-    min_value_a = (get_min(*a))->value;
-    while ((*a)->value != min_value_a)
-    {
-        if ((*a)->position <= ft_stacksize(*a)/2)
-            ra(a);
-        else
-            rra(a);
-    }
+	int	min_value_a;
+
+	min_value_a = (get_min(*a))->value;
+	while ((*a)->value != min_value_a)
+	{
+		if ((*a)->position <= (ft_stacksize(*a) / 2))
+			ra(a);
+		else
+			rra(a);
+	}
 }
-
-
 
 /*
 Main to test sort_three
@@ -112,8 +114,8 @@ int main()
 
     return 0;
 }
-
 */
+
 /*
 void print_list(t_stack_node *stack) {
     while (stack != NULL) {
