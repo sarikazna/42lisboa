@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:38:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 14:12:55 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 18:13:39 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	put_min_on_top(t_stack_node **a)
 	{
 		if ((*a)->position <= (ft_stacksize(*a) / 2))
 			ra(a);
-		else
+		else if ((*a)->position > (ft_stacksize(*a) / 2))
 			rra(a);
 	}
 }

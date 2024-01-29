@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 15:29:21 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 18:01:13 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	print_stack(t_stack_node *head)
 }
 */
 
-// also delete print stack below
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
@@ -43,9 +42,11 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc <= 1 || (argc == 2 && !argv[1][0]))
+	{
+		write (2, "Error\n", 6);
 		return (-1);
+	}
 	a = stack_init(a, argc - 1, argv + 1);
-	// mprint_stack(a);
 	if (!a)
 		return (-1);
 	if (!stack_is_sorted(a))
@@ -96,5 +97,4 @@ int	main(int argc, char **argv)
 	free_list(a);
 	return (0);
 }
-
 */

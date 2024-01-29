@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:37:29 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 14:56:32 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 18:34:36 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int				contains_duplicate(t_stack_node *a, int tmp);
 
 // Stack initialisation
 t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr);
-/*void	print_stack(t_stack_node *head); */
+// void	print_stack(t_stack_node *head);
 
 // Sorting algorithms
 t_stack_node	*sort_three(t_stack_node **a);

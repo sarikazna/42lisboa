@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:33:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 14:51:03 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 16:39:20 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
 		if (!syntax_error(*nptr))
 		{
 			free_list(a);
+			write (2, "Error\n", 6);
 			return (NULL);
 		}
 		tmp = ft_atol(*nptr);
 		if (tmp < INT_MIN || tmp > INT_MAX || contains_duplicate(a, (int) tmp))
 		{
 			free_list(a);
+			write (2, "Error\n", 6);
 			return (NULL);
 		}
 		ft_nodeadd_back(&a, (ft_nodenew((int) tmp)));

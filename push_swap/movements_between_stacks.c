@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:51:06 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 12:44:50 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 18:06:02 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 	if (best->position <= (ft_stacksize(*a) / 2))
 		rotate_stack(a, b, best, 'a');
 	else if (best->position > (ft_stacksize(*a) / 2))
-		rev_rotate_stack(a, b, best->target, 'a');
+		rev_rotate_stack(a, b, best, 'a');
 	if (best->target->position <= (ft_stacksize(*b) / 2))
 		rotate_stack(a, b, best->target, 'b');
 	else if (best->target->position > (ft_stacksize(*b) / 2))
@@ -86,7 +86,7 @@ void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 	best = (*b);
 	if (best->target->position <= (ft_stacksize(*a) / 2))
 		rotate_stack(a, b, best->target, 'a');
-	else
+	else if (best->target->position > (ft_stacksize(*a) / 2))
 		rev_rotate_stack(a, b, best->target, 'a');
 	pa(a, b);
 }

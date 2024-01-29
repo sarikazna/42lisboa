@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:12:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/28 18:31:11 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 16:49:05 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int	syntax_error(char *nptr)
 		if (!ft_isdigit(nptr[i]) && !(nptr[i] == '+' || nptr[i] == '-'))
 			return (0);
 		if (nptr[i] == '+' || nptr[i] == '-')
+		{
+			if (nptr[i + 1] == '\0')
+				return (0);
 			operator++;
+		}
 		i++;
 	}
 	if (operator <= 1)

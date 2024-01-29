@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:05:33 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 14:51:26 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 18:56:05 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ is the max_value in B.
 Every A node is assigned a ´closest smallest number to A´
 */
 
+
 t_stack_node	*set_target_a(t_stack_node **a, t_stack_node **b)
 {
 	long			tmp_best_match;
@@ -28,17 +29,17 @@ t_stack_node	*set_target_a(t_stack_node **a, t_stack_node **b)
 	t_stack_node	*target_node;
 
 	(current_a) = *a;
-	while ((current_a))
+	while (current_a)
 	{
 		tmp_best_match = LONG_MIN;
 		current_b = *b;
 		target_node = NULL;
 		while (current_b)
 		{
-			if (current_b->value < (current_a)->value 
-				&& current_b->value > tmp_best_match)
+			if (current_b->value < current_a->value 
+				&& (current_b->value) > tmp_best_match)
 			{
-				tmp_best_match = current_b->value;
+				tmp_best_match = (current_b->value);
 				target_node = current_b;
 			}
 			current_b = current_b->next;

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 20:01:54 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 14:41:44 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 18:48:19 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /*
 Every B needs a ´closest larger nbr to B' from stack A. 
 A has to have a larger number to B when we push it.
-If A is smaller to B, then the 'closes smaller number to A' 
-is the max_value in B.
+If A is smaller to B, then the 'closes smaller number to A' is 
+the max_value in B.
 Every A node is assigned a ´closest smallest number to A´
 */
 
