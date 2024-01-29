@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:50:59 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/22 20:51:23 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/29 12:49:39 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,61 @@
 
 int	push_movement(t_stack_node **a_head, t_stack_node **b_head)
 {
-    t_stack_node	*pushed_b;
-    if (!*b_head)
-        return (0);
-    pushed_b = *b_head;
-    *b_head = (*b_head)->next;
-    if (*b_head)
-        (*b_head)->prev = NULL;
-    if (!*a_head)
-    {
-        *a_head = pushed_b;
-        (*a_head)->next = NULL;
-    }
-    else
-    {
-        (*a_head)->prev = pushed_b;
-        pushed_b->next = (*a_head);
-        *a_head = pushed_b;
-    }
-    ft_position_nbr(*b_head, 1);
-    ft_position_nbr(*a_head, 1);
-    return (1);
+	t_stack_node	*pushed_b;
+
+	if (!*b_head)
+		return (0);
+	pushed_b = *b_head;
+	*b_head = (*b_head)->next;
+	if (*b_head)
+		(*b_head)->prev = NULL;
+	if (!*a_head)
+	{
+		*a_head = pushed_b;
+		(*a_head)->next = NULL;
+	}
+	else
+	{
+		(*a_head)->prev = pushed_b;
+		pushed_b->next = (*a_head);
+		*a_head = pushed_b;
+	}
+	ft_position_nbr(*b_head, 1);
+	ft_position_nbr(*a_head, 1);
+	return (1);
 }
 
-// pa (push a): Take the first element at the top of b and put it at the top of a.
-// Do nothing if b is empty.
+/*
+pa (push a): Take the first element at the top 
+of b and put it at the top of a.
+Do nothing if b is empty.
+*/
 
-int pa(t_stack_node **a, t_stack_node **b)
+int	pa(t_stack_node **a, t_stack_node **b)
 {
-    if (b == NULL || (*b) == NULL)
-        return (0);
-    if (push_movement(a, b))
+	if (b == NULL || (*b) == NULL)
+		return (0);
+	if (push_movement(a, b))
 	{
- 		write(1, "pa\n", 3);
+		write(1, "pa\n", 3);
 		return (1);
 	}
 	return (0);
 }
 
-// pb (push b): Take the first element at the top of a and put it at the top of b.
-// Do nothing if a is empty
+/*
+pb (push b): Take the first element at the top 
+of a and put it at the top of b.
+Do nothing if a is empty
+*/
 
-int pb(t_stack_node **a, t_stack_node **b)
+int	pb(t_stack_node **a, t_stack_node **b)
 {
-    if (a == NULL || (*a) == NULL)
-        return (0);
-    if (push_movement(b, a))
+	if (a == NULL || (*a) == NULL)
+		return (0);
+	if (push_movement(b, a))
 	{
- 		write(1, "pb\n", 3);
+		write(1, "pb\n", 3);
 		return (1);
 	}
 	return (0);
