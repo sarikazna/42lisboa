@@ -6,24 +6,11 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:28:59 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 16:17:32 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:42:21 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* Incorportate the PREVIOUS node address as well. */
-/*
-This is in the header file already.
-typedef struct	s_stack_node
-{
-	int		value;
-	int		position;
-	struct s_stack_node *prev;
-	struct s_stack_node *next;
-	// more meta data missing
-}				t_stack_node;
-*/
 
 /* *ft_nodenew allocates with malloc and returns a new node. The 
 member variable  ’value’ is initialized with  the value of the 
@@ -42,7 +29,7 @@ t_stack_node	*ft_nodenew(int nbr)
 	return (new);
 }
 
-/* Adds the node ’new’ at the end of the list. 
+/* ft_nodeadd_back adds the node ’new’ at the end of the list. 
 **first is the address to the first link of a list */
 
 t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new)
@@ -63,7 +50,7 @@ t_stack_node	*ft_nodeadd_back(t_stack_node **first, t_stack_node *new)
 	return (new);
 }
 
-/* Counts the number of nodes in a list. 
+/* ft_stacksize counts the number of nodes in a list. 
 *first: The begining of the stack. */
 
 int	ft_stacksize(t_stack_node *first)
@@ -81,7 +68,7 @@ int	ft_stacksize(t_stack_node *first)
 	return (size);
 }
 
-/* Returns the last node of the stack. */
+/* ft_nodelast returns the last node of the stack. */
 
 t_stack_node	*ft_nodelast(t_stack_node *first)
 {
@@ -97,6 +84,8 @@ t_stack_node	*ft_nodelast(t_stack_node *first)
 	}
 	return (previous);
 }
+
+/* ft_nodefirst returns the first node of the stack. */
 
 t_stack_node	*ft_nodefirst(t_stack_node *last)
 {

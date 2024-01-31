@@ -6,24 +6,11 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:28:59 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/27 16:16:52 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:41:23 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* Incorportate the PREVIOUS node address as well. */
-/*
-This is in the header file already.
-typedef struct	s_stack_node
-{
-	int		value;
-	int		position;
-	struct s_stack_node *prev;
-	struct s_stack_node *next;
-	// more meta data missing
-}				t_stack_node;
-*/
 
 void	ft_position_nbr(t_stack_node *first, int nbr)
 {
@@ -37,7 +24,6 @@ void	ft_position_nbr(t_stack_node *first, int nbr)
 	}
 }
 
-// TO DO, free the "target node" as wellif it's dynamically allocated
 void	free_list(t_stack_node *head)
 {
 	t_stack_node	*current;
@@ -106,5 +92,4 @@ int main() {
 
     return 0;
 }
-
 */

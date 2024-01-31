@@ -6,22 +6,13 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 18:01:13 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:43:29 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* I decleared two data structures - a and b.
-I set both pointers of the data structures to NuLL to avoid
-undefined behaviour. */
-
-/* In the main function I also handle some of the input 
-errors. Namely, the argument count must be 2 or 
-t_stack_node	*get_max(t_stack_node *head)more. The 
-2nd argument must not be a empty string */
-
-// delete when submitting
+// Used to print out the stack
 /*
 void	print_stack(t_stack_node *head)
 {
@@ -33,6 +24,10 @@ void	print_stack(t_stack_node *head)
 	printf("\n");
 }
 */
+
+/* I decleared two data structures - a and b.
+I set both pointers of the data structures to NULL to avoid
+undefined behaviour. */
 
 int	main(int argc, char **argv)
 {

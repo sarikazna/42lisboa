@@ -6,21 +6,11 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:33:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 18:57:27 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:47:42 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// handle errors: integre overflow, dubplicates, syntax errors (+, -)
-// if it's string, convert it into long integer
-// append the nodes to stack 'a'
-// run a check if stack 'a' is sorted, if it's not sorted, implement our
-// sorting algoritm
-// ALGORITM
-// Check for 2 numbers, if yes. Simply swap the numbers.
-// Check for 3 numbers, if so implement our simple 'sort thre
-// check if stack has more than 3 numbers, implement our Turk Algorithm.
 
 // Function stack_init checks for syntax errors, converts string 
 // arguments into 'long', then checks for 'int' overflow, and 

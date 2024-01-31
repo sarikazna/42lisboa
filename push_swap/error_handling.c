@@ -6,14 +6,13 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:12:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 16:49:05 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:40:35 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// TO DO: make sure it handles input of a singe +, Can be it be a 0 or should
-// it be reported as an error?
+// It handles input of a singe + or - and reports it as error.
 int	syntax_error(char *nptr)
 {
 	int	i;
@@ -54,10 +53,10 @@ int	contains_duplicate(t_stack_node *a, int tmp)
 	return (0);
 }
 
+// Test for syntax_error function.
 // #include <stdio.h>
 // int main(void)
 // {
-// 	// Test for syntax_error function.
 // 	char *nptr = "3";
 // 	printf("%d", syntax_error(nptr));
 // 	return (0);	

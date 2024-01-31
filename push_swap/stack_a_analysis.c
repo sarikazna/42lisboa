@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:05:33 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 18:56:05 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:25:41 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,38 @@ is the max_value in B.
 Every A node is assigned a ´closest smallest number to A´
 */
 
+void	assign_target_a(t_stack_node **b, t_stack_node *current_b,
+						t_stack_node *current_a, long tmp_best_match)
+{
+	t_stack_node	*target_node;
+
+	target_node = NULL;
+	while (current_b)
+	{
+		if (current_b->value < current_a->value 
+			&& (current_b->value) > tmp_best_match)
+		{
+			tmp_best_match = (current_b->value);
+			target_node = current_b;
+		}
+		current_b = current_b->next;
+	}
+	if (tmp_best_match == LONG_MIN)
+		(current_a)->target = get_max(*b);
+	else 
+		(current_a)->target = target_node;
+}
 
 t_stack_node	*set_target_a(t_stack_node **a, t_stack_node **b)
 {
-	long			tmp_best_match;
 	t_stack_node	*current_a;
 	t_stack_node	*current_b;
-	t_stack_node	*target_node;
 
 	(current_a) = *a;
 	while (current_a)
 	{
-		tmp_best_match = LONG_MIN;
 		current_b = *b;
-		target_node = NULL;
-		while (current_b)
-		{
-			if (current_b->value < current_a->value 
-				&& (current_b->value) > tmp_best_match)
-			{
-				tmp_best_match = (current_b->value);
-				target_node = current_b;
-			}
-			current_b = current_b->next;
-		}
-		if (tmp_best_match == LONG_MIN)
-			(current_a)->target = get_max(*b);
-		else 
-			(current_a)->target = target_node;
+		assign_target_a(b, current_b, current_a, LONG_MIN);
 		(current_a) = (current_a)->next;
 	}
 	return (*a);
@@ -98,28 +102,6 @@ t_stack_node	*no_of_moves_needed(t_stack_node **a, t_stack_node **b)
 		curr_a = curr_a->next;
 	}
 	return (*a);
-}
-
-t_stack_node	*set_cheapest(t_stack_node **a)
-{
-	long			cheapest_value;
-	t_stack_node	*current;
-	t_stack_node	*current_cheapest;
-
-	current = (*a);
-	cheapest_value = LONG_MAX;
-	current_cheapest = current;
-	while (current)
-	{
-		if (current->push_cost < cheapest_value)
-		{
-			cheapest_value = current->push_cost;
-			current_cheapest = current;
-		}
-		current = current->next;
-	}
-	current_cheapest->cheapest = true;
-	return (current_cheapest);
 }
 
 /*

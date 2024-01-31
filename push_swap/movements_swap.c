@@ -6,22 +6,12 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:50:26 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 14:27:34 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:45:03 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// typedef struct	s_stack_node
-// {
-// 	int		value;
-// 	int		position;
-// 	struct s_stack_node *prev;
-// 	struct s_stack_node *next;
-// 	// more meta data missing
-// }				t_stack_node;
-
-// Should I also check if the len of stack is higher than 1?
 t_stack_node	**swap_movement(t_stack_node **head)
 {
 	if (head == NULL || (*head) == NULL || (*head)->next == NULL)

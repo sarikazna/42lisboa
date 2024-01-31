@@ -6,14 +6,11 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:53:11 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/29 13:59:11 by srudman          ###   ########.fr       */
+/*   Updated: 2024/01/31 21:44:51 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// Should I also check if the len of stack is higher than 1?
-// TO DO: protections needed
 
 t_stack_node	**rev_rotate_movement(t_stack_node **head)
 {
