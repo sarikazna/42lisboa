@@ -6,7 +6,7 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 12:15:01 by srudman           #+#    #+#              #
-#    Updated: 2024/01/29 12:18:22 by srudman          ###   ########.fr        #
+#    Updated: 2024/02/01 13:26:41 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRC = push_swap.c main.c error_handling.c linked_stacks_utils.c movements_push.c \
 	movements_reverse_rotate.c movements_rotate.c movements_swap.c math_operations.c \
