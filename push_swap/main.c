@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:01 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/31 21:43:29 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/01 12:54:17 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc <= 1 || (argc == 2 && !argv[1][0]))
-	{
-		write (2, "Error\n", 6);
 		return (-1);
-	}
 	a = stack_init(a, argc - 1, argv + 1);
 	if (!a)
 		return (-1);
@@ -58,7 +55,7 @@ int	main(int argc, char **argv)
 }
 
 /* 
-// This is just the 
+// This is just the main with the split
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
