@@ -2,3 +2,8 @@ Resources:
 Project instructions: https://cdn.intra.42.fr/pdf/pdf/105321/en.subject.pdf
 What it MiniLibx? https://harm-smits.github.io/42docs/libs/minilibx/introduction.html
 42 e-learning on MiniLibx: https://elearning.intra.42.fr/notions/minilibx/subnotionsg
+Guide on so_long: https://reactive.so/post/42-a-comprehensive-guide-to-so_long
+
+
+Questions
+Do I need to clonse mlx library from github or can I just put it in my folder?
