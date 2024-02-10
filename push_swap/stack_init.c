@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:33:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/01/31 21:47:42 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/10 13:52:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_stack_node	*stack_init(t_stack_node *a, int stack_len, char **nptr)
 }
 
 /*
+// Main to test stack_init
 #include <stdio.h>
 int main(void) 
 {
