@@ -6,4 +6,4 @@ Guide on so_long: https://reactive.so/post/42-a-comprehensive-guide-to-so_long
 
 
 Questions
-Do I need to clonse mlx library from github or can I just put it in my folder?
+Do I need to clone mlx library from github or can I just put it in my folder?
