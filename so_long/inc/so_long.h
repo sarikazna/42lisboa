@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/11 19:16:41 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/11 22:32:32 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include "./libft/libft.h"
 # include "./ft_printf/ft_printf.h"
+# include "./mlx/mlx.h"
 // Note to self. Check if you even used some of the functions from math.h library
 # include <math.h>
 
@@ -47,14 +48,15 @@ typedef struct s_map_data
 	int 	player_posX;
 	int 	player_posY;
 	int		score; // number collectables on the map
-	int		curr_score; // 
+	int		curr_score;
 	void	*wall;
 	void	*exit;
 	void	*items;
 	void	*player;
-	void	*enemy;
-	int		enemy_pos;
+	void	*enemy; // bonus
+	int		enemy_pos; // bonus
 	int		gameover;
+	int		steps;  //bonus
 	
 }	t_map_data;
 
