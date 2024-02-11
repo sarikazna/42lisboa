@@ -6,14 +6,14 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/02 13:15:01 by srudman           #+#    #+#              #
-#    Updated: 2024/02/11 16:58:05 by srudman          ###   ########.fr        #
+#    Updated: 2024/02/11 17:39:34 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Path to the directory
 BIN_PATH = ./bin/
-SRC_PATH =  ./src/
-BONUS_PATH =  ./src_bonus/
+SRC_PATH = ./src/
+BONUS_PATH = ./src_bonus/
 OBJ_PATH = ./obj/
 LIBFT_PATH = ./libft/
 PRINTF_PATH = ./ft_printf/

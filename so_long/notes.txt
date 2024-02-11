@@ -3,7 +3,18 @@ Project instructions: https://cdn.intra.42.fr/pdf/pdf/105321/en.subject.pdf
 What it MiniLibx? https://harm-smits.github.io/42docs/libs/minilibx/introduction.html
 42 e-learning on MiniLibx: https://elearning.intra.42.fr/notions/minilibx/subnotionsg
 Guide on so_long: https://reactive.so/post/42-a-comprehensive-guide-to-so_long
+Video (in Russian): https://www.youtube.com/watch?v=D1DeE-Qit3M&t=569s
+
+Apparentely MiniLibx library is full of bugs to read up on: https://pulgamecanica.herokuapp.com/posts/mlx-starter-pack
+Also: https://pulgamecanica.herokuapp.com/posts/minilibx-tutorial 
 
 
 Questions
 Do I need to clone mlx library from github or can I just put it in my folder?
+
+TO DO:
+1. Find images - choose the size of the textures
+2. Argc and argv Check
+3. Read map, like in get_next_line. You have to open and close it
+2. Check if maps are valid
+3. The player can move
