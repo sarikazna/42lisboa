@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: srudman <srudman@student.42.fr>            +#+  +:+       +#+         #
+#    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 18:41:46 by srudman           #+#    #+#              #
-#    Updated: 2024/02/05 00:00:29 by srudman          ###   ########.fr        #
+#    Updated: 2024/02/10 18:25:51 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,18 +21,15 @@ SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
 	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 	get_next_line.c ft_strjoin_modified.c	
-BSRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+
 OBJ = $(SRC:.c=.o)
-BOBJ = $(BSRC:.c=.o)
+
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar -crs $(NAME) $(OBJ)
 
-bonus: $(NAME) $(BOBJ)
-	ar -crs $(NAME) $(BOBJ)
 clean:
 	rm -f $(OBJ)
 	

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 16:57:32 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/04 23:59:51 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/10 18:25:32 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+// fcntl.h needed for flags in the open() function
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2
+# endif
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -52,23 +58,5 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_strjoin_modified(char *s1, char *s2);
 char	*get_next_line(int fd);
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}				t_list;
-/* *content = data contained in the node, any tzpe of data is stored */
-/* *next = address of the next node or NULL if the next node is the last one.*/
-
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),	void (*del)(void *));
 
 #endif
