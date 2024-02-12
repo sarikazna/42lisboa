@@ -6,7 +6,7 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 18:41:46 by srudman           #+#    #+#              #
-#    Updated: 2024/02/10 18:25:51 by srudman          ###   ########.fr        #
+#    Updated: 2024/02/12 16:24:52 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c \
 	ft_strnstr.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
 	ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
-	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	get_next_line.c ft_strjoin_modified.c	
 
 OBJ = $(SRC:.c=.o)

@@ -11,6 +11,8 @@ Also: https://pulgamecanica.herokuapp.com/posts/minilibx-tutorial
 Questions
 Do I need to clone mlx library from github or can I just put it in my folder?
 Can I make it for Linux only or can should it work on OS as well?
+MLX library doesn't contain fclean
+Can I use wildcard in Makefile?
 
 TO DO:
 1. Find images - choose the size of the textures
