@@ -6,20 +6,23 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/02 13:15:01 by srudman           #+#    #+#              #
-#    Updated: 2024/02/12 14:15:36 by srudman          ###   ########.fr        #
+#    Updated: 2024/02/12 13:53:32 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+NAME = ${BIN_PATH}so_long
 
 # Path to the directory
 BIN_PATH = ./bin/
 SRC_PATH = ./src/
+# BONUS_PATH = ./src_bonus/
 OBJ_PATH = ./obj/
 LIBFT_PATH = ./libft/
 PRINTF_PATH = ./ft_printf/
 HEADER_PATH = ./inc/
 MLX_PATH = ./mlx/
 
-NAME = ${BIN_PATH}so_long
+# NAME_BONUS = ${BIN_PATH}so_long_bonus
 
 # Compilation flags
 CC = cc # or is it gcc?
@@ -28,9 +31,11 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 LFLAGS = -lft -lmlx -lmlx_Linux -lX11 -lXext -lm
 
 SRC = main.c
+# SRC_BONUS = $(BONUS_PATH)main_bonus.c
 
 # Object files
 OBJ = $(patsubst %.c, $(OBJ_PATH)%.o, $(SRC))
+# OBJ_BONUS = $(patsubst %.c, $(OBJ_PATH)%.o, $(SRC_BONUS))
 OBJECTS = $(addprefix $(OBJ_PATH), $(OBJ))
 
 all: $(NAME)
@@ -47,6 +52,21 @@ $(NAME): $(OBJ)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER_PATH)/*.h
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) -I $(HEADER_PATH) -c $< -o $@
+
+# # The target to build the bonus part
+# bonus: $(NAME_BONUS)
+
+# $(NAME_BONUS): $(OBJ_BONUS)
+# 	mkdir -p $(BIN_PATH)
+# 	make -C $(LIBFT_PATH) --no-print-directory
+# 	make -C $(PRINTF_PATH) --no-print-directory
+# 	make -C $(MLX_PATH) --no-print-directory
+# 	$(CC) $(CFLAGS) $(OBJ_BONUS) -o $(NAME_BONUS) -I $(HEADER_PATH) -L $(LIBFT_PATH) -L $(MLX_PATH) $(LFLAGS)
+
+# # Compiles C source bonus files into object files
+# $(OBJ_PATH)%.o : $(BONUS_PATH)%.c $(HEADER_PATH)/*.h
+# 	mkdir -p $(OBJ_PATH)
+# 	$(CC) $(CFLAGS) -I $(HEADER_PATH) -c $< -o $@
 
 # Cleans object files and dependencies
 clean:
@@ -66,4 +86,8 @@ fclean: clean
 re : fclean all
 
 # Phony targets
-.PHONY : all clean fclean re
+.PHONY : all bonus clean fclean re
+
+
+
+

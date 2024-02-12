@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/11 22:32:32 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:12:39 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./mlx/mlx.h"
+# include <stdio.h>
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+# include "../mlx/mlx.h"
 // Note to self. Check if you even used some of the functions from math.h library
 # include <math.h>
 

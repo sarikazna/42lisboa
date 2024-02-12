@@ -8,7 +8,6 @@ Guide on so_long: https://reactive.so/post/42-a-comprehensive-guide-to-so_long
 Apparentely MiniLibx library is full of bugs to read up on: https://pulgamecanica.herokuapp.com/posts/mlx-starter-pack
 Also: https://pulgamecanica.herokuapp.com/posts/minilibx-tutorial 
 
-
 Questions
 Do I need to clone mlx library from github or can I just put it in my folder?
 Can I make it for Linux only or can should it work on OS as well?
