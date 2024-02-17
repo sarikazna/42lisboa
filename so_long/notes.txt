@@ -15,8 +15,8 @@ Can I use wildcard in Makefile?
 
 TO DO:
 1. [done] Reproduce everything he's doing: https://elearning.intra.42.fr/notions/minilibx/subnotions
-1. Find images - choose the size of the textures
-2. Argc and argv Check
+2. [done] Argc and argv Check
 3. Read map, like in get_next_line. You have to open and close it
 4. Check if maps are valid
-5. The player can move
+5. Find images - choose the size of the textures
+6. Learn about bitshifiting

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:18:08 by srudman           #+#    #+#             */
-/*   Updated: 2023/04/28 20:04:04 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/17 16:17:20 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strchr(const char *s, int c)
 	char	ch;
 
 	ch = (char)c;
+	if (!s)
+		return (0);
 	if (ch == '\0')
 		return ((char *)s + ft_strlen(s));
 	while (*s)

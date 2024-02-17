@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/12 15:01:13 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/17 19:22:57 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 */
 typedef struct s_map_data
 {
+	char	**matrix;
+	int		rows;
 	int		height;
 	int		width;
 	int 	player_posX;
