@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:07:29 by srudman           #+#    #+#             */
-/*   Updated: 2023/05/18 15:46:21 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/18 19:44:18 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ size_t	ft_countwords(char const *s, char c)
 	count = 0;
 	i = 0;
 	if (s[i] != c)
-	{
 		count++;
-	}
 	i++;
 	while (s[i])
 	{
@@ -66,7 +64,7 @@ void	ft_fill_result(const char *s, char c, char **result)
 {
 	int		j;
 	int		i;
-
+	
 	j = 0;
 	i = 0;
 	while (*s)

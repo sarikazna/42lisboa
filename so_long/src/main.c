@@ -6,22 +6,13 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/17 19:26:32 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/18 22:11:21 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-char	*free_if_error(char *string, int fd, int index)
-{
-	while(index-- >= 0)
-		free(string[index]);
-	close(fd);
-	return(NULL);
-}
-
-/* Inspiration https://github.com/augustobecker/so_long/blob/main/sources/ft_init_map.c*/
-void	**ft_retrieve_matrix(t_map_data game, char *path)
+void	ft_retrieve_matrix(t_map_data *map, char *path)
 {
 	char	*matrix_tmp;
 	int		fd;
@@ -29,23 +20,29 @@ void	**ft_retrieve_matrix(t_map_data game, char *path)
 	
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		// put error
-	game->rows = 0;
-	matrix_tmp = st_strdup("");
+	{
+		perror("Error opening the file.");
+		return ;
+	}
+	matrix_tmp = ft_strdup("");
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		printf("%s", line);
+		matrix_tmp = ft_strjoin_modified(matrix_tmp, line);
+		free(line);
+		map->rows++;
 	}
+	map->matrix = ft_split(matrix_tmp, '\n');
+	free(matrix_tmp);
 	close(fd);
 }
 
 /* 
 Functions arguments_are_valid checks
-- if we get exactly 2 arguments and
-- if the 2nd argument (the path to the game map) is corret. Specifically if
+- if we get exactly 2 arguments from the terminal and
+- if the 2nd argument (the path to the game map) is correct. Specifically if
 the name of the file ends with .ber
 */
 int	arguments_are_valid(int argc, char *map_path)
@@ -55,7 +52,7 @@ int	arguments_are_valid(int argc, char *map_path)
 	if (argc != 2 || !map_path)
 	{
 		perror("Error, exactly two arguments needed. Try: ./so_long maps/valid_maps/<name of map>\n");
-		return (-1);
+		return (0);
 	}
 	i = 0;
 	while (map_path[i++]);
@@ -65,28 +62,38 @@ int	arguments_are_valid(int argc, char *map_path)
 	else
 	{
 		perror("Error, File name invalid.\n");
-		return (-1);
+		return (0);
 	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_map_data *map;
+
+	map = NULL;	
+	if (arguments_are_valid(argc, argv[1]))
+	{
+		if (!ft_map_init(&map))
+			return (-1);
+		ft_retrieve_matrix(map, argv[1]);
+		if (map->matrix == NULL || !ft_validate_map(map))
+		{
+			free_map_struct(map);
+			return (-1);
+		}
+	}
+	free_map_struct(map);
+	return (0);
 }
 
 /*
 Function flood_fill contains the matrix
 */
-void	flood_fill(char **matrix, int xP, int yP, char "0CE")
-{
+// void	flood_fill(char **matrix, int xP, int yP, char "0CE")
+// {
 	
-}
+// }
 
-int	main(int argc, char **argv)
-{
-	t_map_data game;
-	
-	if (arguments_are_valid(argc, argv[1]))
-	{
-		ft_retrieve_matrix(game, argv[1]);
-	}
-	return (0);
-}
 
 /*
 

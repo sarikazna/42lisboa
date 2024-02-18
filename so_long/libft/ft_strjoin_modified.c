@@ -6,12 +6,14 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:49:24 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/17 17:09:22 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/18 16:39:42 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/* The differences between ft_strjoin and st_strjoin_modified is that in this one
+we are iterating through arrays, instead of pointers. We also free s1 in this one. */
 char	*ft_strjoin_modified(char *s1, char *s2)
 {
 	size_t	i;

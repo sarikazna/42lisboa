@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/17 19:22:57 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/18 21:52:56 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ typedef struct s_map_data
 {
 	char	**matrix;
 	int		rows;
+	int		columns;
 	int		height;
 	int		width;
+	int		no_exits;
+	int		no_players_check;
 	int 	player_posX;
 	int 	player_posY;
 	int		score; // number collectables on the map
@@ -61,6 +64,11 @@ typedef struct s_map_data
 	int		steps;  //bonus
 	
 }	t_map_data;
+
+/*  FUNCTIONS */
+void	free_map_struct(t_map_data *map);
+int		ft_map_init(t_map_data **map);
+int		ft_validate_map(t_map_data *map);
 
 
 #endif
