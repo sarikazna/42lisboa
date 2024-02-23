@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:10:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/23 17:06:28 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/23 21:38:29 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,34 @@ int	ft_map_is_rectangular(t_map_data *map)
 	int	j;
 
 	i = 0;
-	while (map->matrix[0][map->columns++] != '\n' 
-		&& map->matrix[0][map->columns] != '\0');
-	map->columns--;
+	while (map->matrix[0][map->columns] != '\n' 
+		&& map->matrix[0][map->columns++] != '\0');
+	map->columns -= 2;
 	while (i < (map->rows - 1))
 	{
 		j = 0;
 		while (map->matrix[i][j] != '\n' 
 			&& map->matrix[i][j] != '\0')
-			j++;
+				j++;
 		if ((j - 1) != map->columns)
 		{
-			perror("Error, the game map should be ractangular and should not contain emply lines.\n");
+			if (j == 1)
+			{
+				perror("Error, the game map should should not contain empty lines.\n");
+				return (0);				
+			}
+			perror("Error, the game map should be ractangular.\n");
 			return (0);
 		}
 		i++;
+	}
+	j = 0;
+	while (map->matrix[i][j] != '\n' 
+		&& map->matrix[i][j++] != '\0');
+	if (((j - 1) != map->columns))
+	{
+		perror("Error, the game map should be ractangular.\n");
+		return (0);
 	}
 	return (1);
 }
