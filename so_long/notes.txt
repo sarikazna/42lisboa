@@ -16,7 +16,8 @@ Can I use wildcard in Makefile?
 TO DO:
 1. [done] Reproduce everything he's doing: https://elearning.intra.42.fr/notions/minilibx/subnotions
 2. [done] Argc and argv Check
-3. Read map, like in get_next_line. You have to open and close it
-4. Check if maps are valid
+3. [done] Read map, like in get_next_line. You have to open and close it
+4. [done] Run checks to validate the map
+4.1[todo] Validate path with flood fill algorithm
 5. Find images - choose the size of the textures
 6. Learn about bitshifiting

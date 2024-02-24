@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/23 14:35:18 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/24 16:16:09 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error opening the file.");
+		perror("Error\nCould not open the file.");
 		return ;
 	}
 	matrix_tmp = ft_strdup("");
@@ -51,7 +51,7 @@ int	arguments_are_valid(int argc, char *map_path)
 	
 	if (argc != 2 || !map_path)
 	{
-		perror("Error, exactly two arguments needed. Try: ./so_long maps/valid_maps/<name of map>\n");
+		perror("Error\nExactly two arguments needed.\n");
 		return (0);
 	}
 	i = 0;
@@ -61,7 +61,7 @@ int	arguments_are_valid(int argc, char *map_path)
 		return (1);
 	else
 	{
-		perror("Error, File name invalid.\n");
+		perror("Error\nFile name invalid.\n");
 		return (0);
 	}
 }
