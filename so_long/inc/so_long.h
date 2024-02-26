@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/24 17:51:04 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/26 16:39:16 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,16 @@ typedef struct s_map_data
 	
 }	t_map_data;
 
+
 /*  FUNCTIONS */
 void	free_map_struct(t_map_data *map);
 int		ft_map_init(t_map_data **map);
-int		ft_validate_map(t_map_data *map);
+int		ft_validate_map(t_map_data *map, char *path_to_file);
 int		ft_allowed_character(t_map_data *map);
-int		ft_validate_path(t_map_data *map);
+void	ft_assign_position(t_map_data *map);
+void	ft_flood_fill(int x, int y, t_map_data *map);
+// void	ft_rewrite_matrix(t_map_data *map, char *path);
+void	ft_rewrite_matrix(t_map_data *map, int fd);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/24 16:16:09 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/26 16:50:34 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	arguments_are_valid(int argc, char *map_path)
 	}
 	i = 0;
 	while (map_path[i++]);
-	if (map_path[i - 2] == 'r' && map_path[i - 3] == 'e' && map_path[i - 4] == 'b' 
-		&& map_path[i - 5] == '.' )
+	if (map_path[i - 2] == 'r' && map_path[i - 3] == 'e' 
+		&& map_path[i - 4] == 'b' && map_path[i - 5] == '.' )
 		return (1);
 	else
 	{
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 		if (!ft_map_init(&map))
 			return (-1);
 		ft_retrieve_matrix(map, argv[1]);
-		if (map->matrix == NULL || !ft_validate_map(map))
+		if (map->matrix == NULL || !ft_validate_map(map, argv[1]))
 		{
 			free_map_struct(map);
 			return (-1);
