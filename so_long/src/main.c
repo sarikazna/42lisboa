@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/26 16:50:34 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/26 20:19:48 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 {
 	char	*matrix_tmp;
 	int		fd;
-	char 	*line;
-	
+	char	*line;
+
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -48,14 +48,15 @@ the name of the file ends with .ber
 int	arguments_are_valid(int argc, char *map_path)
 {
 	int	i;
-	
+
 	if (argc != 2 || !map_path)
 	{
 		perror("Error\nExactly two arguments needed.\n");
 		return (0);
 	}
 	i = 0;
-	while (map_path[i++]);
+	while (map_path[i++])
+		;
 	if (map_path[i - 2] == 'r' && map_path[i - 3] == 'e' 
 		&& map_path[i - 4] == 'b' && map_path[i - 5] == '.' )
 		return (1);
@@ -68,9 +69,9 @@ int	arguments_are_valid(int argc, char *map_path)
 
 int	main(int argc, char **argv)
 {
-	t_map_data *map;
+	t_map_data	*map;
 
-	map = NULL;	
+	map = NULL;
 	if (arguments_are_valid(argc, argv[1]))
 	{
 		if (!ft_map_init(&map))
@@ -91,9 +92,7 @@ Function flood_fill contains the matrix
 */
 // void	flood_fill(char **matrix, int xP, int yP, char "0CE")
 // {
-	
 // }
-
 
 /*
 
@@ -114,13 +113,7 @@ int	main(int argc, char **argv)
 	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_loop(mlx_ptr);
-	
-	if (argc != 2 || !*argv[1])
-	{
-		perror("Error, exactly two arguments needed. Try: ./so_long maps/valid_maps/<name of map>");
-		return (-1);
-	}
-	
+
 	return (0);
 }
 */

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/24 17:38:19 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/26 20:16:51 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_map_struct(t_map_data *map)
 {
 	int	i;
-	
+
 	if (map == NULL)
 		return ;
 	if (map->matrix != NULL)
@@ -49,9 +49,9 @@ int	ft_map_init(t_map_data **map)
 	}
 	(*map)->matrix = NULL;
 	(*map)->wall = NULL;
-    (*map)->exit = NULL;
-    (*map)->items = NULL;
-    (*map)->player = NULL;	
+	(*map)->exit = NULL;
+	(*map)->items = NULL;
+	(*map)->player = NULL;
 	(*map)->rows = 0;
 	(*map)->no_exits = 0;
 	(*map)->no_players_check = 0;
