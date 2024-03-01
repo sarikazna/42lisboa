@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/01 12:00:24 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:42:52 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		ft_allowed_character(t_map_data *map);
 void	ft_assign_position(t_map_data *map);
 void	ft_flood_fill(int x, int y, t_map_data *map);
 void	ft_rewrite_matrix(t_map_data *map, int fd);
-void	game_init(t_map_data *map);
+int		game_init(t_map_data *map);
 
 
 #endif
