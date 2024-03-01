@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/26 20:19:48 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/01 12:01:15 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,38 +82,8 @@ int	main(int argc, char **argv)
 			free_map_struct(map);
 			return (-1);
 		}
+		game_init(map);
 	}
 	free_map_struct(map);
 	return (0);
 }
-
-/*
-Function flood_fill contains the matrix
-*/
-// void	flood_fill(char **matrix, int xP, int yP, char "0CE")
-// {
-// }
-
-/*
-
-int	deal_key()
-{
-	ft_putchar_fd('X', 1);
-	mlx_pixel_put(mlx_ptr, win_ptr,);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1000, 500, "Moonlight Sonata");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	mlx_key_hook(win_ptr, deal_key, (void *)0);
-	mlx_loop(mlx_ptr);
-
-	return (0);
-}
-*/
