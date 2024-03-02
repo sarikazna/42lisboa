@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/01 12:42:52 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:55:30 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+#include <X11/X.h>
+#include <X11/keysym.h>
 // Note to self. Check if you even used some of the functions from math.h library
 # include <math.h>
 
@@ -54,11 +56,9 @@ typedef struct s_map_data
 	int 	player_posY;
 	int		score; // number collectables on the map
 	int		curr_score;
-	void	*wall;
-	void	*exit;
-	void	*items;
-	void	*player;
-	void	*enemy; // bonus
+	void	**img; // MLX image pointers (on the stack)
+	void	*mlx_ptr; 
+	void	*win_ptr;
 	int		enemy_pos; // bonus
 	int		gameover;
 	int		steps;  //bonus

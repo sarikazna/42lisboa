@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/26 20:16:51 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:59:53 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ void	free_map_struct(t_map_data *map)
 	{
 		i = 0;
 		while (i < map->rows)
-		{
-			free(map->matrix[i]);
-			i++;
-		}
+			free(map->matrix[i++]);
 		free(map->matrix);
 	}
-	if (map->wall != NULL)
-		free(map->wall);
-	if (map->exit != NULL)
-		free(map->exit);
-	if (map->items != NULL)
-		free(map->items);
-	if (map->player != NULL)
-		free(map->player);
+	if (map->img != NULL)
+	{
+		i = 0;
+		while (i < 6)
+			free(map->img[i++]);
+		free(map->img);
+	}
+	if (map->mlx_ptr != NULL)
+		free(map->mlx_ptr);
+	if (map->win_ptr != NULL)
+		free(map->win_ptr);	
 	free(map);
 }
 
@@ -48,10 +48,9 @@ int	ft_map_init(t_map_data **map)
 		return (-1);
 	}
 	(*map)->matrix = NULL;
-	(*map)->wall = NULL;
-	(*map)->exit = NULL;
-	(*map)->items = NULL;
-	(*map)->player = NULL;
+	(*map)->img = NULL;
+	(*map)->mlx_ptr = NULL;
+	(*map)->win_ptr = NULL;
 	(*map)->rows = 0;
 	(*map)->no_exits = 0;
 	(*map)->no_players_check = 0;
