@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:59:10 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/02 18:11:17 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:17:13 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ int on_keypress(int keysym, t_map_data *map)
 
 static void	img_init(t_map_data *map)
 {
-	map->img[0] = mlx_xpm_file_to_image(map->mlx_ptr, "../img/path/path.xpm", 32, 32); // path
-	map->img[1]; // wall
-	map->img[2]; // player
-	map->img[3]; // collectable
-	map->img[4]; // exit
+	// should the path have ../?
+	map->img[0] = mlx_xpm_file_to_image(map->mlx_ptr, "img/path/path.xpm", 32, 32);
+	map->img[1] = mlx_xpm_file_to_image(map->mlx_ptr, "img/wall/wall1.xpm", 32, 32);
+	map->img[2] = mlx_xpm_file_to_image(map->mlx_ptr, "img/player/player01.xpm", 32, 32);
+	map->img[3] = mlx_xpm_file_to_image(map->mlx_ptr, "img/collectable/collectable01.xpm", 32, 32);
+	map->img[4] = mlx_xpm_file_to_image(map->mlx_ptr, "img/exit/exit1.xpm", 32, 32);
+	map->img[5] = NULL;
 }
 
 int	game_init(t_map_data *map)
@@ -53,6 +55,7 @@ int	game_init(t_map_data *map)
 		return (free(map->mlx_ptr), -1);
 	map->win_ptr = mlx_new_window(map->mlx_ptr, (map->columns * 128), (map->rows * 128), "Moonlight Sonata");
 	img_init(map);
+	// draw_game(map); LEFT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeee
 	if (!map->win_ptr)
 		return (free(map->win_ptr), -1);
 	// mlx_put_image_to_window(map->win_ptr, map->win_ptr, "", int x, int y);
