@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:59:10 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/03 16:42:03 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:35:21 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 // 	//mlx_pixel_put(mlx_ptr, win_ptr,);
 // 	return (0);
 // }
-
 
 // MEMORY LEAK
 // int on_destroy(t_map_data *map)
@@ -37,6 +36,33 @@
 // 	return (0);
 // }
 
+void	img_render(t_map_data *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map->rows)
+	{
+		x = 0;
+		while (x < map->columns)
+		{
+			if (map->matrix[y][x] == '0')
+				mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img[0], x * 128, y * 128);
+			if (map->matrix[y][x] == '1')
+				mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img[1], x * 128, y * 128);
+			if (map->matrix[y][x] == 'P')
+				mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img[2], x * 128, y * 128);
+			if (map->matrix[y][x] == 'C')
+				mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img[3], x * 128, y * 128);
+			if (map->matrix[y][x] == 'E')
+				mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img[4], x * 128, y * 128);
+			x++;
+		}
+		y++;
+	}
+}
+
 static void	img_init(t_map_data *map)
 {
 	int	size;
@@ -46,10 +72,10 @@ static void	img_init(t_map_data *map)
 	if (map->img == NULL)
 		return ;
 	map->img[0] = mlx_xpm_file_to_image(map->mlx_ptr, "img/path/path.xpm", &size, &size);
-	map->img[1] = mlx_xpm_file_to_image(map->mlx_ptr, "img/wall/wall1.xpm", &size, &size);
+	map->img[1] = mlx_xpm_file_to_image(map->mlx_ptr, "img/wall/wall.xpm", &size, &size);
 	map->img[2] = mlx_xpm_file_to_image(map->mlx_ptr, "img/player/player01.xpm", &size, &size);
 	map->img[3] = mlx_xpm_file_to_image(map->mlx_ptr, "img/collectable/collectable01.xpm", &size, &size);
-	map->img[4] = mlx_xpm_file_to_image(map->mlx_ptr, "img/exit/exit1.xpm", &size, &size);
+	map->img[4] = mlx_xpm_file_to_image(map->mlx_ptr, "img/exit/exit.xpm", &size, &size);
 	map->img[5] = NULL;
 }
 
@@ -69,17 +95,11 @@ int	game_init(t_map_data *map)
 		mlx_destroy_display(map->mlx_ptr);
 		return (-1);
 	}
-	// mlx_loop(map->mlx_ptr);
 	img_init(map);
-	while (i < 6 && map->img[i] != NULL)
-	{
-		mlx_destroy_image(map->mlx_ptr, map->img[i]);
-		printf("Destroyed image %d\n", i);
-		i++;
-	}
+	img_render(map);
+	mlx_loop(map->mlx_ptr);
 	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
 	mlx_destroy_display(map->mlx_ptr);
-	printf("Game initialization complete\n");
 	// draw_game(map); LEFT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeee
 	// mlx_put_image_to_window(map->win_ptr, map->win_ptr, "", int x, int y);
 	// mlx_pixel_put(map->mlx_ptr, map->win_ptr, 250, 250, 0xFFFFFF);

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/03 16:33:15 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:32:26 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,9 @@ void	free_map_struct(t_map_data *map)
 	}
 	if (map->img != NULL)
 	{
-		// i = 0;
-		// while (i < 6)
-		// {
-		// 	//mlx_destroy_image(map->mlx_ptr, map->img[i]);
-		// 	free(map->img[i]);
-		// 	i++;
-		// }
+		i = 0;
+		while (i < 6 && map->img[i] != NULL)
+			mlx_destroy_image(map->mlx_ptr, map->img[i++]);
 		free(map->img);
 	}
 	if (map->mlx_ptr != NULL)

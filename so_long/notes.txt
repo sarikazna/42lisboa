@@ -19,9 +19,10 @@ TO DO:
 3. [done] Read map, like in get_next_line. You have to open and close it
 4. [done] Run checks to validate the map
 4.1[done] Validate path with flood fill algorithm
-5. Find images - choose the size of the textures
+5. [done] Find images - choose the size of the textures
 6. Learn about bitshifiting
 
+Consider resizing the images to 64x64
 
 
 https://www.flaticon.com/free-animated-icon/balloon-dog_11195908?term=dog&page=1&position=21&origin=search&related_id=11195908

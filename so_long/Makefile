@@ -6,13 +6,13 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/03 14:01:29 by srudman          ###   ########.fr        #
+#    Updated: 2024/03/03 18:34:39 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 INCLUDES = -I/usr/include -Imlx -I./inc
 
