@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/02 16:55:30 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/03 14:40:55 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-#include <X11/X.h>
-#include <X11/keysym.h>
 // Note to self. Check if you even used some of the functions from math.h library
 # include <math.h>
 
@@ -52,8 +50,8 @@ typedef struct s_map_data
 	int		width;
 	int		no_exits;
 	int		no_players_check;
-	int 	player_posX;
-	int 	player_posY;
+	int		player_posX;
+	int		player_posY;
 	int		score; // number collectables on the map
 	int		curr_score;
 	void	**img; // MLX image pointers (on the stack)
@@ -65,8 +63,6 @@ typedef struct s_map_data
 	
 }	t_map_data;
 
-
-
 /*  FUNCTIONS */
 void	free_map_struct(t_map_data *map);
 int		ft_map_init(t_map_data **map);
@@ -76,6 +72,5 @@ void	ft_assign_position(t_map_data *map);
 void	ft_flood_fill(int x, int y, t_map_data *map);
 void	ft_rewrite_matrix(t_map_data *map, int fd);
 int		game_init(t_map_data *map);
-
 
 #endif
