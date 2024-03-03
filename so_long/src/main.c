@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/03 14:32:57 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:58:52 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ int	main(int argc, char **argv)
 			return (-1);
 		}
 		game_init(map);
+		mlx_loop(map->mlx_ptr);
+		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+		mlx_destroy_display(map->mlx_ptr);
 	}
 	free_map_struct(map);
 	return (0);

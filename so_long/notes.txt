@@ -7,11 +7,6 @@ Guide on so_long: https://reactive.so/post/42-a-comprehensive-guide-to-so_long
 MiniLibx library is full of bugs: https://pulgamecanica.herokuapp.com/posts/mlx-starter-pack
 MiniLibx library is full of bugs2: https://pulgamecanica.herokuapp.com/posts/minilibx-tutorial 
 
-Questions
-Do I need to clone mlx library from github or can I just put it in my folder?
-Can I make it for Linux only or can should it work on OS as well?
-MLX library doesn't contain fclean
-Can I use wildcard in Makefile?
 
 TO DO:
 1. [done] Reproduce everything he's doing: https://elearning.intra.42.fr/notions/minilibx/subnotions
@@ -23,7 +18,3 @@ TO DO:
 6. Learn about bitshifiting
 
 Consider resizing the images to 64x64
-
-
-https://www.flaticon.com/free-animated-icon/balloon-dog_11195908?term=dog&page=1&position=21&origin=search&related_id=11195908
-
