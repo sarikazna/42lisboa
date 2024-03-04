@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/03 14:40:55 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/04 20:19:01 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 
 /* Keycodes on a keyboard */
 // Double check the key values
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-// Mislim da je krizec 17
+# define KEY_ESC 65307 // or is it 0x35
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+// Mislim da je krizec 17 - destroy notify
 
 /* STRUCTS */
 
@@ -72,5 +72,6 @@ void	ft_assign_position(t_map_data *map);
 void	ft_flood_fill(int x, int y, t_map_data *map);
 void	ft_rewrite_matrix(t_map_data *map, int fd);
 int		game_init(t_map_data *map);
+int		play_game(t_map_data *map);
 
 #endif
