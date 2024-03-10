@@ -15,6 +15,5 @@ TO DO:
 4. [done] Run checks to validate the map
 4.1[done] Validate path with flood fill algorithm
 5. [done] Find images - choose the size of the textures
-6. Learn about bitshifiting
 
 Consider resizing the images to 64x64
