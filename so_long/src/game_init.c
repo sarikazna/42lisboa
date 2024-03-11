@@ -29,15 +29,15 @@ void	img_render(t_map_data *map)
 		while (x < map->columns)
 		{
 			if (map->matrix[y][x] == '0')
-				put_image(map, map->img[0], x * 128, y * 128);
+				put_image(map, map->img[0], x * 64, y * 64);
 			if (map->matrix[y][x] == '1')
-				put_image(map, map->img[1], x * 128, y * 128);
+				put_image(map, map->img[1], x * 64, y * 64);
 			if (map->matrix[y][x] == 'P')
-				put_image(map, map->img[2], x * 128, y * 128);
+				put_image(map, map->img[2], x * 64, y * 64);
 			if (map->matrix[y][x] == 'C')
-				put_image(map, map->img[3], x * 128, y * 128);
+				put_image(map, map->img[3], x * 64, y * 64);
 			if (map->matrix[y][x] == 'E')
-				put_image(map, map->img[4], x * 128, y * 128);
+				put_image(map, map->img[4], x * 64, y * 64);
 			x++;
 		}
 		y++;
@@ -49,7 +49,7 @@ static void	img_init(t_map_data *map)
 {
 	int	size;
 
-	size = 128;
+	size = 64;
 	map->img = malloc(6 * sizeof(void *));
 	if (map->img == NULL)
 		return ;
@@ -68,22 +68,19 @@ static void	img_init(t_map_data *map)
 
 int	game_init(t_map_data *map)
 {
-	int	i;
-
-	i = 0;
 	map->mlx_ptr = mlx_init();
 	if (!map->mlx_ptr)
 	{
 		mlx_destroy_display(map->mlx_ptr);
-		return (-1);
+		return (0);
 	}
-	map->win_ptr = mlx_new_window(map->mlx_ptr, (map->columns * 128), 
-			(map->rows * 128), "so_long");
+	map->win_ptr = mlx_new_window(map->mlx_ptr, (map->columns * 64), 
+			(map->rows * 64), "so_long");
 	if (!map->win_ptr)
 	{
 		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
 		mlx_destroy_display(map->mlx_ptr);
-		return (-1);
+		return (0);
 	}
 	img_init(map);
 	img_render(map);

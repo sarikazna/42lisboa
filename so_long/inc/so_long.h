@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/04 20:19:01 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/11 15:44:58 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,9 @@ void	ft_flood_fill(int x, int y, t_map_data *map);
 void	ft_rewrite_matrix(t_map_data *map, int fd);
 int		game_init(t_map_data *map);
 int		play_game(t_map_data *map);
+void	move_up(t_map_data *map);
+void	move_down(t_map_data *map);
+void	move_left(t_map_data *map);
+void	move_right(t_map_data *map);
 
 #endif

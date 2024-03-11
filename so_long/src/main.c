@@ -84,8 +84,8 @@ int	main(int argc, char **argv)
 		}
 		game_init(map);
 		play_game(map);
-		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
-		mlx_destroy_display(map->mlx_ptr);
+		mlx_destroy_window(map->mlx_ptr, map->win_ptr); // need to consolidate
+		mlx_destroy_display(map->mlx_ptr); // need to consolidate
 	}
 	free_map_struct(map);
 	return (0);

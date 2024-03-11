@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/04 20:39:21 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/11 15:52:09 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ It ends the game once the X on the window is being pressed. */
 
 int on_destroy()
 {
-	write(1, "You have exited the game./n", 26);
+	write(1, "You have exited the game.\n", 27);
 	exit(0);
 	return (0);
 }
@@ -27,29 +27,21 @@ int on_destroy()
 It ends the game once you press ESC on the keyboard. */
 
 // make sure to count the number of moves
-int	handle_input(int keysym)
+int	handle_input(int keysym, t_map_data *map)
 {
 	if (keysym == KEY_ESC)
 	{
-		write(1, "You have exited the game./n", 26);
+		write(1, "You have exited the game.\n", 27);
 		exit(0);	
 	}
 	if (keysym == KEY_W)
-	{
-		write(1, "Pressed up./n", 26);
-	}
-	if (keysym == KEY_S)
-	{
-		write(1, "Pressed down./n", 26);
-	}
-	if (keysym == KEY_A)
-	{
-		write(1, "Pressed left./n", 26);
-	}
-	if (keysym == KEY_D)
-	{
-		write(1, "Pressed right./n", 26);
-	}
+		move_up(map);
+	if (keysym == KEY_S /*&& (map->matrix[map->player_posY + 1][map->player_posX] == '0' || map->matrix[map->player_posY + 1][map->player_posX] == 'C')*/)
+		move_down(map);
+	if (keysym == KEY_A /*&& (map->matrix[map->player_posY][map->player_posX - 1] == '0' || map->matrix[map->player_posY][map->player_posX - 1] == 'C')*/)
+		move_left(map);
+	if (keysym == KEY_D /*&& (map->matrix[map->player_posY - 1][map->player_posX + 1] == '0' || map->matrix[map->player_posY][map->player_posX + 1] == 'C')*/)
+		move_right(map);
 	return (0);
 }
 
