@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   movements_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:39:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 21:17:07 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/11 22:06:24 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ void	move_up(t_map_data *map)
 	else if (map->matrix[map->player_posY - 1][map->player_posX] == 'E'
 		&& map->curr_score == map->score)
 	{
-		write(1, "Congrats! You won!\n", 19);
+		write(1, "CONGRATS! You won!\n", 19);
+		exit(0);
+	}
+	else if (map->matrix[map->player_posY - 1][map->player_posX] == 'X')
+	{
+		write(1, "YOU LOST :(\n", 12);
 		exit(0);
 	}
 }
@@ -62,6 +67,11 @@ void	move_down(t_map_data *map)
 		write(1, "Congrats! You won!\n", 19);
 		exit(0);
 	}
+	else if (map->matrix[map->player_posY + 1][map->player_posX] == 'X')
+	{
+		write(1, "YOU LOST :(\n", 12);
+		exit(0);
+	}
 }
 
 void	move_left(t_map_data *map)
@@ -85,6 +95,11 @@ void	move_left(t_map_data *map)
 		write(1, "Congrats! You won!\n", 19);
 		exit(0);
 	}
+	else if (map->matrix[map->player_posY][map->player_posX - 1] == 'X')
+	{
+		write(1, "YOU LOST :(\n", 12);
+		exit(0);
+	}
 }
 
 void	move_right(t_map_data *map)
@@ -106,6 +121,11 @@ void	move_right(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
+		exit(0);
+	}
+	else if (map->matrix[map->player_posY][map->player_posX + 1] == 'X')
+	{
+		write(1, "YOU LOST :(\n", 12);
 		exit(0);
 	}
 }

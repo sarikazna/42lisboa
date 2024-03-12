@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/04 20:36:43 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/11 21:11:24 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+/* We open the map and put the map data into variable map->matrix. */
 
 void	ft_retrieve_matrix(t_map_data *map, char *path)
 {
@@ -45,6 +47,7 @@ Functions arguments_are_valid checks
 - if the 2nd argument (the path to the game map) is correct. Specifically if
 the name of the file ends with .ber
 */
+
 int	arguments_are_valid(int argc, char *map_path)
 {
 	int	i;
@@ -84,8 +87,10 @@ int	main(int argc, char **argv)
 		}
 		game_init(map);
 		play_game(map);
-		mlx_destroy_window(map->mlx_ptr, map->win_ptr); // need to consolidate
-		mlx_destroy_display(map->mlx_ptr); // need to consolidate
+		if (map->win_ptr)
+			mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+		if (!map->mlx_ptr)
+			mlx_destroy_display(map->mlx_ptr);
 	}
 	free_map_struct(map);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 17:24:18 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/11 21:47:35 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ typedef struct s_map_data
 	void	**img; // MLX image pointers (on the stack)
 	void	*mlx_ptr; 
 	void	*win_ptr;
-	int		enemy_pos; // bonus
+	int		no_enemies;
 	int		gameover;
-	int		steps;  //bonus
+	int		steps;
 	
 }	t_map_data;
 

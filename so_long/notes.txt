@@ -16,4 +16,5 @@ TO DO:
 4.1[done] Validate path with flood fill algorithm
 5. [done] Find images - choose the size of the textures
 
-Consider resizing the images to 64x64
+(*map)->gameover = 1; // is this even used?
+What exactly is sprite animation?

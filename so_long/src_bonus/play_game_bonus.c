@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   play_game.c                                        :+:      :+:    :+:   */
+/*   play_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 21:18:05 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/11 22:53:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,31 @@ the Shell. So if we validate that the move is valid we will count +1
 towards the total number of steps/moves and write this information into
 the shell using the write function. */
 
+/*
+int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string);
+void	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
+*/
+// TO DO: put the write function back in there
+
 int	move_is_valid(t_map_data *map, int x, int y)
 {
-	if (map->matrix[y][x] == '0' || map->matrix[y][x] == 'C')
+	char	*str;
+	
+	if (map->matrix[y][x] == '0' || map->matrix[y][x] == 'C'
+		|| map->matrix[y][x] == 'X')
 	{
 		map->steps++;
-		ft_putstr_fd("Number of moves: ", 1);
-		ft_putnbr_fd(map->steps, 1);
-		ft_putstr_fd("\n", 1);
+		str = ft_itoa(map->steps);
+		mlx_string_put(map->mlx_ptr, map->mlx_ptr, 40, 20, 0xfffffff, str);
+		free(str);
 		return (1);
 	}
 	else if (map->matrix[y][x] == 'E' && map->curr_score == map->score)
 	{
 		map->steps++;
-		ft_putstr_fd("Number of moves: ", 1);
-		ft_putnbr_fd(map->steps, 1);
-		ft_putstr_fd("\n", 1);
+		str = ft_itoa(map->steps);
+		mlx_string_put(map->mlx_ptr, map->mlx_ptr, 40, 20, 0xfffffff, str);
+		free(str);
 		return (1);
 	}
 	else
