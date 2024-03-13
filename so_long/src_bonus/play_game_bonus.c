@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 22:53:11 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/13 16:59:53 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,27 @@ int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *
 void	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
 */
 // TO DO: put the write function back in there
+void put_steps_on_screen(t_map_data *map)
+{
+	char	*str;
+
+	str = ft_itoa(map->steps);
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 20, 35, 0x0000000, "Steps: ");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 65, 35, 0x0000000, str);
+	free(str);
+}
 
 int	move_is_valid(t_map_data *map, int x, int y)
 {
-	char	*str;
-	
 	if (map->matrix[y][x] == '0' || map->matrix[y][x] == 'C'
 		|| map->matrix[y][x] == 'X')
 	{
 		map->steps++;
-		str = ft_itoa(map->steps);
-		mlx_string_put(map->mlx_ptr, map->mlx_ptr, 40, 20, 0xfffffff, str);
-		free(str);
 		return (1);
 	}
 	else if (map->matrix[y][x] == 'E' && map->curr_score == map->score)
 	{
 		map->steps++;
-		str = ft_itoa(map->steps);
-		mlx_string_put(map->mlx_ptr, map->mlx_ptr, 40, 20, 0xfffffff, str);
-		free(str);
 		return (1);
 	}
 	else
@@ -83,6 +84,7 @@ int	handle_input(int keysym, t_map_data **map)
 	if (keysym == KEY_D && move_is_valid
 		(*map, ((*map)->player_posX + 1), (*map)->player_posY))
 		move_right(*map);
+	put_steps_on_screen(*map);
 	return (0);
 }
 
