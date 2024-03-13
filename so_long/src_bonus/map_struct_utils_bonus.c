@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_struct_utils_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 21:57:46 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/13 19:07:51 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	ft_map_init(t_map_data **map)
 	(*map)->width = 0;
 	(*map)->score = 0;
 	(*map)->curr_score = 0;
-	(*map)->gameover = 1; // is this even used?
 	(*map)->steps = 0;
 	(*map)->no_enemies = 0;
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 21:18:05 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/13 19:13:20 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	move_is_valid(t_map_data *map, int x, int y)
 mlx_hook(map->win_ptr, 17, 1L<<19, &on_destroy, &map)
 It ends the game once the X on the window is being pressed. */
 
-int on_destroy()
+int	on_destroy(void)
 {
 	write(1, "You have exited the game.\n", 27);
 	exit(0);
@@ -60,19 +60,19 @@ int	handle_input(int keysym, t_map_data **map)
 	if (keysym == KEY_ESC)
 	{
 		write(1, "You have exited the game.\n", 27);
-		exit(0);	
+		exit(0);
 	}
 	if (keysym == KEY_W && move_is_valid
-		(*map, (*map)->player_posX, ((*map)->player_posY - 1)))
+		(*map, (*map)->player_x, ((*map)->player_y - 1)))
 		move_up(*map);
 	if (keysym == KEY_S && move_is_valid
-		(*map, (*map)->player_posX, ((*map)->player_posY + 1)))
+		(*map, (*map)->player_x, ((*map)->player_y + 1)))
 		move_down(*map);
 	if (keysym == KEY_A && move_is_valid
-		(*map, ((*map)->player_posX - 1), (*map)->player_posY))
+		(*map, ((*map)->player_x - 1), (*map)->player_y))
 		move_left(*map);
 	if (keysym == KEY_D && move_is_valid
-		(*map, ((*map)->player_posX + 1), (*map)->player_posY))
+		(*map, ((*map)->player_x + 1), (*map)->player_y))
 		move_right(*map);
 	return (0);
 }
@@ -85,7 +85,7 @@ the X sign in the window. mlx_loop keeps the game running.
 int	play_game(t_map_data *map)
 {
 	mlx_key_hook(map->win_ptr, handle_input, &map);
-	mlx_hook(map->win_ptr, 17, 1L<<19, &on_destroy, &map);
+	mlx_hook(map->win_ptr, 17, 1L << 19, &on_destroy, &map);
 	mlx_loop(map->mlx_ptr);
 	return (1);
 }

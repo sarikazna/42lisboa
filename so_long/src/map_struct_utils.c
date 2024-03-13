@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/03 18:32:26 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/13 19:08:10 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	ft_map_init(t_map_data **map)
 	(*map)->width = 0;
 	(*map)->score = 0;
 	(*map)->curr_score = 0;
-	(*map)->gameover = 1;
 	(*map)->steps = 0;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 21:47:35 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/13 19:10:56 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-// Note to self. Check if you even used some of the functions from math.h library
-# include <math.h>
 
 /* DATA TYPES */
 
@@ -50,17 +48,15 @@ typedef struct s_map_data
 	int		width;
 	int		no_exits;
 	int		no_players_check;
-	int		player_posX;
-	int		player_posY;
-	int		score; // number collectables on the map
+	int		player_x;
+	int		player_y;
+	int		score;
 	int		curr_score;
-	void	**img; // MLX image pointers (on the stack)
+	void	**img;
 	void	*mlx_ptr; 
 	void	*win_ptr;
 	int		no_enemies;
-	int		gameover;
 	int		steps;
-	
 }	t_map_data;
 
 /*  FUNCTIONS */

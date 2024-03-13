@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:07:29 by srudman           #+#    #+#             */
-/*   Updated: 2024/02/18 19:44:18 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/13 19:20:06 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_fill_result(const char *s, char c, char **result)
 {
 	int		j;
 	int		i;
-	
+
 	j = 0;
 	i = 0;
 	while (*s)

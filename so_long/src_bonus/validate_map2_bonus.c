@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 17:50:12 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 16:53:23 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/13 19:16:31 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	ft_assign_position(t_map_data *map)
 		{
 			if (map->matrix[j][i] == 'P')
 			{
-				map->player_posY = j;
-				map->player_posX = i;
+				map->player_y = j;
+				map->player_x = i;
 			}
 			i++;
 		}
