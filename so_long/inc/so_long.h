@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 19:10:56 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/15 19:02:27 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	move_up(t_map_data *map);
 void	move_down(t_map_data *map);
 void	move_left(t_map_data *map);
 void	move_right(t_map_data *map);
+void	exit_game(t_map_data *map);
 
 #endif

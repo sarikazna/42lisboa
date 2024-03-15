@@ -6,11 +6,22 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 19:13:20 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/15 19:02:19 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+// NEWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+void	exit_game(t_map_data *map)
+{
+	free_map_struct(map);
+	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+	mlx_destroy_display(map->mlx_ptr);
+	if (map->mlx_ptr != NULL)
+		free(map->mlx_ptr);
+	exit(0);
+}
 
 /* This function makes sure the player does not move into a wall. It also
 cannot move into an exit if the player hasn't collected all collectables.
@@ -45,10 +56,10 @@ int	move_is_valid(t_map_data *map, int x, int y)
 mlx_hook(map->win_ptr, 17, 1L<<19, &on_destroy, &map)
 It ends the game once the X on the window is being pressed. */
 
-int	on_destroy(void)
+int	on_destroy(t_map_data **map)
 {
 	write(1, "You have exited the game.\n", 27);
-	exit(0);
+	exit_game(*map);
 	return (0);
 }
 

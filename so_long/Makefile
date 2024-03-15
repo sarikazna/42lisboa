@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: srudman <srudman@student.42.fr>            +#+  +:+       +#+         #
+#    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/11 22:31:11 by srudman          ###   ########.fr        #
+#    Updated: 2024/03/15 18:28:12 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 INCLUDES = -I/usr/include -Imlx -I./inc
 
@@ -64,7 +64,7 @@ clean:
 
 fclean: clean
 	@make fclean --directory=$(LIBFT_DIR)
-	@make fclean --directory=$(MLX_DIR)
+	@make clean --directory=$(MLX_DIR)
 	$(RM) $(NAME) $(NAME_BONUS)
 
-re: fclean all
+re: fclean all bonus
