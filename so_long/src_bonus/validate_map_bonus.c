@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:10:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 19:16:47 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/16 18:15:16 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,14 +158,14 @@ int	ft_validate_map(t_map_data *map, char *path_to_file)
 
 	if (!ft_map_is_rectangular(map) || !ft_validate_walls(map) 
 		|| !ft_count_elements(map) || !ft_allowed_character(map))
-		return (0);
+		exit_game(&map);
 	ft_assign_position(map);
 	map->no_exits = 0;
 	ft_flood_fill(map->player_x, map->player_y, map);
 	if (!(map->no_exits >= 1 && map->curr_score == map->score))
 	{
 		perror("Error\nPath is invalid.\n");
-		return (0);
+		exit_game(&map);
 	}
 	map->curr_score = 0;
 	fd = open(path_to_file, O_RDONLY);

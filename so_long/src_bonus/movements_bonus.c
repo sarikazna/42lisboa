@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:39:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 19:14:28 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/16 18:13:03 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	move_up(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "CONGRATS! You won!\n", 19);
-		exit(0);
+		exit_game(&map);
 	}
 	else if (map->matrix[map->player_y - 1][map->player_x] == 'X')
 	{
 		write(1, "YOU LOST :(\n", 12);
-		exit(0);
+		exit_game(&map);
 	}
 }
 
@@ -65,12 +65,12 @@ void	move_down(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
-		exit(0);
+		exit_game(&map);
 	}
 	else if (map->matrix[map->player_y + 1][map->player_x] == 'X')
 	{
 		write(1, "YOU LOST :(\n", 12);
-		exit(0);
+		exit_game(&map);
 	}
 }
 
@@ -93,12 +93,12 @@ void	move_left(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
-		exit(0);
+		exit_game(&map);
 	}
 	else if (map->matrix[map->player_y][map->player_x - 1] == 'X')
 	{
 		write(1, "YOU LOST :(\n", 12);
-		exit(0);
+		exit_game(&map);
 	}
 }
 
@@ -121,11 +121,11 @@ void	move_right(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
-		exit(0);
+		exit_game(&map);
 	}
 	else if (map->matrix[map->player_y][map->player_x + 1] == 'X')
 	{
 		write(1, "YOU LOST :(\n", 12);
-		exit(0);
+		exit_game(&map);
 	}
 }

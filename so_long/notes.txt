@@ -7,7 +7,6 @@ Guide on so_long: https://reactive.so/post/42-a-comprehensive-guide-to-so_long
 MiniLibx library is full of bugs: https://pulgamecanica.herokuapp.com/posts/mlx-starter-pack
 MiniLibx library is full of bugs2: https://pulgamecanica.herokuapp.com/posts/minilibx-tutorial 
 
-
 TO DO:
 1. [done] Reproduce everything he's doing: https://elearning.intra.42.fr/notions/minilibx/subnotions
 2. [done] Argc and argv Check
@@ -15,6 +14,3 @@ TO DO:
 4. [done] Run checks to validate the map
 4.1[done] Validate path with flood fill algorithm
 5. [done] Find images - choose the size of the textures
-
-(*map)->gameover = 1; // is this even used?
-What exactly is sprite animation?

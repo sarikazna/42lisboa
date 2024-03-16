@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 19:07:51 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/16 18:03:50 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	free_map_struct(t_map_data *map)
 			mlx_destroy_image(map->mlx_ptr, map->img[i++]);
 		free(map->img);
 	}
-	if (map->mlx_ptr != NULL)
-		free(map->mlx_ptr);
-	free(map);
 }
 
 int	ft_map_init(t_map_data **map)
@@ -58,5 +55,6 @@ int	ft_map_init(t_map_data **map)
 	(*map)->curr_score = 0;
 	(*map)->steps = 0;
 	(*map)->no_enemies = 0;
+	(*map)->game_running = 1;
 	return (1);
 }

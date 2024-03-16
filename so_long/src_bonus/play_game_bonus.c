@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 19:15:54 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/16 19:05:10 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,13 @@ int	move_is_valid(t_map_data *map, int x, int y)
 mlx_hook(map->win_ptr, 17, 1L<<19, &on_destroy, &map)
 It ends the game once the X on the window is being pressed. */
 
-int	on_destroy(void)
+int	on_destroy(t_map_data **map)
 {
+	if (!(*map)->game_running)
+		return (0);
+	(*map)->game_running = 0;
 	write(1, "You have exited the game.\n", 27);
-	exit(0);
+	exit_game(map);
 	return (0);
 }
 
@@ -70,10 +73,13 @@ It ends the game once you press ESC on the keyboard. */
 
 int	handle_input(int keysym, t_map_data **map)
 {
+	if (!(*map)->game_running)
+		return (0);
 	if (keysym == KEY_ESC)
 	{
+		(*map)->game_running = 0;
 		write(1, "You have exited the game.\n", 27);
-		exit(0);
+		exit_game(map);
 	}
 	if (keysym == KEY_W && move_is_valid
 		(*map, (*map)->player_x, ((*map)->player_y - 1)))
@@ -101,5 +107,6 @@ int	play_game(t_map_data *map)
 	mlx_key_hook(map->win_ptr, handle_input, &map);
 	mlx_hook(map->win_ptr, 17, 1L << 19, &on_destroy, &map);
 	mlx_loop(map->mlx_ptr);
+	exit(0);
 	return (1);
 }

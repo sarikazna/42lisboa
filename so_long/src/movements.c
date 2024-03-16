@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:39:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/13 19:12:47 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/16 17:50:25 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	move_up(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
-		exit(0);
+		map->game_running = 0;
+		exit_game(&map);
 	}
 }
 
@@ -60,7 +61,8 @@ void	move_down(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
-		exit(0);
+		map->game_running = 0;
+		exit_game(&map);
 	}
 }
 
@@ -83,7 +85,8 @@ void	move_left(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
-		exit(0);
+		map->game_running = 0;
+		exit_game(&map);
 	}
 }
 
@@ -106,6 +109,7 @@ void	move_right(t_map_data *map)
 		&& map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
-		exit(0);
+		map->game_running = 0;
+		exit_game(&map);
 	}
 }
