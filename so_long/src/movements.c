@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:39:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/17 16:44:18 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/17 17:45:15 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	move_on_exit(t_map_data *map, int new_x, int new_y)
 {
+	printf("curr_score %i, score %i", map->curr_score, map->score);
 	if (map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
@@ -21,6 +22,7 @@ void	move_on_exit(t_map_data *map, int new_x, int new_y)
 	}
 	else
 	{
+		printf("test\n"); // It goes here! WHY?
 		map->matrix[map->player_y][map->player_x] = '0';
 		map->matrix[new_y][new_x] = 'W';
 		if (map->matrix[map->player_y][map->player_x] == 'W')
@@ -41,20 +43,23 @@ If player reaches exit and has collected all collectables, he wins the game.*/
 
 void	move_up(t_map_data *map)
 {
-	if (map->matrix[map->player_y - 1][map->player_x] == 'W')
-	{
-		map->matrix[map->player_y][map->player_x] = 'E';
-		map->matrix[map->player_y - 1][map->player_x] = 'P';
-		put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);
-	}
-	else if (map->matrix[map->player_y - 1][map->player_x] == '0' ||
-		map->matrix[map->player_y - 1][map->player_x] == 'C')
+	if (map->matrix[map->player_y - 1][map->player_x] == '0' ||
+		map->matrix[map->player_y - 1][map->player_x] == 'C' ||
+		map->matrix[map->player_y - 1][map->player_x] == 'W')
 	{
 		if (map->matrix[map->player_y - 1][map->player_x] == 'C')
 			map->curr_score++;
-		map->matrix[map->player_y][map->player_x] = '0';
+		if (map->matrix[map->player_y][map->player_x] == 'W')
+		{
+			map->matrix[map->player_y][map->player_x] = 'E';
+			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+		}
+		else
+		{
+			map->matrix[map->player_y][map->player_x] = '0';
+			put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
+		}
 		map->matrix[map->player_y - 1][map->player_x] = 'P';
-		put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
 		put_image(map, map->img[2], map->player_x * 64, 
 			(map->player_y - 1) * 64);
 	}
@@ -66,13 +71,22 @@ void	move_up(t_map_data *map)
 void	move_down(t_map_data *map)
 {
 	if (map->matrix[map->player_y + 1][map->player_x] == '0' ||
-		map->matrix[map->player_y + 1][map->player_x] == 'C')
+		map->matrix[map->player_y + 1][map->player_x] == 'C' ||
+		map->matrix[map->player_y + 1][map->player_x] == 'W')
 	{
 		if (map->matrix[map->player_y + 1][map->player_x] == 'C')
 			map->curr_score++;
-		map->matrix[map->player_y][map->player_x] = '0';
+		if (map->matrix[map->player_y][map->player_x] == 'W')
+		{
+			map->matrix[map->player_y][map->player_x] = 'E';
+			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+		}
+		else
+		{
+			map->matrix[map->player_y][map->player_x] = '0';
+			put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
+		}
 		map->matrix[map->player_y + 1][map->player_x] = 'P';
-		put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
 		put_image(map, map->img[2], map->player_x * 64, 
 			(map->player_y + 1) * 64);
 	}
@@ -84,13 +98,22 @@ void	move_down(t_map_data *map)
 void	move_left(t_map_data *map)
 {
 	if (map->matrix[map->player_y][map->player_x - 1] == '0' ||
-		map->matrix[map->player_y][map->player_x - 1] == 'C')
+		map->matrix[map->player_y][map->player_x - 1] == 'C' ||
+		map->matrix[map->player_y][map->player_x - 1] == 'W')
 	{
 		if (map->matrix[map->player_y][map->player_x - 1] == 'C')
 			map->curr_score++;
-		map->matrix[map->player_y][map->player_x] = '0';
+		if (map->matrix[map->player_y][map->player_x] == 'W')
+		{
+			map->matrix[map->player_y][map->player_x] = 'E';
+			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+		}
+		else
+		{
+			map->matrix[map->player_y][map->player_x] = '0';
+			put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
+		}
 		map->matrix[map->player_y][map->player_x - 1] = 'P';
-		put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
 		put_image(map, map->img[2], (map->player_x - 1) * 64,
 			map->player_y * 64);
 	}
@@ -102,17 +125,26 @@ void	move_left(t_map_data *map)
 void	move_right(t_map_data *map)
 {
 	if (map->matrix[map->player_y][map->player_x + 1] == '0' ||
-		map->matrix[map->player_y][map->player_x + 1] == 'C')
+		map->matrix[map->player_y][map->player_x + 1] == 'C' ||
+		map->matrix[map->player_y][map->player_x + 1] == 'W')
 	{
 		if (map->matrix[map->player_y][map->player_x + 1] == 'C')
 			map->curr_score++;
-		map->matrix[map->player_y][map->player_x] = '0';
+		if (map->matrix[map->player_y][map->player_x] == 'W')
+		{
+			map->matrix[map->player_y][map->player_x] = 'E';
+			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+		}
+		else
+		{
+			map->matrix[map->player_y][map->player_x] = '0';
+			put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
+		}
 		map->matrix[map->player_y][map->player_x + 1] = 'P';
-		put_image(map, map->img[0], map->player_x * 64, map->player_y * 64);
 		put_image(map, map->img[2], (map->player_x + 1) * 64,
 			map->player_y * 64);
 	}
-	else if (map->matrix[map->player_y][map->player_x + 1])
+	else if (map->matrix[map->player_y][map->player_x + 1]  == 'E')
 		move_on_exit(map, map->player_x + 1, map->player_y);
 	map->player_x += 1;
 }
