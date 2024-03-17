@@ -81,9 +81,6 @@ void	ft_fill_result(const char *s, char c, char **result)
 		}
 	}
 	result[j] = NULL;
-	i = 0;
-	while (i < j)
-		free(result[i++]);
 }
 
 char	**ft_split(const char *s, char c)
