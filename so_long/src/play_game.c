@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/16 18:11:00 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/17 15:46:05 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ the shell using the write function. */
 
 int	move_is_valid(t_map_data *map, int x, int y)
 {
-	if (map->matrix[y][x] == '0' || map->matrix[y][x] == 'C')
+	if (map->matrix[y][x] == '0' || map->matrix[y][x] == 'C' || map->matrix[y][x] == 'E')
 	{
 		map->steps++;
 		ft_putstr_fd("Number of moves: ", 1);
@@ -29,14 +29,14 @@ int	move_is_valid(t_map_data *map, int x, int y)
 		ft_putstr_fd("\n", 1);
 		return (1);
 	}
-	else if (map->matrix[y][x] == 'E' && map->curr_score == map->score)
-	{
-		map->steps++;
-		ft_putstr_fd("Number of moves: ", 1);
-		ft_putnbr_fd(map->steps, 1);
-		ft_putstr_fd("\n", 1);
-		return (1);
-	}
+	// else if (map->matrix[y][x] == 'E' && map->curr_score == map->score)
+	// {
+	// 	map->steps++;
+	// 	ft_putstr_fd("Number of moves: ", 1);
+	// 	ft_putnbr_fd(map->steps, 1);
+	// 	ft_putstr_fd("\n", 1);
+	// 	return (1);
+	// }
 	else
 		return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:59:10 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/11 22:00:08 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/17 16:03:16 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	img_render(t_map_data *map)
 			if (map->matrix[y][x] == 'E')
 				put_image(map, map->img[4], x * 64, y * 64);
 			if (map->matrix[y][x] == 'X')
-				put_image(map, map->img[5], x * 64, y * 64);
+				put_image(map, map->img[6], x * 64, y * 64);
 			x++;
 		}
 		y++;
@@ -66,8 +66,10 @@ static void	img_init(t_map_data *map)
 	map->img[4] = mlx_xpm_file_to_image
 		(map->mlx_ptr, "img/exit/exit.xpm", &size, &size);
 	map->img[5] = mlx_xpm_file_to_image
+		(map->mlx_ptr, "img/exit/p_over_e.xpm", &size, &size);
+	map->img[6] = mlx_xpm_file_to_image
 		(map->mlx_ptr, "img/enemy/enemy.xpm", &size, &size);
-	map->img[6] = NULL;
+	map->img[7] = NULL;
 }
 
 int	game_init(t_map_data *map)

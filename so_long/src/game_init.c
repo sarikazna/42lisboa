@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:59:10 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/16 18:02:13 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/17 16:01:48 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ static void	img_init(t_map_data *map)
 		(map->mlx_ptr, "img/collect/collectable01.xpm", &size, &size);
 	map->img[4] = mlx_xpm_file_to_image
 		(map->mlx_ptr, "img/exit/exit.xpm", &size, &size);
-	map->img[5] = NULL;
+	map->img[5] = mlx_xpm_file_to_image
+		(map->mlx_ptr, "img/exit/p_over_e.xpm", &size, &size);
+	map->img[6] = NULL;
 }
 
 int	game_init(t_map_data *map)
