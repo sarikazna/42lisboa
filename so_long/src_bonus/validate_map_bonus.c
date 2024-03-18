@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:10:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 19:04:31 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 21:09:06 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_map_is_rectangular(t_map_data *map)
 {
 	int	i;
 
-	map->columns = ft_strlen(map->matrix[0]) - 1;
+	map->columns = ft_strlen(map->matrix[0]);
 	i = 0;
 	while (i < (map->rows))
 	{

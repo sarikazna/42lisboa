@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 18:11:55 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 21:23:58 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ int	main(int argc, char **argv)
 		if (!map->mlx_ptr)
 			mlx_destroy_display(map->mlx_ptr);
 	}
-	if (map != NULL)
-	{
-		free_map_struct(map);
-		free(map);
-	}
+	free_map_struct(map);
+	free(map);
 	return (0);
 }
