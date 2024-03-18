@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:10:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 21:20:12 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 23:12:01 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_map_is_rectangular(t_map_data *map)
 
 	map->columns = ft_strlen(map->matrix[0]);
 	i = 0;
-	while (i < (map->rows))
+	while (map->matrix[i])
 	{
 		if (ft_strlen(map->matrix[i]) != ft_strlen(map->matrix[0]))
 		{
@@ -31,6 +31,7 @@ int	ft_map_is_rectangular(t_map_data *map)
 			return (0);
 		}
 		i++;
+		map->rows++;
 	}
 	return (1);
 }
@@ -56,7 +57,7 @@ int	ft_validate_walls(t_map_data *map)
 		i++;
 	}
 	i = 0;
-	while (i < map->rows)
+	while (map->matrix[i])
 	{
 		if (map->matrix[i][0] != '1' || map->matrix[i][map->columns - 1] != '1')
 		{
@@ -107,7 +108,7 @@ int	ft_count_elements(t_map_data *map)
 	int	j;
 
 	j = 0;
-	while (j < map->rows)
+	while (map->matrix[j])
 	{
 		i = 0;
 		while (i < map->columns)
@@ -150,7 +151,7 @@ int	ft_validate_map(t_map_data *map, char *path_to_file)
 {
 	int	fd;
 
-	if (!ft_map_is_rectangular(map) || !ft_validate_walls(map) 
+	if (!ft_map_is_rectangular(map) /*|| !ft_validate_walls(map) */
 		|| !ft_count_elements(map) || !ft_allowed_character(map))
 		exit_game(&map);
 	ft_assign_position(map);

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 21:24:14 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 23:17:10 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,28 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 	{
 		line = get_next_line(fd);
 		if (!line)
+		{
+			free(line);
 			break ;
+		}
 		matrix_tmp = ft_strjoin_modified(matrix_tmp, line);
 		free(line);
-		map->rows++;
+	}
+	if (!matrix_tmp[0])
+	{
+		free(matrix_tmp);
+		perror("Error\nEmpty file.");
+		exit_game(&map);
+	}
+	int i = 0;
+	while (matrix_tmp[i])
+		i++;
+	i--;
+	if (matrix_tmp[i] == '\n')
+	{
+		free(matrix_tmp);
+		perror("Error\nNo empty lines permissable at the end of map.");
+		exit_game(&map);
 	}
 	map->matrix = ft_split(matrix_tmp, '\n');
 	free(matrix_tmp);

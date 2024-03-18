@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/17 16:00:44 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:26:07 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	free_map_struct(t_map_data *map)
 	if (map->matrix != NULL)
 	{
 		i = 0;
-		while (i < map->rows)
+		// while (i < map->rows)
+		while (map->matrix[i])
 			free(map->matrix[i++]);
 		free(map->matrix);
 	}

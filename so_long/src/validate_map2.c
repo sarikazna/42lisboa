@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 17:50:12 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/17 15:44:03 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:56:46 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_rewrite_matrix(t_map_data *map, int fd)
 	char	*line;
 
 	j = 0;
-	while (j < map->rows)
+	while (map->matrix[j])
 	{
 		i = 0;
 		line = get_next_line(fd);
@@ -87,7 +87,7 @@ void	ft_assign_position(t_map_data *map)
 	int	j;
 
 	j = 0;
-	while (j < map->rows)
+	while (map->matrix[j])
 	{
 		i = 0;
 		while (i < map->columns)
@@ -126,7 +126,7 @@ int	ft_allowed_character(t_map_data *map)
 	int	j;
 
 	j = 0;
-	while (j < map->rows)
+	while (map->matrix[j])
 	{
 		i = 0;
 		while (i < map->columns)
