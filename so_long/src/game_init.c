@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:59:10 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/17 16:01:48 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 17:14:49 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	img_init(t_map_data *map)
 	int	size;
 
 	size = 64;
-	map->img = malloc(6 * sizeof(void *));
+	map->img = malloc(7 * sizeof(void *));
 	if (map->img == NULL)
 		return ;
 	map->img[0] = mlx_xpm_file_to_image

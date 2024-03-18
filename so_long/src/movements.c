@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:39:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/17 17:45:15 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:43:56 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	move_on_exit(t_map_data *map, int new_x, int new_y)
 {
-	printf("curr_score %i, score %i", map->curr_score, map->score);
 	if (map->curr_score == map->score)
 	{
 		write(1, "Congrats! You won!\n", 19);
@@ -22,7 +21,6 @@ void	move_on_exit(t_map_data *map, int new_x, int new_y)
 	}
 	else
 	{
-		printf("test\n"); // It goes here! WHY?
 		map->matrix[map->player_y][map->player_x] = '0';
 		map->matrix[new_y][new_x] = 'W';
 		if (map->matrix[map->player_y][map->player_x] == 'W')
@@ -33,7 +31,6 @@ void	move_on_exit(t_map_data *map, int new_x, int new_y)
 			(new_y) * 64);
 	}
 }
-
 
 /* move_up, move_down, move_left, move_right handle player movements in the
 game maze. In case the next field contains a C (collectable) or 0 (path)
@@ -52,7 +49,8 @@ void	move_up(t_map_data *map)
 		if (map->matrix[map->player_y][map->player_x] == 'W')
 		{
 			map->matrix[map->player_y][map->player_x] = 'E';
-			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+			put_image(map, map->img[4], map->player_x * 64, 
+				map->player_y * 64);
 		}
 		else
 		{
@@ -79,7 +77,8 @@ void	move_down(t_map_data *map)
 		if (map->matrix[map->player_y][map->player_x] == 'W')
 		{
 			map->matrix[map->player_y][map->player_x] = 'E';
-			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+			put_image(map, map->img[4], map->player_x * 64, 
+				map->player_y * 64);
 		}
 		else
 		{
@@ -106,7 +105,8 @@ void	move_left(t_map_data *map)
 		if (map->matrix[map->player_y][map->player_x] == 'W')
 		{
 			map->matrix[map->player_y][map->player_x] = 'E';
-			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+			put_image(map, map->img[4], map->player_x * 64, 
+				map->player_y * 64);
 		}
 		else
 		{
@@ -133,7 +133,8 @@ void	move_right(t_map_data *map)
 		if (map->matrix[map->player_y][map->player_x] == 'W')
 		{
 			map->matrix[map->player_y][map->player_x] = 'E';
-			put_image(map, map->img[4], map->player_x * 64, map->player_y * 64);			
+			put_image(map, map->img[4], map->player_x * 64, 
+				map->player_y * 64);
 		}
 		else
 		{
@@ -144,7 +145,7 @@ void	move_right(t_map_data *map)
 		put_image(map, map->img[2], (map->player_x + 1) * 64,
 			map->player_y * 64);
 	}
-	else if (map->matrix[map->player_y][map->player_x + 1]  == 'E')
+	else if (map->matrix[map->player_y][map->player_x + 1] == 'E')
 		move_on_exit(map, map->player_x + 1, map->player_y);
 	map->player_x += 1;
 }

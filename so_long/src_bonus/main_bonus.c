@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/16 18:02:31 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 17:29:52 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 	if (fd == -1)
 	{
 		perror("Error\nCould not open the file.");
-		return ;
+		exit_game(&map);
 	}
 	matrix_tmp = ft_strdup("");
 	while (1)
@@ -92,7 +92,10 @@ int	main(int argc, char **argv)
 		if (!map->mlx_ptr)
 			mlx_destroy_display(map->mlx_ptr);
 	}
-	free_map_struct(map);
-	free(map);
+	if (map != NULL)
+	{
+		free_map_struct(map);
+		free(map);
+	}
 	return (0);
 }

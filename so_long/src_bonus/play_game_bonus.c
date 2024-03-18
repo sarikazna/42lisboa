@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/17 16:04:24 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:38:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ int	move_is_valid(t_map_data *map, int x, int y)
 		ft_putstr_fd("\n", 1);
 		return (1);
 	}
-	// else if (map->matrix[y][x] == 'E' && map->curr_score == map->score)
-	// {
-	// 	map->steps++;
-	// 	ft_putstr_fd("Number of moves: ", 1);
-	// 	ft_putnbr_fd(map->steps, 1);
-	// 	ft_putstr_fd("\n", 1);
-	// 	return (1);
-	// }
 	else
 		return (0);
 }

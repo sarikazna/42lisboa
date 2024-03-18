@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/16 17:39:44 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 17:27:31 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 	if (fd == -1)
 	{
 		perror("Error\nCould not open the file.");
-		return ;
+		exit_game(&map);
 	}
 	matrix_tmp = ft_strdup("");
 	while (1)
@@ -34,7 +34,7 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 			break ;
 		matrix_tmp = ft_strjoin_modified(matrix_tmp, line);
 		free(line);
-		map->rows++;
+		map->rows++;void	move_player(t_map_data *map, int new_x, int new_y);
 	}
 	map->matrix = ft_split(matrix_tmp, '\n');
 	free(matrix_tmp);
@@ -60,7 +60,7 @@ int	arguments_are_valid(int argc, char *map_path)
 	i = 0;
 	while (map_path[i++])
 		;
-	if (map_path[i - 2] == 'r' && map_path[i - 3] == 'e' 
+	if (map_path[i - 1] == '\0' && map_path[i - 2] == 'r' && map_path[i - 3] == 'e' 
 		&& map_path[i - 4] == 'b' && map_path[i - 5] == '.' )
 		return (1);
 	else
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 		if (!ft_map_init(&map))
 			return (-1);
 		ft_retrieve_matrix(map, argv[1]);
-		if (map->matrix == NULL || !ft_validate_map(map, argv[1]))
+		if (map->matrix == NULL ||  !ft_validate_map(map, argv[1]))
 		{
 			free_map_struct(map);
 			return (-1);

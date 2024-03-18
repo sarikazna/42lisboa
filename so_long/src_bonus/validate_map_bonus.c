@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:10:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/16 18:15:16 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:22:37 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int	ft_validate_count(t_map_data *map)
 		perror("Error\nThe game map should contain collectables.\n");
 		return (0);
 	}
-	if (map->no_exits == 0)
+	if (map->no_exits != 1)
 	{
-		perror("Error\nThe game map should contain an exit.\n");
+		perror("Error\nThe game map should contain exactly one exit.\n");
 		return (0);
 	}
 	if (map->no_players_check != 1)
