@@ -6,7 +6,7 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/15 18:28:12 by srudman          ###   ########.fr        #
+#    Updated: 2024/03/19 17:50:44 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,13 @@ OBJ_DIR_BONUS = obj_bonus
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
-SRCS_BONUS = $(wildcard $(SRC_DIR_BONUS)/*.c)
+SRCS = 		src/exit_game.c src/game_init.c src/main.c src/map_struct_utils.c \
+			src/movements.c src/play_game.c src/validate_map.c \
+			src/validate_map2.c
+SRCS_BONUS = src_bonus/exit_game_bonus.c src_bonus/game_init_bonus.c \
+			src_bonus/main_bonus.c src_bonus/map_struct_utils_bonus.c \
+			src_bonus/movements_bonus.c src_bonus/play_game_bonus.c \
+			src_bonus/validate_map_bonus.c src_bonus/validate_map2_bonus.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRC_DIR_BONUS)/%.c=$(OBJ_DIR_BONUS)/%.o)
 

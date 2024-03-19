@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 17:14:28 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 17:32:28 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_map_init(t_map_data **map)
 	*map = malloc(sizeof(t_map_data));
 	if (*map == NULL)
 	{
-		perror("Error\nMemory allocation of map failed.\n");
+		write(1, "Error\nMemory allocation of map failed.\n", 39);
 		return (-1);
 	}
 	(*map)->matrix = NULL;

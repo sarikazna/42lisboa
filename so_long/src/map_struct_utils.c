@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:59:27 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 22:26:07 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 17:31:38 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	free_map_struct(t_map_data *map)
 	if (map->matrix != NULL)
 	{
 		i = 0;
-		// while (i < map->rows)
 		while (map->matrix[i])
 			free(map->matrix[i++]);
 		free(map->matrix);
@@ -40,7 +39,7 @@ int	ft_map_init(t_map_data **map)
 	*map = malloc(sizeof(t_map_data));
 	if (*map == NULL)
 	{
-		perror("Error\nMemory allocation of map failed.\n");
+		write(1, "Error\nMemory allocation of map failed.\n", 39);
 		return (-1);
 	}
 	(*map)->matrix = NULL;

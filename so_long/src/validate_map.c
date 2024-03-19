@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:10:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 23:12:01 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 17:39:48 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_map_is_rectangular(t_map_data *map)
 	{
 		if (ft_strlen(map->matrix[i]) != ft_strlen(map->matrix[0]))
 		{
-			perror("Error\nEach line in the map should be the same length.\n");
+			write(1, "Error\nEach line should be the same length.\n", 54);
 			return (0);
 		}
 		i++;
@@ -51,7 +51,7 @@ int	ft_validate_walls(t_map_data *map)
 	{
 		if (map->matrix[0][i] != '1' || map->matrix[map->rows - 1][i] != '1')
 		{
-			perror("Error\nWalls are missing on the edges.\n");
+			write(1, "Error\nWalls are missing on the edges.\n", 38);
 			return (0);
 		}
 		i++;
@@ -61,7 +61,7 @@ int	ft_validate_walls(t_map_data *map)
 	{
 		if (map->matrix[i][0] != '1' || map->matrix[i][map->columns - 1] != '1')
 		{
-			perror("Error\nWalls are missing on the edges.\n");
+			write(1, "Error\nWalls are missing on the edges.\n", 38);
 			return (0);
 		}
 		i++;
@@ -79,17 +79,17 @@ int	ft_validate_count(t_map_data *map)
 {
 	if (map->score == 0)
 	{
-		perror("Error\nThe game map should contain collectables.\n");
+		write(1, "Error\nThe game map should contain collectables.\n", 48);
 		return (0);
 	}
 	if (map->no_exits != 1)
 	{
-		perror("Error\nThe game map should contain exactly one exit.\n");
+		write(1, "Error\nThe game map should contain exactly one exit.\n", 52);
 		return (0);
 	}
 	if (map->no_players_check != 1)
 	{
-		perror("Error\nThe game map should contain exactly one player.\n");
+		write(1, "Error\nThe game map should contain exactly one player.\n", 54);
 		return (0);
 	}
 	return (1);
@@ -151,7 +151,7 @@ int	ft_validate_map(t_map_data *map, char *path_to_file)
 {
 	int	fd;
 
-	if (!ft_map_is_rectangular(map) /*|| !ft_validate_walls(map) */
+	if (!ft_map_is_rectangular(map) || !ft_validate_walls(map)
 		|| !ft_count_elements(map) || !ft_allowed_character(map))
 		exit_game(&map);
 	ft_assign_position(map);
@@ -159,14 +159,14 @@ int	ft_validate_map(t_map_data *map, char *path_to_file)
 	ft_flood_fill(map->player_x, map->player_y, map);
 	if (!(map->no_exits >= 1 && map->curr_score == map->score))
 	{
-		perror("Error\nPath is invalid.\n");
+		write(1, "Error\nPath is invalid.\n", 23);
 		exit_game(&map);
 	}
 	map->curr_score = 0;
 	fd = open(path_to_file, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error\nCould not open the file.");
+		write(1, "Error\nCould not open the file.", 29);
 		return (0);
 	}
 	ft_rewrite_matrix(map, fd);

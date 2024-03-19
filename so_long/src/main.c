@@ -6,11 +6,35 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 23:17:10 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 17:39:30 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	checks_and_split(t_map_data *map, char *matrix_tmp)
+{
+	int	i;
+
+	i = 0;
+	if (!matrix_tmp[0])
+	{
+		free(matrix_tmp);
+		write(1, "Error\nEmpty file.\n", 18);
+		exit_game(&map);
+	}
+	while (matrix_tmp[i])
+		i++;
+	i--;
+	if (matrix_tmp[i] == '\n' || matrix_tmp[0] == '\n')
+	{
+		free(matrix_tmp);
+		write(1, "Error\nNo empty lines permissable at the end/start.\n", 58);
+		exit_game(&map);
+	}
+	map->matrix = ft_split(matrix_tmp, '\n');
+	free(matrix_tmp);
+}
 
 /* We open the map and put the map data into variable map->matrix. */
 
@@ -23,7 +47,7 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error\nCould not open the file.");
+		write(1, "Error\nCould not open the file.\n", 31);
 		exit_game(&map);
 	}
 	matrix_tmp = ft_strdup("");
@@ -38,24 +62,7 @@ void	ft_retrieve_matrix(t_map_data *map, char *path)
 		matrix_tmp = ft_strjoin_modified(matrix_tmp, line);
 		free(line);
 	}
-	if (!matrix_tmp[0])
-	{
-		free(matrix_tmp);
-		perror("Error\nEmpty file.");
-		exit_game(&map);
-	}
-	int i = 0;
-	while (matrix_tmp[i])
-		i++;
-	i--;
-	if (matrix_tmp[i] == '\n')
-	{
-		free(matrix_tmp);
-		perror("Error\nNo empty lines permissable at the end of map.");
-		exit_game(&map);
-	}
-	map->matrix = ft_split(matrix_tmp, '\n');
-	free(matrix_tmp);
+	checks_and_split(map, matrix_tmp);
 	close(fd);
 }
 
@@ -72,7 +79,7 @@ int	arguments_are_valid(int argc, char *map_path)
 
 	if (argc != 2 || !map_path)
 	{
-		perror("Error\nExactly two arguments needed.\n");
+		write(1, "Error\nExactly two arguments needed.\n", 36);
 		return (0);
 	}
 	i = 0;
@@ -84,7 +91,7 @@ int	arguments_are_valid(int argc, char *map_path)
 		return (1);
 	else
 	{
-		perror("Error\nFile name invalid.\n");
+		write(1, "Error\nFile name invalid.\n", 25);
 		return (0);
 	}
 }

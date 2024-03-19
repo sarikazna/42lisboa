@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 17:50:12 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 22:56:46 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 17:30:51 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int	ft_allowed_character(t_map_data *map)
 				&& map->matrix[j][i] != 'P' && map->matrix[j][i] != '1' 
 				&& map->matrix[j][i] != '0' && map->matrix[j][i] != '\n')
 			{
-				perror("Error\nMap contains invalid characters.\n");
+				write(1, "Error\nMap contains invalid characters.\n", 39);
 				return (0);
 			}
 			i++;
