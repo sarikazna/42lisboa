@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/19 17:20:09 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 18:44:54 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include "../.mlx/mlx.h"
 # include <string.h>
 
 /* DATA TYPES */

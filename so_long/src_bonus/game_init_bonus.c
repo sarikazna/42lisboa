@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:59:10 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 17:14:23 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 20:53:31 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,40 @@ void	img_render(t_map_data *map)
 	}
 }
 
-// Maybe add an error code
-static void	img_init(t_map_data *map)
+void	check_if_image_failed(t_map_data *map, void *img)
 {
-	int	size;
+	if (img == NULL)
+	{
+		write(1, "Error\nThere is an issue with an .xpm file.\n", 43);
+		exit_game(&map);
+	}
+}
 
-	size = 64;
-	map->img = malloc(8 * sizeof(void *));
-	if (map->img == NULL)
+/* Initialising image and checkign if .xpm is good to go. */
+
+static void	img_init(t_map_data *m)
+{
+	int	s;
+
+	s = 64;
+	m->img = malloc(8 * sizeof(void *));
+	if (m->img == NULL)
 		return ;
-	map->img[0] = mlx_xpm_file_to_image
-		(map->mlx_ptr, "img/path/path.xpm", &size, &size);
-	map->img[1] = mlx_xpm_file_to_image
-		(map->mlx_ptr, "img/wall/wall.xpm", &size, &size);
-	map->img[2] = mlx_xpm_file_to_image
-		(map->mlx_ptr, "img/player/player01.xpm", &size, &size);
-	map->img[3] = mlx_xpm_file_to_image
-		(map->mlx_ptr, "img/collect/collectable01.xpm", &size, &size);
-	map->img[4] = mlx_xpm_file_to_image
-		(map->mlx_ptr, "img/exit/exit.xpm", &size, &size);
-	map->img[5] = mlx_xpm_file_to_image
-		(map->mlx_ptr, "img/exit/p_over_e.xpm", &size, &size);
-	map->img[6] = mlx_xpm_file_to_image
-		(map->mlx_ptr, "img/enemy/enemy.xpm", &size, &size);
-	map->img[7] = NULL;
+	m->img[0] = mlx_xpm_file_to_image(m->mlx_ptr, "img/path.xpm", &s, &s);
+	check_if_image_failed(m, m->img[0]);
+	m->img[1] = mlx_xpm_file_to_image(m->mlx_ptr, "img/wall.xpm", &s, &s);
+	check_if_image_failed(m, m->img[1]);
+	m->img[2] = mlx_xpm_file_to_image(m->mlx_ptr, "img/player.xpm", &s, &s);
+	check_if_image_failed(m, m->img[2]);
+	m->img[3] = mlx_xpm_file_to_image(m->mlx_ptr, "img/collect.xpm", &s, &s);
+	check_if_image_failed(m, m->img[3]);
+	m->img[4] = mlx_xpm_file_to_image(m->mlx_ptr, "img/exit.xpm", &s, &s);
+	check_if_image_failed(m, m->img[4]);
+	m->img[5] = mlx_xpm_file_to_image(m->mlx_ptr, "img/p_over_e.xpm", &s, &s);
+	check_if_image_failed(m, m->img[5]);
+	m->img[6] = mlx_xpm_file_to_image(m->mlx_ptr, "img/enemy.xpm", &s, &s);
+	check_if_image_failed(m, m->img[6]);
+	m->img[7] = NULL;
 }
 
 int	game_init(t_map_data *map)

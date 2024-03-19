@@ -6,14 +6,14 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/19 17:50:44 by srudman          ###   ########.fr        #
+#    Updated: 2024/03/19 18:44:18 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 INCLUDES = -I/usr/include -Imlx -I./inc
 
@@ -22,7 +22,7 @@ SRC_DIR_BONUS = src_bonus
 OBJ_DIR = obj
 OBJ_DIR_BONUS = obj_bonus
 LIBFT_DIR = ./libft
-MLX_DIR = ./mlx
+MLX_DIR = ./.mlx
 
 SRCS = 		src/exit_game.c src/game_init.c src/main.c src/map_struct_utils.c \
 			src/movements.c src/play_game.c src/validate_map.c \

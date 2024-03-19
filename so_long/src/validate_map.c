@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:10:43 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/19 17:39:48 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:17:35 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	ft_map_is_rectangular(t_map_data *map)
 	i = 0;
 	while (map->matrix[i])
 	{
+		if (ft_strlen(map->matrix[i]) <= 2)
+		{
+			write(1, "Error\nEach line should be the same length.\n", 54);
+			return (0);
+		}
 		if (ft_strlen(map->matrix[i]) != ft_strlen(map->matrix[0]))
 		{
 			write(1, "Error\nEach line should be the same length.\n", 54);

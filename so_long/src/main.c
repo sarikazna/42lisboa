@@ -6,11 +6,18 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/19 17:39:30 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/19 20:43:06 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	is_error(t_map_data *map, char *matrix_tmp)
+{
+	write(1, "Error\nFile of the map has too many \\n or is empty.\n", 52);
+	free(matrix_tmp);
+	exit_game(&map);
+}
 
 void	checks_and_split(t_map_data *map, char *matrix_tmp)
 {
@@ -18,20 +25,15 @@ void	checks_and_split(t_map_data *map, char *matrix_tmp)
 
 	i = 0;
 	if (!matrix_tmp[0])
+		is_error(map, matrix_tmp);
+	while (matrix_tmp[i + 1])
 	{
-		free(matrix_tmp);
-		write(1, "Error\nEmpty file.\n", 18);
-		exit_game(&map);
-	}
-	while (matrix_tmp[i])
+		if (matrix_tmp[i] == '\n' && matrix_tmp[i + 1] == '\n')
+			is_error(map, matrix_tmp);
 		i++;
-	i--;
-	if (matrix_tmp[i] == '\n' || matrix_tmp[0] == '\n')
-	{
-		free(matrix_tmp);
-		write(1, "Error\nNo empty lines permissable at the end/start.\n", 58);
-		exit_game(&map);
 	}
+	if (matrix_tmp[i] != '1' || matrix_tmp[0] != '1')
+		is_error(map, matrix_tmp);
 	map->matrix = ft_split(matrix_tmp, '\n');
 	free(matrix_tmp);
 }
