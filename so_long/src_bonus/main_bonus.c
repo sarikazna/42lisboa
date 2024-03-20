@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:53:58 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/19 20:43:55 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/20 14:00:33 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	is_error(t_map_data *map, char *matrix_tmp)
 {
-	write(1, "Error\nFile of the map has too many \\n or is empty.\n", 52);
+	write(1, "Error\nMap should start/end with '1'.\n", 37);
 	free(matrix_tmp);
 	exit_game(&map);
 }
