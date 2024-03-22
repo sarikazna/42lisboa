@@ -1,24 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/22 16:55:09 by srudman          ###   ########.fr       */
+/*   Created: 2023/04/19 14:18:08 by srudman           #+#    #+#             */
+/*   Updated: 2024/02/17 16:17:20 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h> // needed?
-# include <sys/types.h>
-# include <sys/wait.h>
+char	*ft_strchr(const char *s, int c)
+{
+	char	ch;
 
-#endif
+	ch = (char)c;
+	if (!s)
+		return (0);
+	if (ch == '\0')
+		return ((char *)s + ft_strlen(s));
+	while (*s)
+	{
+		if (*s == ch)
+			return ((char *)s);
+		s++;
+	}
+	if (ch == '\0')
+		return ((char *)s);
+	return (NULL);
+}
+
+/*
+#include <stdio.h>
+int main(void)
+{
+    printf("%s\n", ft_strchr("Very nice, how much", 'h'));
+    return (0);
+}
+*/

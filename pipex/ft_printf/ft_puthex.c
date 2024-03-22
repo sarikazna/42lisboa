@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/22 16:55:09 by srudman          ###   ########.fr       */
+/*   Created: 2023/06/30 20:57:41 by srudman           #+#    #+#             */
+/*   Updated: 2023/07/07 14:58:04 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h> // needed?
-# include <sys/types.h>
-# include <sys/wait.h>
+void	ft_puthex(unsigned int nbr, t_struct *count, char *base)
+{
+	if (nbr >= 16)
+		ft_puthex(nbr / 16, count, base);
+	ft_putchar(base[nbr % 16], count);
+}
 
-#endif
+/*
+#include <stdio.h>
+int	main(void)
+{
+	t_struct count;
+	
+	count.len = 0;
+	ft_puthex_low(4963345, &count);
+	printf ("\n%d\n", count.len);
+	return (0);
+}
+*/

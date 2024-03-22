@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putdecimal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/22 16:55:09 by srudman          ###   ########.fr       */
+/*   Created: 2023/06/30 20:57:41 by srudman           #+#    #+#             */
+/*   Updated: 2023/07/07 14:57:10 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h> // needed?
-# include <sys/types.h>
-# include <sys/wait.h>
+void	ft_putdecimal(unsigned int nbr, t_struct *count)
+{
+	char	*base;
 
-#endif
+	base = "0123456789";
+	if (nbr >= 10)
+		ft_putdecimal(nbr / 10, count);
+	ft_putchar(base[nbr % 10], count);
+}
+
+/*
+#include <stdio.h>
+int	main(void)
+{
+	t_struct count;
+	
+	count.len = 0;
+	ft_putdecimal(496, &count);
+	printf ("\n%d\n", count.len);
+	return (0);
+}
+*/

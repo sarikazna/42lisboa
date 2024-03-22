@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/22 16:55:09 by srudman          ###   ########.fr       */
+/*   Created: 2023/04/28 17:29:32 by srudman           #+#    #+#             */
+/*   Updated: 2023/07/07 18:25:55 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h> // needed?
-# include <sys/types.h>
-# include <sys/wait.h>
+void	ft_putstr(char *s, t_struct *count)
+{
+	int	i;
 
-#endif
+	if (s == NULL)
+		s = "(null)";
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar(s[i], count);
+		i++;
+	}
+}

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/22 16:55:09 by srudman          ###   ########.fr       */
+/*   Created: 2023/04/17 13:59:33 by srudman           #+#    #+#             */
+/*   Updated: 2023/04/25 18:11:10 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h> // needed?
-# include <sys/types.h>
-# include <sys/wait.h>
+int	ft_isalnum(int c)
+{
+	if ((c >= '0' && c <= '9') || (c > 64 && c < 91) || (c > 96 && c < 123))
+		return (1);
+	return (0);
+}
 
-#endif
+/*
+#include <stdio.h>
+int	main(void)
+{
+	printf ("%d\n", ft_isalnum('s'));
+    return (0);
+}
+*/
