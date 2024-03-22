@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:49:28 by srudman           #+#    #+#             */
-/*   Updated: 2023/08/25 19:08:57 by srudman          ###   ########.fr       */
+/*   Updated: 2024/02/17 16:07:24 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,21 +109,21 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	int	fd;
-// 	char *line;
+#include <stdio.h>
+int	main(void)
+{
+	int	fd;
+	char *line;
 
-// 	line = malloc(1);
-// 	fd = open("read_error.txt", O_RDONLY);
+	line = malloc(1);
+	fd = open("../so_long/maps/valid_maps/map_mid.ber", O_RDONLY);
 
-// 	while (line)
-// 	{
-// 		free(line);
-// 		line = get_next_line(fd);
-// 		printf("%s", line);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		printf("%s", line);
+	}
+	close(fd);
+	return (0);
+}

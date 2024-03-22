@@ -1,0 +1,25 @@
+PIPEX PROJECT INSTRUCTIONS: https://cdn.intra.42.fr/pdf/pdf/119143/en.subject.pdf
+
+USEFUL RESOURCES:
+- Medium article: https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
+- Technical explanation: https://github.com/jdecorte-be/42-Pipex/blob/master/README.md
+
+CODING PROCESS:
+
+NEW FUNCTIONS: dup, dup2, execve, fork, pipe, unlink, wait, waitpid
+
+int dup(int oldfd); // returns a newfd which is the lowest-numbered unused file descriptor for the new descriptor
+int dup2(int oldfd, int newfd); // returns a newfd which in the 2nd param
+
+int execve(const char *pathname, char *const argv[], char *const envp[]);
+const char *pathname = program
+char *const argv[] = ponters to strings passes to the new program
+char *const envp[] = strings passed as the environment of the new program
+
+pid_t fork(void);
+fork() creates a new process by duplicating the calling process. The new process is referred to as
+the child process. The calling process is referred to as the parent process.
+On success, the PID of the child process is returned in the parent, and 0 is returned in the child.
+On failure, -1 is returned in the parent, no child process is created, and errno is  set  appropriately.
+
+struct fd_pair pipe();
