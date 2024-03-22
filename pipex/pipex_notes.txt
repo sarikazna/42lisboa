@@ -16,10 +16,14 @@ USEFUL RESOURCES:
 - Chapter 3: https://medium.com/@lannur-s/pipex-42-chapter-3-mastering-execve-using-fork-f93906a79d7c
 - Chapter 4: https://medium.com/@lannur-s/pipex-42-chapter-4-pipe-5b4afa4a37b7
 - Little overview: https://gitlab.com/madebypixel02/pipex
-- Short explanation: https://techy.asia/posts/how-to-solve-pipex/
+- Short explanation [really good]: https://techy.asia/posts/how-to-solve-pipex/
 
 
 CODING PROCESS:
+1. Validate the input
+2. Create a child process
+3. HAdnle the partner process
+4. Handle the command, check if the parth of the command is valid
 
 NEW FUNCTIONS: dup, dup2, execve, fork, pipe, unlink, wait, waitpid, access
 
