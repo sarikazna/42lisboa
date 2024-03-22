@@ -3,12 +3,25 @@ PIPEX PROJECT INSTRUCTIONS: https://cdn.intra.42.fr/pdf/pdf/119143/en.subject.pd
 USEFUL RESOURCES:
 - Medium article: https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
 - Technical explanation: https://github.com/jdecorte-be/42-Pipex/blob/master/README.md
-- 2h video in Russian: https://www.youtube.com/watch?v=7e_gExniT_Y
+- 2h video in Russian (left off at 40min): https://www.youtube.com/watch?v=7e_gExniT_Y
+- Creating and killing child processes: https://www.codequoi.com/en/creating-and-killing-child-processes-in-c/
+- Pipe: https://www.codequoi.com/en/pipe-an-inter-process-communication-method/
+- Error management: https://www.codequoi.com/en/errno-and-error-management-in-c/
+- File descriptor: https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/
+- Reactive article: https://reactive.so/post/42-a-comprehensive-guide-to-pipex
+- Video simulating pipe in C: https://www.youtube.com/watch?v=6xbLgZpOBi8
+- Video redirecting standerd output: https://www.youtube.com/watch?v=5fnVr-zH-SE
+- Chapter 1: https://medium.com/@lannur-s/pipex-42-chapter-1-metamorphosis-execve-1a4710ab8cb1
+- Chapter 2: https://medium.com/@lannur-s/what-is-a-fork-e0b74e4bb821
+- Chapter 3: https://medium.com/@lannur-s/pipex-42-chapter-3-mastering-execve-using-fork-f93906a79d7c
+- Chapter 4: https://medium.com/@lannur-s/pipex-42-chapter-4-pipe-5b4afa4a37b7
+- Little overview: https://gitlab.com/madebypixel02/pipex
+- Short explanation: https://techy.asia/posts/how-to-solve-pipex/
 
 
 CODING PROCESS:
 
-NEW FUNCTIONS: dup, dup2, execve, fork, pipe, unlink, wait, waitpid
+NEW FUNCTIONS: dup, dup2, execve, fork, pipe, unlink, wait, waitpid, access
 
 int dup(int oldfd); // returns a newfd which is the lowest-numbered unused file descriptor for the new descriptor
 int dup2(int oldfd, int newfd); // returns a newfd which in the 2nd param
@@ -29,7 +42,7 @@ pipefd[0] refers to the read end of the pipe.  pipefd[1] refers to the write end
 On  success,  zero  is  returned.   On error, -1 is returned, errno is set appropriately, and
 pipefd is left unchanged.
 
-unlink - call the unlink function to remove the specified fil
+unlink - call the uhttps://github.com/tolmvad/pipex/tree/masternlink function to remove the specified fil
 
 pid_t wait(int *wstatus);
 pid_t waitpid(pid_t pid, int *wstatus, int options);
@@ -37,3 +50,10 @@ The wait() system call suspends execution of the calling thread until one of its
 tus) is equivalent to:
 waitpid(-1, &wstatus, 0);
 The waitpid() system call suspends execution of the calling thread until a child specified by pid argument has changed state.
+
+EXAMPLES OF IMPLEMENTATIONS:
+https://github.com/tolmvad/pipex/tree/master
+
+
+TEST:
+https://techy.asia/posts/how-to-solve-pipex/
