@@ -15,20 +15,26 @@ USEFUL RESOURCES:
 - Chapter 2: https://medium.com/@lannur-s/what-is-a-fork-e0b74e4bb821
 - Chapter 3: https://medium.com/@lannur-s/pipex-42-chapter-3-mastering-execve-using-fork-f93906a79d7c
 - Chapter 4: https://medium.com/@lannur-s/pipex-42-chapter-4-pipe-5b4afa4a37b7
-- Little overview: https://gitlab.com/madebypixel02/pipex
+- Little overview (contains bonus part): https://gitlab.com/madebypixel02/pipex
 - Short explanation [really good]: https://techy.asia/posts/how-to-solve-pipex/
+- Video list: https://www.youtube.com/watch?v=Vax97MIL_uI&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=57
 
 
 CODING PROCESS:
 1. Validate the input
-2. Create a child process
-3. HAdnle the partner process
-4. Handle the command, check if the parth of the command is valid
+2. Obtain path for the commands, look for PATH varaible, check for errors
+3. Iterrate throug the list of commands (so only two, more for bonus)
+2. Create a child process, everz child runts the command
+3. The pipe sends the output to the partner process. The parent waits for the child process to finish.
+4. Parent then redirects the rading end of the pipe back to the stin for th next command, closing unused file discriptors.
+
+POTENTIAL ISSUES:
+- leaving one file open longer than usual can really break things
 
 NEW FUNCTIONS: dup, dup2, execve, fork, pipe, unlink, wait, waitpid, access
 
 int dup(int oldfd); // returns a newfd which is the lowest-numbered unused file descriptor for the new descriptor
-int dup2(int oldfd, int newfd); // returns a newfd which in the 2nd param
+int dup2(int oldfd, int newfd); // returns a newfd which in the 2nd param. Closes newfd if needed, then duplicates oldfd into newfd
 
 int execve(const char *pathname, char *const argv[], char *const envp[]);
 const char *pathname = program
@@ -36,6 +42,7 @@ char *const argv[] = ponters to strings passes to the new program
 char *const envp[] = strings passed as the environment of the new program
 
 pid_t fork(void);
+Splits process creating a child process with pid 0
 fork() creates a new process by duplicating the calling process. The new process is referred to as
 the child process. The calling process is referred to as the parent process.
 On success, the PID of the child process is returned in the parent, and 0 is returned in the child.

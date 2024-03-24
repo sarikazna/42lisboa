@@ -6,12 +6,47 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/22 17:07:16 by srudman          ###   ########.fr        #
+#    Updated: 2024/03/24 23:20:07 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# NAME = pipex
+# CC = gcc
+# CFLAGS = -Wall -Wextra -Werror -g
+
+# SRC_DIR = src
+# OBJ_DIR = obj
+# LIBFT_DIR = ./libft
+
+# SRCS = src/main.c src/struct_utils.c
+# OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+# .PHONY: all clean fclean re
+
+# all: $(NAME)
+
+# $(NAME): $(OBJS)
+# 	@make --directory=$(LIBFT_DIR)
+# 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+
+# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+# 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
+
+# $(OBJ_DIR):
+# 	mkdir -p $(OBJ_DIR)
+
+# clean:
+# 	@make clean --directory=$(LIBFT_DIR)
+# 	$(RM) -r $(OBJ_DIR)
+
+# fclean: clean
+# 	@make fclean --directory=$(LIBFT_DIR)
+# 	$(RM) $(NAME)
+
+# re: fclean all
+
 NAME = pipex
-NAME_BONUS = pixex_bonus
+NAME_BONUS = pipex_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
@@ -22,7 +57,7 @@ OBJ_DIR_BONUS = obj_bonus
 LIBFT_DIR = ./libft
 PRINTF_DIR = ./ft_printf
 
-SRCS = 		src/main.c
+SRCS = 		src/main.c src/struct_utils.c
 SRCS_BONUS = 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRC_DIR_BONUS)/%.c=$(OBJ_DIR_BONUS)/%.o)
@@ -34,10 +69,10 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make --directory=$(LIBFT_DIR)
 	@make --directory=$(PRINTF_DIR)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR) $(PRINTF_DIR) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -47,10 +82,10 @@ bonus: $(NAME_BONUS)
 $(NAME_BONUS): $(OBJS_BONUS)
 	@make --directory=$(LIBFT_DIR)
 	@make --directory=$(PRINTF_DIR)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT_DIR) $(PRINTF_DIR) -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -o $(NAME_BONUS)
 
 $(OBJ_DIR_BONUS)/%.o: $(SRC_DIR_BONUS)/%.c | $(OBJ_DIR_BONUS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR_BONUS):
 	mkdir -p $(OBJ_DIR_BONUS)
