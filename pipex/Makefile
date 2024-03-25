@@ -6,44 +6,9 @@
 #    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/24 23:20:07 by srudman          ###   ########.fr        #
+#    Updated: 2024/03/25 15:31:51 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# NAME = pipex
-# CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -g
-
-# SRC_DIR = src
-# OBJ_DIR = obj
-# LIBFT_DIR = ./libft
-
-# SRCS = src/main.c src/struct_utils.c
-# OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-
-# .PHONY: all clean fclean re
-
-# all: $(NAME)
-
-# $(NAME): $(OBJS)
-# 	@make --directory=$(LIBFT_DIR)
-# 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
-
-# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-# 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
-
-# $(OBJ_DIR):
-# 	mkdir -p $(OBJ_DIR)
-
-# clean:
-# 	@make clean --directory=$(LIBFT_DIR)
-# 	$(RM) -r $(OBJ_DIR)
-
-# fclean: clean
-# 	@make fclean --directory=$(LIBFT_DIR)
-# 	$(RM) $(NAME)
-
-# re: fclean all
 
 NAME = pipex
 NAME_BONUS = pipex_bonus

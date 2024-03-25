@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/24 23:16:43 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/25 18:19:28 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ enum e_pipex_error
 
 typedef struct s_struct
 {
-	char	*raw_path;
 	char	**cmd_path;
 	char	**cmd_argv;
 	pid_t	pid1;
@@ -49,6 +48,7 @@ typedef struct s_struct
 	int		outfile;
 }	t_struct;
 
-void	pipex_exit(t_struct *data, int err);
+void	pipex_exit(t_struct *data, int errno);
+void	put_error(int errno);
 
 #endif

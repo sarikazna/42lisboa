@@ -6,38 +6,64 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:08:04 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/24 23:12:25 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/25 19:22:27 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-// check if argc is even used
-// consider skipping 
-t_struct	data_init(int argc, char **argv, char **envp, t_struct *data)
-{
-	t_struct	*data;
-	int				i;
+/* I initialise my struct called 'data'. Most of it's variables I set to NULL or
+to an invalid file descriptor. This is to avoid undefined behaviour laer on. */
 
-	data = malloc(sizeof(data));
-	if (!data)
-		pipex_exit(data, NO_MEMORY);
-	data->raw_path = NULL;
-	data->cmd_path = NULL; // at what point do I need to initialise those?
-	data->cmd_argv = NULL;
-	i = 2;
-	if (envp[i] == NULL)
-		pipex_exit(data, NO_PATH);
-	while (envp[i] && ft_strncmp("PATH=", envp[i], 5) != 0)
-		i++;
-	if (ft_strncmp("PATH=", envp[i], 5) != 0) // are we sure it's 5?
-		pipex_exit(data, NO_PATH);
-	data->raw_path = malloc(sizeof(char) * (ft_strlen(envp[i]) + 1));
-	data->cmd_path = split(data->raw_path, ':');
+void	data_init(t_struct **data)
+{
+	int	i;
+
+	*data = malloc(sizeof(t_struct));
+	if (!*data)
+	{
+		free(*data);
+		put_error(NO_MEMORY);
+		exit(0);
+	}
+	(*data)->cmd_path = NULL;
+	(*data)->cmd_argv = NULL;
+	(*data)->infile = -1;
+	(*data)->outfile = -1;	
+	i = 0;
 }
 
-/* We ran checks on the number of arguments, check if the infile is existing and
-is readable. */
+/* I parse **envp to get the path to commands in my struct (*data)->cmd_path
+I also allocate commands from the terminal input to my struct, specifically
+to the (*data)->cmd_argv.*/
+
+void	parse_input(int argc, char **argv, char **envp, t_struct **data)
+{
+	int i;
+	int	j;
+
+	i = 0;
+	if (envp[i] == NULL)
+		pipex_exit(*data, NO_PATH);
+	while (envp[i] && ft_strncmp("PATH=", envp[i], 5) != 0)
+		i++;
+	if (ft_strncmp("PATH=", envp[i], 5) != 0)
+		pipex_exit(*data, NO_PATH);
+	(*data)->cmd_path = ft_split(envp[i] + 5, ':');
+	i = 2;
+	j = 0;
+	(*data)->cmd_argv = malloc(sizeof(char *) * (argc - i));
+	if (!(*data)->cmd_argv)
+		pipex_exit(*data, NO_MEMORY);
+	while(i < argc - 1)
+		(*data)->cmd_argv[j++] = ft_strdup(argv[i++]);
+	(*data)->cmd_argv[j] = NULL;
+	// check if the input commands are actual commands, using access?
+}
+
+/* We ran checks on the number of arguments, check if the infile is existing
+and is readable. We initialise the stack and performing parsing. */
+
 int	main(int argc, char **argv, char **envp)
 {
     t_struct	*data;
@@ -49,13 +75,9 @@ int	main(int argc, char **argv, char **envp)
 		pipex_exit(data, NO_FILE);
 	if (access((argv[1]), R_OK) == -1)
 		pipex_exit(data, NO_PERM);
-	// use access to see if the file can be openned
-    // Check if the input file exists, check if it is readable, has correct premissions
-    // Check if the output file is writable or can be created, has correct permissions
-	data_init(argc, argv, envp, data);
+    // Check if the output file is writable or can be created
+	data_init(&data);
+	parse_input(argc, argv, envp, &data);
     // Check if a pipe can be created
-
-    // Obtain parth fro the commands, look for PATH varaible
-    // check for errors
-
+	pipex_exit(data, END);
 }
