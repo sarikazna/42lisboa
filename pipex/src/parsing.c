@@ -6,13 +6,14 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/25 21:42:19 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/25 22:25:06 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-// how to handle "wc -l" input?
+// how to handle "wc -l" input? - add a command struct!
+// this function below will have to be changed
 
 void 	check_input_cmd(t_struct **data)
 {
@@ -70,6 +71,9 @@ void	parse_input_cmd(int argc, char **argv, t_struct **data)
 	// {
 	// 	printf("Cmd[%i]: %s\n", i, (*data)->cmd_argv[i]);
 	// 	i++;
+
+	
+	///////////////////////// LEFT HEEEEREEE, now put cmd_argv[j] into t_cmd_strt;
 	// }
 }
 
