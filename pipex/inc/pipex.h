@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/25 18:19:28 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/25 20:16:43 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ typedef struct s_struct
 
 void	pipex_exit(t_struct *data, int errno);
 void	put_error(int errno);
+void	parse_input(int argc, char **argv, char **envp, t_struct **data);
+void	data_init(t_struct **data);
 
 #endif

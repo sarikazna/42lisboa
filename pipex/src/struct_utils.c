@@ -6,18 +6,36 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/25 19:07:12 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/25 21:32:19 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-/*Also, it was crucial to save most info on a t_pipexdata struct 
-so that functions could be much more easily accessible. I made 
-a function pipex_perror that will print a custom error message 
-based on the error code, and also made another function pipex_exit 
-which easily frees the t_pipexdata struct to ensure all memory 
-is freed flawlessly.*/
+/* I initialise my struct called 'data'. Most of it's variables I set to NULL or
+to an invalid file descriptor. This is to avoid undefined behaviour laer on. */
+
+void	data_init(t_struct **data)
+{
+	int	i;
+
+	*data = malloc(sizeof(t_struct));
+	if (!*data)
+	{
+		free(*data);
+		put_error(NO_MEMORY);
+		exit(0);
+	}
+	(*data)->cmd_path = NULL;
+	(*data)->cmd_argv = NULL;
+	(*data)->infile = -1;
+	(*data)->outfile = -1;	
+	i = 0;
+}
+
+/* Also, it was crucial to save most info on a t_struct *data 
+so that variables could be much more easily accessible and memory
+management as well. */
 
 void	free_data(t_struct *data)
 {
@@ -71,16 +89,6 @@ void	put_error(int err)
 	if (err == CMD_FAIL)
 		ft_putstr_fd("Error: Command failed\n", 2);
 }
-
-/* Also we need to check that the infile and outfile exist
-and/or have the correct permissions. 
-
-Not to mention that 
-the commands from the input may not exist. Hence, to handle 
-all possible errors I created an enum to distinguish and handle 
-all these different errors properly. 
-
-*/
 
 void	pipex_exit(t_struct *data, int errno)
 {
