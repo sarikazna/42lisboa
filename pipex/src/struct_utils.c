@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/25 21:32:19 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:26:33 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	data_init(t_struct **data)
 		exit(0);
 	}
 	(*data)->cmd_path = NULL;
-	(*data)->cmd_argv = NULL;
 	(*data)->infile = -1;
 	(*data)->outfile = -1;	
 	i = 0;
@@ -56,14 +55,49 @@ void	free_data(t_struct *data)
 		free(data->cmd_path);
 	}
 	i = 0;
-	if (data->cmd_argv != NULL)
+	if (data->full_cmd != NULL)
 	{
-		while (data->cmd_argv[i])
-			free(data->cmd_argv[i++]);
-		free(data->cmd_argv);
+		while (data->full_cmd[i])
+		{
+			if (data->full_cmd[i]->cmd != NULL)
+				free(data->full_cmd[i]->cmd);
+			if (data->full_cmd[i]->flag != NULL)
+				free(data->full_cmd[i]->flag);			
+			free(data->full_cmd[i]);
+			i++;
+		}
+		free(data->full_cmd);
 	}
 	free(data);
 }
+
+// void	free_data(t_struct *data)
+// {
+// 	int	i;
+
+// 	if (data == NULL)
+// 		return ;
+// 	close(STDIN_FILENO); // learn this shit, is there a way to know if they are open?
+// 	if (data->infile >= 0)
+// 		close(data->infile);
+// 	if (data->outfile >= 0)
+// 		close(data->outfile);
+// 	i = 0;
+// 	if (data->cmd_path != NULL)
+// 	{
+// 		while (data->cmd_path[i])
+// 			free(data->cmd_path[i++]);
+// 		free(data->cmd_path);
+// 	}
+// 	i = 0;
+// 	if (data->cmd_argv != NULL)
+// 	{
+// 		while (data->cmd_argv[i])
+// 			free(data->cmd_argv[i++]);
+// 		free(data->cmd_argv);
+// 	}
+// 	free(data);
+// }
 
 // deal with freaking errors later
 void	put_error(int err)

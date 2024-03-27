@@ -6,14 +6,11 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/25 22:25:06 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:29:07 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
-
-// how to handle "wc -l" input? - add a command struct!
-// this function below will have to be changed
 
 void 	check_input_cmd(t_struct **data)
 {
@@ -22,13 +19,13 @@ void 	check_input_cmd(t_struct **data)
 	char *tmp_cmd;
 
 	i = 0;
-	while ((*data)->cmd_argv[i])
+	while ((*data)->full_cmd[i])
 	{
 		j = 0;
 		tmp_cmd = NULL;
 		while ((*data)->cmd_path[j])
 		{
-			tmp_cmd = ft_strjoin((*data)->cmd_path[j], (*data)->cmd_argv[i]);
+			tmp_cmd = ft_strjoin((*data)->cmd_path[j], (*data)->full_cmd[i]->cmd);
 			if (!tmp_cmd)
 			{
 				free(tmp_cmd);
@@ -36,8 +33,8 @@ void 	check_input_cmd(t_struct **data)
 			}
 			if (access(tmp_cmd, F_OK) == 0)
 			{
-				free((*data)->cmd_argv[i]);
-				(*data)->cmd_argv[i] = strdup(tmp_cmd);
+				free((*data)->full_cmd[i]->cmd);
+				(*data)->full_cmd[i]->cmd = strdup(tmp_cmd);
 				free(tmp_cmd);
 				break ;
 			}
@@ -45,13 +42,14 @@ void 	check_input_cmd(t_struct **data)
 				free(tmp_cmd);
 			j++;
 		}
-		if (access((*data)->cmd_argv[i], F_OK) == -1)
+		if (access((*data)->full_cmd[i]->cmd, F_OK) == -1)
 			pipex_exit(*data, CMD_NOT_FOUND);
-		// printf("Cmd[%i]: %s\n", i, (*data)->cmd_argv[i]);
 		i++;
 	}
 }
 
+// how to handle "wc -l" input?
+// struct pointer to a pointer
 void	parse_input_cmd(int argc, char **argv, t_struct **data)
 {
 	int	i;
@@ -59,22 +57,21 @@ void	parse_input_cmd(int argc, char **argv, t_struct **data)
 	
 	i = 2;
 	j = 0;
-	(*data)->cmd_argv = malloc(sizeof(char *) * (argc - i));
-	if (!(*data)->cmd_argv)
+	(*data)->full_cmd = malloc(sizeof(t_cmd_strt *) * (argc - i));
+	if (!(*data)->full_cmd)
 		pipex_exit(*data, NO_MEMORY);
 	while(i < argc - 1)
-		(*data)->cmd_argv[j++] = ft_strdup(argv[i++]);
-	(*data)->cmd_argv[j] = NULL;
-	// DON'T FORGET TO DELETE
-	// i = 0;
-	// while ((*data)->cmd_argv[i])
-	// {
-	// 	printf("Cmd[%i]: %s\n", i, (*data)->cmd_argv[i]);
-	// 	i++;
-
-	
-	///////////////////////// LEFT HEEEEREEE, now put cmd_argv[j] into t_cmd_strt;
-	// }
+	{
+		(*data)->full_cmd[j] = malloc(sizeof(t_cmd_strt));
+		if (!(*data)->full_cmd[j])
+			pipex_exit(*data, NO_MEMORY);
+		// if argv contains space, then add flag, otherwise flag == NULL
+		(*data)->full_cmd[j]->cmd = ft_strdup(argv[i]);
+		(*data)->full_cmd[j]->flag = NULL;
+		j++;
+		i++;
+	}
+	(*data)->full_cmd[j] = NULL;
 }
 
 void	parse_envp_path(char **envp, t_struct **data)
