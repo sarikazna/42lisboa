@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/27 12:29:07 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/27 18:47:28 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ void 	check_input_cmd(t_struct **data)
 	}
 }
 
+void	parse_flags(char *argv, t_struct *data, int j);
+{
+	char	*space_pos;
+
+	space_pos = 
+	data->full_cmd[j]->flag = ft_strchr(argv, " ");
+	data->full_cmd[j]->cmd = ft_substr(argv, 0, ft_strlen(argv - data->full_cmd[j]->flag));
+}
+
 // how to handle "wc -l" input?
 // struct pointer to a pointer
 void	parse_input_cmd(int argc, char **argv, t_struct **data)
@@ -65,9 +74,11 @@ void	parse_input_cmd(int argc, char **argv, t_struct **data)
 		(*data)->full_cmd[j] = malloc(sizeof(t_cmd_strt));
 		if (!(*data)->full_cmd[j])
 			pipex_exit(*data, NO_MEMORY);
-		// if argv contains space, then add flag, otherwise flag == NULL
-		(*data)->full_cmd[j]->cmd = ft_strdup(argv[i]);
-		(*data)->full_cmd[j]->flag = NULL;
+		if (ft_strchr(argv[i], " ") != NULL)
+			parse_flags(argv[i], *data, j);
+		else
+			(*data)->full_cmd[j]->flag = NULL;
+			(*data)->full_cmd[j]->cmd = ft_strdup(argv[i]);
 		j++;
 		i++;
 	}
