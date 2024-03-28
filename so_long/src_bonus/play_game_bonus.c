@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:00:25 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/18 16:38:11 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/28 23:50:11 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,16 @@ int	handle_input(int keysym, t_map_data **map)
 		write(1, "You have exited the game.\n", 27);
 		exit_game(map);
 	}
-	if (keysym == KEY_W && move_is_valid
+	if ((keysym == KEY_W || keysym == KEY_UP) && move_is_valid
 		(*map, (*map)->player_x, ((*map)->player_y - 1)))
 		move_up(*map);
-	if (keysym == KEY_S && move_is_valid
+	if ((keysym == KEY_S || keysym == KEY_DOWN) && move_is_valid
 		(*map, (*map)->player_x, ((*map)->player_y + 1)))
 		move_down(*map);
-	if (keysym == KEY_A && move_is_valid
+	if ((keysym == KEY_A  || keysym == KEY_LEFT) && move_is_valid
 		(*map, ((*map)->player_x - 1), (*map)->player_y))
 		move_left(*map);
-	if (keysym == KEY_D && move_is_valid
+	if ((keysym == KEY_D  || keysym == KEY_RIGHT) && move_is_valid
 		(*map, ((*map)->player_x + 1), (*map)->player_y))
 		move_right(*map);
 	put_steps_on_screen(*map);

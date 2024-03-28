@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:10:52 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/22 12:56:50 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/28 23:44:01 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@
 /* DATA TYPES */
 
 /* Keycodes on a keyboard */
-// Double check the key values
-# define KEY_ESC 65307 // or is it 0x35
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-// Mislim da je krizec 17 - destroy notify
+# define KEY_ESC			65307
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+
+# define KEY_UP  			65362
+# define KEY_LEFT  			65361
+# define KEY_RIGHT 			65363
+# define KEY_DOWN  			65364
 
 /* STRUCTS */
 
