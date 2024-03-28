@@ -17,15 +17,20 @@ So_Long is a simple 2D game project implemented in C as part of the School 42 cu
 
 To play So_Long, follow these steps:
 
-1. Clone this repository to your local machine.
+1. You may need to install the following dependencies:
+   
+   ```bash
+   sudo apt-get install gcc make xorg libxext-dev libbsd-dev
+
+2. Clone this repository to your local machine, compile it, and run it by copy pasting this code into your bash terminal.
    
    ```bash
    git clone https://github.com/sarikazna/42lisboa sararudman_rep && cd sararudman_rep/so_long && make && make bonus && ./so_long_bonus maps/valid_bonus_maps/map_square.ber
-2. To run the game again run:
+3. To run the game again:
    
    ```bash
    make re && ./so_long maps/valid_maps/map_a.ber
-3. To run the game with the enemy (the needle) run:
+4. To run the bonus game that contain an enemy (the needle) run:
    
    ```bash
    make re && ./so_long_bonus maps/valid_bonus_maps/map_square.ber
