@@ -3,63 +3,106 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/27 18:47:28 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/29 19:45:41 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-void 	check_input_cmd(t_struct **data)
+void 	check_input_cmd(t_pipex_strt **data, int j)
 {
 	int	i;
-	int	j;
 	char *tmp_cmd;
 
 	i = 0;
-	while ((*data)->full_cmd[i])
+	tmp_cmd = NULL;
+	while ((*data)->full_cmd[j]->path[i])
 	{
-		j = 0;
-		tmp_cmd = NULL;
-		while ((*data)->cmd_path[j])
+		tmp_cmd = ft_strjoin((*data)->full_cmd[j]->path[i], (*data)->full_cmd[j]->cmd);
+		if (!tmp_cmd)
 		{
-			tmp_cmd = ft_strjoin((*data)->cmd_path[j], (*data)->full_cmd[i]->cmd);
-			if (!tmp_cmd)
-			{
-				free(tmp_cmd);
-				pipex_exit(*data, NO_MEMORY);
-			}
-			if (access(tmp_cmd, F_OK) == 0)
-			{
-				free((*data)->full_cmd[i]->cmd);
-				(*data)->full_cmd[i]->cmd = strdup(tmp_cmd);
-				free(tmp_cmd);
-				break ;
-			}
-			else
-				free(tmp_cmd);
-			j++;
+			free(tmp_cmd);
+			pipex_exit(*data, NO_MEMORY, NULL);
 		}
-		if (access((*data)->full_cmd[i]->cmd, F_OK) == -1)
-			pipex_exit(*data, CMD_NOT_FOUND);
+		if (access(tmp_cmd, F_OK) == 0)
+		{
+			free((*data)->full_cmd[j]->cmd);
+			(*data)->full_cmd[j]->cmd = strdup(tmp_cmd);
+			free(tmp_cmd);
+			break ;
+		}
+		else
+			free(tmp_cmd);
+		i++;
+	}
+	if (access((*data)->full_cmd[j]->cmd, F_OK) == -1)
+		put_error(CMD_NOT_FOUND, (*data)->full_cmd[j]->cmd + 1);
+}
+
+void	parse_input_cmd(char *argv, t_pipex_strt **data, int j)
+{
+	int i;
+	
+	i = 0;
+	if (ft_strchr(argv, ' ') == NULL)	// PROBLEM HERE, I'm NOT ADDING A SLASH
+		(*data)->full_cmd[j]->cmd = ft_strdup(argv);
+	else
+	{
+		(*data)->full_cmd[j]->flag = (ft_strchr(argv, ' ') + 1);
+		while (argv[i] && argv[i] != ' ')
+			i++;
+		(*data)->full_cmd[j]->cmd = malloc(sizeof(char) * (i + 2));
+		if (!(*data)->full_cmd[j]->cmd)
+			pipex_exit(*data, NO_MEMORY, NULL);
+		i = 0;
+		(*data)->full_cmd[j]->cmd[i] = '/';
+		while (argv[i] && argv[i] != ' ')
+		{
+			(*data)->full_cmd[j]->cmd[i + 1] = argv[i];
+			printf("Cmd[%i]: %c\n", i, (*data)->full_cmd[j]->cmd[i]);
+			i++;
+		}
+		(*data)->full_cmd[j]->cmd[i + i] = '\0';
+	}
+	printf("Cmd[%i]: %s\n", j, (*data)->full_cmd[j]->cmd);
+}
+
+void	parse_envp_path(char **envp, t_pipex_strt *data, int j)
+{
+	int i;
+
+	i = 0;
+	if (envp[i] == NULL)
+	{
+		put_error(NO_PATH, "env");
+		data->full_cmd[j]->skip = true;
+		return ;
+	}	
+	while (envp[i] && ft_strncmp("PATH=", envp[i], 5) != 0)
+		i++;
+	if (ft_strncmp("PATH=", envp[i], 5) != 0)
+	{
+		put_error(NO_PATH, "env");
+		data->full_cmd[j]->skip = true;
+		return ;
+	}
+	data->full_cmd[j]->path = ft_split(envp[i] + 5, ':');
+	i = 0;
+	while (data->full_cmd[j]->path[i])
+	{
+		printf("Path[%i]: %s\n", i, data->full_cmd[j]->path[i]);
 		i++;
 	}
 }
 
-void	parse_flags(char *argv, t_struct *data, int j);
-{
-	char	*space_pos;
+/* I parse **envp to get the path to commands in my struct (*data)->cmd_path
+I also allocate commands from the terminal input to my struct, specifically
+to the (*data)->cmd_argv.*/
 
-	space_pos = 
-	data->full_cmd[j]->flag = ft_strchr(argv, " ");
-	data->full_cmd[j]->cmd = ft_substr(argv, 0, ft_strlen(argv - data->full_cmd[j]->flag));
-}
-
-// how to handle "wc -l" input?
-// struct pointer to a pointer
-void	parse_input_cmd(int argc, char **argv, t_struct **data)
+void	parse_input(int argc, char **argv, char **envp, t_pipex_strt **data)
 {
 	int	i;
 	int	j;
@@ -68,57 +111,20 @@ void	parse_input_cmd(int argc, char **argv, t_struct **data)
 	j = 0;
 	(*data)->full_cmd = malloc(sizeof(t_cmd_strt *) * (argc - i));
 	if (!(*data)->full_cmd)
-		pipex_exit(*data, NO_MEMORY);
+		pipex_exit(*data, NO_MEMORY, NULL);
 	while(i < argc - 1)
 	{
-		(*data)->full_cmd[j] = malloc(sizeof(t_cmd_strt));
-		if (!(*data)->full_cmd[j])
-			pipex_exit(*data, NO_MEMORY);
-		if (ft_strchr(argv[i], " ") != NULL)
-			parse_flags(argv[i], *data, j);
+		cmd_strt_init(data, j);
+		if (argv[i][0] == '/') // handling absolute path
+			(*data)->full_cmd[j]->cmd = strdup(argv[i]);
 		else
-			(*data)->full_cmd[j]->flag = NULL;
-			(*data)->full_cmd[j]->cmd = ft_strdup(argv[i]);
+		{
+			parse_envp_path(envp, *data, j);
+			parse_input_cmd(argv[i], data, j);
+		}
+		check_input_cmd(data, j);
 		j++;
 		i++;
 	}
 	(*data)->full_cmd[j] = NULL;
-}
-
-void	parse_envp_path(char **envp, t_struct **data)
-{
-	int i;
-
-	i = 0;
-	if (envp[i] == NULL)
-		pipex_exit(*data, NO_PATH);
-	while (envp[i] && ft_strncmp("PATH=", envp[i], 5) != 0)
-		i++;
-	if (ft_strncmp("PATH=", envp[i], 5) != 0)
-		pipex_exit(*data, NO_PATH);
-	(*data)->cmd_path = ft_split(envp[i] + 5, ':');
-	i = 0;
-	while ((*data)->cmd_path[i])
-	{
-		(*data)->cmd_path[i] = ft_strjoin_modified((*data)->cmd_path[i], "/");
-		i++;
-	}
-	// DON'T FORGET TO DELETE
-	// i = 0;
-	// while((*data)->cmd_path[i])
-	// {
-	// 	printf("Path[%i]: %s\n", i, (*data)->cmd_path[i]);
-	// 	i++;
-	// }
-}
-
-/* I parse **envp to get the path to commands in my struct (*data)->cmd_path
-I also allocate commands from the terminal input to my struct, specifically
-to the (*data)->cmd_argv.*/
-
-void	parse_input(int argc, char **argv, char **envp, t_struct **data)
-{
-	parse_envp_path(envp, data);
-	parse_input_cmd(argc, argv, data);
-	check_input_cmd(data);
 }

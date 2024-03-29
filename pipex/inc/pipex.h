@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/27 12:26:37 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/29 19:33:07 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h> // can I use this?
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h> // needed?
 # include <sys/types.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 
 
 enum e_pipex_error
@@ -40,23 +42,28 @@ enum e_pipex_error
 
 typedef struct s_cmd_strt
 {
+	char		**path;
 	char		*cmd;
 	char		*flag;
+	bool		skip;
 }	t_cmd_strt;
 
-typedef struct s_struct
+typedef struct s_pipex_strt
 {
-	char		**cmd_path;
 	t_cmd_strt 	**full_cmd;
 	pid_t		pid1;
 	pid_t		pid2;
 	int			infile;
 	int			outfile;
-}	t_struct;
+	bool		infile_valid;
+	bool		outfile_valid;
+}	t_pipex_strt;
 
-void	pipex_exit(t_struct *data, int errno);
-void	put_error(int errno);
-void	parse_input(int argc, char **argv, char **envp, t_struct **data);
-void	data_init(t_struct **data);
+void	pipex_exit(t_pipex_strt *data, int errno, char *argument);
+void	put_error(int errno, char *argument);
+void	parse_input(int argc, char **argv, char **envp, t_pipex_strt **data);
+void	data_init(t_pipex_strt **data);
+void	cmd_strt_init(t_pipex_strt **data, int j);
+void	check_files(int argc, char **argv, t_pipex_strt **data);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+         #
+#    By: srudman <srudman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/25 20:17:04 by srudman          ###   ########.fr        #
+#    Updated: 2024/03/29 19:23:43 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ_DIR_BONUS = obj_bonus
 LIBFT_DIR = ./libft
 PRINTF_DIR = ./ft_printf
 
-SRCS = 		src/main.c src/struct_utils.c src/parsing.c
+SRCS = 		src/main.c src/struct_utils.c src/parsing.c src/error_handling.c
 SRCS_BONUS = 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRC_DIR_BONUS)/%.c=$(OBJ_DIR_BONUS)/%.o)
@@ -34,7 +34,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make --directory=$(LIBFT_DIR)
 	@make --directory=$(PRINTF_DIR)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -47,7 +47,7 @@ bonus: $(NAME_BONUS)
 $(NAME_BONUS): $(OBJS_BONUS)
 	@make --directory=$(LIBFT_DIR)
 	@make --directory=$(PRINTF_DIR)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -o $(NAME_BONUS)
 
 $(OBJ_DIR_BONUS)/%.o: $(SRC_DIR_BONUS)/%.c | $(OBJ_DIR_BONUS)
 	$(CC) $(CFLAGS) -c $< -o $@

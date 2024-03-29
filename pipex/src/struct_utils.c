@@ -3,42 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/27 12:26:33 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/29 19:29:57 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
+void	cmd_strt_init(t_pipex_strt **data, int j)
+{
+	(*data)->full_cmd[j] = malloc(sizeof(t_cmd_strt));
+	if (!(*data)->full_cmd[j])
+		pipex_exit(*data, NO_MEMORY, NULL);
+	(*data)->full_cmd[j]->path = NULL;
+	(*data)->full_cmd[j]->cmd = NULL;
+	(*data)->full_cmd[j]->flag = NULL;
+	(*data)->full_cmd[j]->skip = false;
+}
+
 /* I initialise my struct called 'data'. Most of it's variables I set to NULL or
 to an invalid file descriptor. This is to avoid undefined behaviour laer on. */
 
-void	data_init(t_struct **data)
+void	data_init(t_pipex_strt **data)
 {
-	int	i;
-
-	*data = malloc(sizeof(t_struct));
+	*data = malloc(sizeof(t_pipex_strt));
 	if (!*data)
 	{
 		free(*data);
-		put_error(NO_MEMORY);
+		put_error(NO_MEMORY, NULL);
 		exit(0);
 	}
-	(*data)->cmd_path = NULL;
+	(*data)->full_cmd = NULL;
 	(*data)->infile = -1;
-	(*data)->outfile = -1;	
-	i = 0;
+	(*data)->outfile = -1;
+	(*data)->infile_valid = true;
+	(*data)->outfile_valid = true;
 }
 
-/* Also, it was crucial to save most info on a t_struct *data 
+/* Also, it was crucial to save most info on a t_pipex_strt *data 
 so that variables could be much more easily accessible and memory
 management as well. */
 
-void	free_data(t_struct *data)
+void	free_data(t_pipex_strt *data)
 {
 	int	i;
+	int j;
 
 	if (data == NULL)
 		return ;
@@ -48,13 +59,7 @@ void	free_data(t_struct *data)
 	if (data->outfile >= 0)
 		close(data->outfile);
 	i = 0;
-	if (data->cmd_path != NULL)
-	{
-		while (data->cmd_path[i])
-			free(data->cmd_path[i++]);
-		free(data->cmd_path);
-	}
-	i = 0;
+	j = 0;
 	if (data->full_cmd != NULL)
 	{
 		while (data->full_cmd[i])
@@ -62,7 +67,13 @@ void	free_data(t_struct *data)
 			if (data->full_cmd[i]->cmd != NULL)
 				free(data->full_cmd[i]->cmd);
 			if (data->full_cmd[i]->flag != NULL)
-				free(data->full_cmd[i]->flag);			
+				free(data->full_cmd[i]->flag);
+			if (data->full_cmd[i]->path[j] != NULL)
+			{
+				while (data->full_cmd[i]->path[j])
+					free(data->full_cmd[i]->path[j++]);
+				free(data->full_cmd[i]->path);
+			}		
 			free(data->full_cmd[i]);
 			i++;
 		}
@@ -71,63 +82,10 @@ void	free_data(t_struct *data)
 	free(data);
 }
 
-// void	free_data(t_struct *data)
-// {
-// 	int	i;
-
-// 	if (data == NULL)
-// 		return ;
-// 	close(STDIN_FILENO); // learn this shit, is there a way to know if they are open?
-// 	if (data->infile >= 0)
-// 		close(data->infile);
-// 	if (data->outfile >= 0)
-// 		close(data->outfile);
-// 	i = 0;
-// 	if (data->cmd_path != NULL)
-// 	{
-// 		while (data->cmd_path[i])
-// 			free(data->cmd_path[i++]);
-// 		free(data->cmd_path);
-// 	}
-// 	i = 0;
-// 	if (data->cmd_argv != NULL)
-// 	{
-// 		while (data->cmd_argv[i])
-// 			free(data->cmd_argv[i++]);
-// 		free(data->cmd_argv);
-// 	}
-// 	free(data);
-// }
-
-// deal with freaking errors later
-void	put_error(int err)
-{
-	if (err == END)
-		return ;
-	if (err == INV_ARGS)
-		ft_putstr_fd("Error: Invalid arguments\n", 2);
-	if (err == CMD_NOT_FOUND)
-		ft_putstr_fd("Error: Command not found\n", 2);
-	if (err == NO_FILE || err == NO_PERM)
-		perror("Error");
-	if (err == NO_MEMORY)
-		ft_putstr_fd("Error: Memory allocation failed\n", 2);
-	if (err == PIPE_ERR)
-		ft_putstr_fd("Error: Pipe error\n", 2);
-	if (err == DUP_ERR)
-		ft_putstr_fd("Error: Dup error\n", 2);
-	if (err == FORK_ERR)
-		ft_putstr_fd("Error: Fork error\n", 2);
-	if (err == NO_PATH)
-		ft_putstr_fd("Error: PATH not found\n", 2);
-	if (err == CMD_FAIL)
-		ft_putstr_fd("Error: Command failed\n", 2);
-}
-
-void	pipex_exit(t_struct *data, int errno)
+void	pipex_exit(t_pipex_strt *data, int errno, char *argument)
 {
 	if (errno <= 1)
-		put_error(errno);
+		put_error(errno, argument);
 	free_data(data);
 	exit(1);
 }

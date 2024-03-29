@@ -1,0 +1,15 @@
+total 76
+drwxr-xr-x  9 srudman srudman  4096 Mar 29 15:04 .
+drwxr-xr-x 11 srudman srudman  4096 Mar 24 00:17 ..
+drwxr-xr-x  2 srudman srudman  4096 Mar 29 15:04 ft_printf
+drwxr-xr-x  2 srudman srudman  4096 Mar 28 23:33 inc
+drwxr-xr-x  2 srudman srudman  4096 Mar 29 15:04 libft
+-rw-r--r--  1 srudman srudman  2175 Mar 29 14:32 Makefile
+drwxr-xr-x  2 srudman srudman  4096 Mar 29 15:04 obj
+--w-------  1 srudman srudman     0 Mar 29 15:07 output_file
+-rwxr-xr-x  1 srudman srudman 28704 Mar 29 15:04 pipex
+-rw-r--r--  1 srudman srudman  3995 Mar 28 23:33 pipex_notes.txt
+-rw-r--r--  1 srudman srudman     0 Mar 29 15:05 something
+drwxr-xr-x  2 srudman srudman  4096 Mar 28 23:33 src
+drwxr-xr-x  2 srudman srudman  4096 Mar 28 23:33 src_bonus.c
+drwxr-xr-x  2 srudman srudman  4096 Mar 28 23:33 .vscode

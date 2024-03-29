@@ -68,3 +68,17 @@ https://github.com/tolmvad/pipex/tree/master
 
 TEST:
 https://techy.asia/posts/how-to-solve-pipex/
+
+MOST COMMON MISTAKES WITH PIPEX:
+1. Infile is not readable or doesn't exit -> Pipex should just skip the first command, but it NEEDS
+to execute the 2nd command.
+2. Outfile is not writable -> Pipex should just skip the last command, but it NEEDS
+to execute all the previous commands.
+3. Handle for when envp does not contain PATH for the fisrt command but it doesn for the second
+srudman@GWTC71427:~/mami_pokazat/pipex$ env -i PATH= < pipex_notes.txt sleep 5 | ls > test_file
+env: ‘sleep’: No such file or directory
+srudman@GWTC71427:~/mami_pokazat/pipex$ env -i PATH= < pipex_notes.txt ls | sleep > test_file
+sleep: env: missing operand‘ls’
+Try 'sleep --help' for more information.
+: No such file or directory
+The second one should still execute
