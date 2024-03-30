@@ -6,11 +6,29 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:26:57 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 14:18:50 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 19:36:27 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
+
+/* This function is executed after parsing has taken place. It checks if the 
+parsed command is valid. If the command is not valid, it is flagged to be 
+skipped. Additionally, if the infile and outfile are already flagged as
+invalid, the function does not return an error for the command being invalid.
+This is because the terminal command only reports on the infile/outfile 
+errors in that instance and does not report other errors. */
+
+void 	check_input_cmd(t_pipex_strt *data, int j, int i, int argc)
+{
+	if (access(data->full_cmd[j]->cmd, F_OK) == -1)
+	{
+		data->full_cmd[j]->skip = true;
+		if (!((j == 0 && data->infile_valid == false) 
+			|| (i == argc - 2 && data->outfile_valid == false)))
+			put_error(CMD_NOT_FOUND, data->full_cmd[j]->cmd + 1);
+	}
+}
 
 // deal with freaking errors later
 // problem, printf does not print into STDERR
@@ -28,7 +46,7 @@ void	put_error(int err, char *argument)
 	else
 		ft_putstr_fd("Error: ", 2);
 	if (err == INV_ARGS)
-		ft_putstr_fd("Invalid arguments\n", 2);
+		ft_putstr_fd("Invalid argument\n", 2);
 	if (err == CMD_NOT_FOUND)
         ft_printf("%s: command not found\n", argument);
 	if (err == NO_FILE)
@@ -50,7 +68,7 @@ void	put_error(int err, char *argument)
 	if (err == FORK_ERR)
 		ft_putstr_fd("Fork error\n", 2);
 	if (err == NO_PATH)
-		ft_putstr_fd("PATH not found\n", 2);
+		ft_printf("%s: PATH not found\n", argument);
 	if (err == CMD_FAIL)
 		ft_putstr_fd("Command failed\n", 2);
     // Restore the original stdout

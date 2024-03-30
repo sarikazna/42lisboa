@@ -6,31 +6,31 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 13:59:31 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 19:31:10 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-void 	check_input_cmd(t_pipex_strt **data, int j)
+void	ft_concatinate(t_pipex_strt *data, int j)
 {
 	int	i;
 	char *tmp_cmd;
 
 	i = 0;
 	tmp_cmd = NULL;
-	while ((*data)->full_cmd[j]->path[i])
+	while (data->full_cmd[j]->path[i])
 	{
-		tmp_cmd = ft_strjoin((*data)->full_cmd[j]->path[i], (*data)->full_cmd[j]->cmd);
+		tmp_cmd = ft_strjoin(data->full_cmd[j]->path[i], data->full_cmd[j]->cmd);
 		if (!tmp_cmd)
 		{
 			free(tmp_cmd);
-			pipex_exit(*data, NO_MEMORY, NULL);
+			pipex_exit(data, NO_MEMORY, NULL);
 		}
 		if (access(tmp_cmd, F_OK) == 0)
 		{
-			free((*data)->full_cmd[j]->cmd);
-			(*data)->full_cmd[j]->cmd = ft_strdup(tmp_cmd);
+			free(data->full_cmd[j]->cmd);
+			data->full_cmd[j]->cmd = ft_strdup(tmp_cmd);
 			free(tmp_cmd);
 			break ;
 		}
@@ -38,39 +38,37 @@ void 	check_input_cmd(t_pipex_strt **data, int j)
 			free(tmp_cmd);
 		i++;
 	}
-	if (access((*data)->full_cmd[j]->cmd, F_OK) == -1)
-		put_error(CMD_NOT_FOUND, (*data)->full_cmd[j]->cmd + 1);
 }
 
-void	parse_input_cmd(char *argv, t_pipex_strt **data, int j)
+void	parse_input_cmd(char *argv, t_pipex_strt *data, int j)
 {
 	int i;
 	
 	i = 0;
 	if (ft_strchr(argv, ' ') == NULL)
-		(*data)->full_cmd[j]->cmd = ft_strjoin("/", argv);
+		data->full_cmd[j]->cmd = ft_strjoin("/", argv);
 	else
 	{
-		(*data)->full_cmd[j]->flag = (ft_strchr(argv, ' ') + 1);
+		data->full_cmd[j]->flag = (ft_strchr(argv, ' ') + 1);
 		while (argv[i] && argv[i] != ' ')
 			i++;
-		(*data)->full_cmd[j]->cmd = malloc(sizeof(char) * (i + 2));
-		if (!(*data)->full_cmd[j]->cmd)
-			pipex_exit(*data, NO_MEMORY, NULL);
+		data->full_cmd[j]->cmd = malloc(sizeof(char) * (i + 2));
+		if (!data->full_cmd[j]->cmd)
+			pipex_exit(data, NO_MEMORY, NULL);
 		i = 0;
-		(*data)->full_cmd[j]->cmd[i] = '/';
+		data->full_cmd[j]->cmd[i] = '/';
 		while (argv[i] && argv[i] != ' ')
 		{
-			(*data)->full_cmd[j]->cmd[i + 1] = argv[i];
-			// printf("Cmd[%i]: %c\n", i, (*data)->full_cmd[j]->cmd[i]);
+			data->full_cmd[j]->cmd[i + 1] = argv[i];
+			// printf("Cmd[%i]: %c\n", i, data->full_cmd[j]->cmd[i]);
 			i++;
 		}
-		(*data)->full_cmd[j]->cmd[i + 1] = '\0';
+		data->full_cmd[j]->cmd[i + 1] = '\0';
 	}
-	// printf("Cmd[%i]: %s\n", j, (*data)->full_cmd[j]->cmd);
+	//printf("Cmd[%i]: %s\n", j, data->full_cmd[j]->cmd);
 }
 
-void	parse_envp_path(char **envp, t_pipex_strt *data, int j)
+int	parse_envp_path(char **envp, t_pipex_strt *data, int j)
 {
 	int i;
 
@@ -79,23 +77,24 @@ void	parse_envp_path(char **envp, t_pipex_strt *data, int j)
 	{
 		put_error(NO_PATH, "env");
 		data->full_cmd[j]->skip = true;
-		return ;
-	}	
+		return (0);
+	}
 	while (envp[i] && ft_strncmp("PATH=", envp[i], 5) != 0)
 		i++;
 	if (ft_strncmp("PATH=", envp[i], 5) != 0)
 	{
 		put_error(NO_PATH, "env");
 		data->full_cmd[j]->skip = true;
-		return ;
+		return (0);
 	}
 	data->full_cmd[j]->path = ft_split(envp[i] + 5, ':');
-	// i = 0;
-	// while (data->full_cmd[j]->path[i])
-	// {
-	// 	printf("Path[%i]: %s\n", i, data->full_cmd[j]->path[i]);
-	// 	i++;
-	// }
+	i = 0;
+	while (data->full_cmd[j]->path[i])
+	{
+		// printf("Path[%i]: %s\n", i, data->full_cmd[j]->path[i]);
+		i++;
+	}
+	return (1);
 }
 
 /* I parse **envp to get the path to commands in my struct (*data)->cmd_path
@@ -119,12 +118,12 @@ void	parse_input(int argc, char **argv, char **envp, t_pipex_strt **data)
 			(*data)->full_cmd[j]->cmd = strdup(argv[i]);
 		else
 		{
-			parse_envp_path(envp, *data, j);
-			parse_input_cmd(argv[i], data, j);
+			if (!parse_envp_path(envp, *data, j))
+				break ;
+			parse_input_cmd(argv[i], *data, j);
+			ft_concatinate(data, j);
 		}
-		check_input_cmd(data, j);
-		j++;
-		i++;
+		check_input_cmd(*data, j++, i++, argc);
 	}
 	(*data)->full_cmd[j] = NULL;
 }
