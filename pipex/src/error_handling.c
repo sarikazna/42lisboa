@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:26:57 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 19:36:27 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 21:22:04 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ void 	check_input_cmd(t_pipex_strt *data, int j, int i, int argc)
 		data->full_cmd[j]->skip = true;
 		if (!((j == 0 && data->infile_valid == false) 
 			|| (i == argc - 2 && data->outfile_valid == false)))
+		{
 			put_error(CMD_NOT_FOUND, data->full_cmd[j]->cmd + 1);
+			// if (errno)
+			// 	perror("");
+		}
+			
 	}
 }
 
@@ -35,12 +40,10 @@ void 	check_input_cmd(t_pipex_strt *data, int j, int i, int argc)
 void	put_error(int err, char *argument)
 {
 	// Save the file descriptor for stdout
-    int stdout_fd = dup(fileno(stdout));
-    
+	int stdout_fd = dup(fileno(stdout));
     // Redirect stdout to stderr
-    dup2(fileno(stderr), fileno(stdout));
-
-    // Now print error messages to stderr
+	dup2(fileno(stderr), fileno(stdout));
+	// Now print error messages to stderr
 	if (err == END)
 		return ;
 	else
@@ -48,7 +51,7 @@ void	put_error(int err, char *argument)
 	if (err == INV_ARGS)
 		ft_putstr_fd("Invalid argument\n", 2);
 	if (err == CMD_NOT_FOUND)
-        ft_printf("%s: command not found\n", argument);
+		ft_printf("%s: command not found\n", argument);
 	if (err == NO_FILE)
 	{
 		ft_printf("%s: No such file or directory\n", argument);
@@ -71,12 +74,12 @@ void	put_error(int err, char *argument)
 		ft_printf("%s: PATH not found\n", argument);
 	if (err == CMD_FAIL)
 		ft_putstr_fd("Command failed\n", 2);
-    // Restore the original stdout
-    fflush(stdout); // Flush stdout before redirecting
-    dup2(stdout_fd, fileno(stdout));
+	// Restore the original stdout
+	fflush(stdout); // Flush stdout before redirecting
+	dup2(stdout_fd, fileno(stdout));
 
-    // Close the duplicate file descriptor
-    close(stdout_fd);
+	// Close the duplicate file descriptor
+	close(stdout_fd);
 }
 
 void	check_files(int argc, char **argv, t_pipex_strt **data)
@@ -94,6 +97,7 @@ void	check_files(int argc, char **argv, t_pipex_strt **data)
 		(*data)->outfile_valid = false;
 		put_error(NO_PERM, argv[argc - 1]);
 	}
+	// Check  && argv[1][0] && argv[2][0] && argv[3][0] && argv[4][0])
 	// else if (access((argv[argc - 1]), F_OK) == -1)
 	// 	create the file
 }

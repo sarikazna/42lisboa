@@ -82,3 +82,8 @@ sleep: env: missing operand‘ls’
 Try 'sleep --help' for more information.
 : No such file or directory
 The second one should still execute
+4. All children have to execute at the same time.
+5. Unforntunally the program crashed with a empty command those are the cases that should work: valgrind --track-fds=yes ./pipex "Makefile" "" "cat" /dev/stdout // empty command valgrind --track-fds=yes env -i ./pipex "Makefile" "ls" "cat" /dev/stdout // env is null valgrind --track-fds=yes env -i ./pipex "Makefile" "ls" "cat" /dev/stdout // env is null ./pipex /dev/random "ls" "$ls" outfile ./pipex /dev/random "ls" "/bin/ls" outfile // WHEN THE COMMAND HAS A PATH INSIDE IT SHOULD WORK UNLESS ITS NOT A EXEC valgrind --track-fds=yes ./pipex "/dev/random" "cat" "head" /dev/stdout // dev random is unlimited file must be cutted after 10 lines of the file. Nice attempt, and good luck next time!
+6. check that you always have exactly 3 fds open (stdin, stderr, stdout).
+7. Check what happens with children (valgrind flag to monitor children) - all fds should be closed, no memory allocation.
+8. if you do here_doc - remember to check CTRL-D in the middle of line.

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 19:31:10 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 21:17:37 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	parse_input_cmd(char *argv, t_pipex_strt *data, int j)
 	int i;
 	
 	i = 0;
+	if (argv[0] == '\0')
+	{
+		put_error(CMD_NOT_FOUND, argv);
+		data->full_cmd[j]->skip = true;
+	}
 	if (ft_strchr(argv, ' ') == NULL)
 		data->full_cmd[j]->cmd = ft_strjoin("/", argv);
 	else
@@ -65,6 +70,7 @@ void	parse_input_cmd(char *argv, t_pipex_strt *data, int j)
 		}
 		data->full_cmd[j]->cmd[i + 1] = '\0';
 	}
+	ft_concatinate(data, j);
 	//printf("Cmd[%i]: %s\n", j, data->full_cmd[j]->cmd);
 }
 
@@ -121,7 +127,6 @@ void	parse_input(int argc, char **argv, char **envp, t_pipex_strt **data)
 			if (!parse_envp_path(envp, *data, j))
 				break ;
 			parse_input_cmd(argv[i], *data, j);
-			ft_concatinate(data, j);
 		}
 		check_input_cmd(*data, j++, i++, argc);
 	}

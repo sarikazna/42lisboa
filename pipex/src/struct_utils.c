@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 14:13:26 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 20:28:12 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,37 @@ void	data_init(t_pipex_strt **data)
 	(*data)->outfile_valid = true;
 }
 
+void	free_cmd_strt(t_pipex_strt *data)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (data->full_cmd[i])
+	{
+		if (data->full_cmd[i]->cmd != NULL)
+			free(data->full_cmd[i]->cmd);
+		// We never allocated memory so no need to free it
+		// if (data->full_cmd[i]->flag != NULL)
+		// 	free(data->full_cmd[i]->flag);
+		if (data->full_cmd[i]->path != NULL)
+		{
+			j = 0;
+			while (data->full_cmd[i]->path[j])
+				free(data->full_cmd[i]->path[j++]);
+			free(data->full_cmd[i]->path);
+		}		
+		free(data->full_cmd[i]);
+		i++;
+	}
+}
+
 /* Also, it was crucial to save most info on a t_pipex_strt *data 
 so that variables could be much more easily accessible and memory
 management as well. */
 
 void	free_data(t_pipex_strt *data)
 {
-	int	i;
-	int j;
-
 	if (data == NULL)
 		return ;
 	close(STDIN_FILENO); // learn this shit, is there a way to know if they are open?
@@ -58,25 +80,9 @@ void	free_data(t_pipex_strt *data)
 		close(data->infile);
 	if (data->outfile >= 0)
 		close(data->outfile);
-	i = 0;
 	if (data->full_cmd != NULL)
 	{
-		while (data->full_cmd[i])
-		{
-			if (data->full_cmd[i]->cmd != NULL)
-				free(data->full_cmd[i]->cmd);
-			// if (data->full_cmd[i]->flag != NULL) // We never allocated memory so no need to free it
-			// 	free(data->full_cmd[i]->flag);
-			if (data->full_cmd[i]->path != NULL)
-			{
-				j = 0;
-				while (data->full_cmd[i]->path[j])
-					free(data->full_cmd[i]->path[j++]);
-				free(data->full_cmd[i]->path);
-			}		
-			free(data->full_cmd[i]);
-			i++;
-		}
+		free_cmd_strt(data);
 		free(data->full_cmd);
 	}
 	free(data);
