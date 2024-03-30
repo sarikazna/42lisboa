@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:26:57 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/29 19:36:16 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 14:18:50 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	put_error(int err, char *argument)
 	if (err == INV_ARGS)
 		ft_putstr_fd("Invalid arguments\n", 2);
 	if (err == CMD_NOT_FOUND)
-        ft_printf("%s: Command not found\n", argument);
+        ft_printf("%s: command not found\n", argument);
 	if (err == NO_FILE)
 	{
 		ft_printf("%s: No such file or directory\n", argument);

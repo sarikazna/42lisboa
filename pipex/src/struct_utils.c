@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/29 19:29:57 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 14:13:26 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ void	free_data(t_pipex_strt *data)
 	if (data->outfile >= 0)
 		close(data->outfile);
 	i = 0;
-	j = 0;
 	if (data->full_cmd != NULL)
 	{
 		while (data->full_cmd[i])
 		{
 			if (data->full_cmd[i]->cmd != NULL)
 				free(data->full_cmd[i]->cmd);
-			if (data->full_cmd[i]->flag != NULL)
-				free(data->full_cmd[i]->flag);
-			if (data->full_cmd[i]->path[j] != NULL)
+			// if (data->full_cmd[i]->flag != NULL) // We never allocated memory so no need to free it
+			// 	free(data->full_cmd[i]->flag);
+			if (data->full_cmd[i]->path != NULL)
 			{
+				j = 0;
 				while (data->full_cmd[i]->path[j])
 					free(data->full_cmd[i]->path[j++]);
 				free(data->full_cmd[i]->path);
