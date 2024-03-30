@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:26:57 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 21:22:04 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 21:39:54 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,18 @@ invalid, the function does not return an error for the command being invalid.
 This is because the terminal command only reports on the infile/outfile 
 errors in that instance and does not report other errors. */
 
-void 	check_input_cmd(t_pipex_strt *data, int j, int i, int argc)
+void	check_input_cmd(t_pipex_strt *data, int j, int i, int argc)
 {
 	if (access(data->full_cmd[j]->cmd, F_OK) == -1)
 	{
 		data->full_cmd[j]->skip = true;
-		if (!((j == 0 && data->infile_valid == false) 
-			|| (i == argc - 2 && data->outfile_valid == false)))
+		if (!((j == 0 && data->infile_valid == false)
+				|| (i == argc - 2 && data->outfile_valid == false)))
 		{
 			put_error(CMD_NOT_FOUND, data->full_cmd[j]->cmd + 1);
 			// if (errno)
 			// 	perror("");
 		}
-			
 	}
 }
 
@@ -41,7 +40,7 @@ void	put_error(int err, char *argument)
 {
 	// Save the file descriptor for stdout
 	int stdout_fd = dup(fileno(stdout));
-    // Redirect stdout to stderr
+	// Redirect stdout to stderr
 	dup2(fileno(stderr), fileno(stdout));
 	// Now print error messages to stderr
 	if (err == END)
@@ -77,7 +76,6 @@ void	put_error(int err, char *argument)
 	// Restore the original stdout
 	fflush(stdout); // Flush stdout before redirecting
 	dup2(stdout_fd, fileno(stdout));
-
 	// Close the duplicate file descriptor
 	close(stdout_fd);
 }
@@ -90,14 +88,12 @@ void	check_files(int argc, char **argv, t_pipex_strt **data)
 		put_error(NO_PERM, argv[1]);
 	else if (!argv[1][0])
 		put_error(NO_FILE, "No such file or directory\n");
-	if (access((argv[1]), F_OK) == -1 || access((argv[1]), R_OK) == -1 || !argv[1][0])
+	if (access((argv[1]), F_OK) == -1 || access((argv[1]), R_OK) == -1
+		|| !argv[1][0])
 		(*data)->infile_valid = false;
 	if (access((argv[argc - 1]), W_OK) == -1)
 	{
 		(*data)->outfile_valid = false;
 		put_error(NO_PERM, argv[argc - 1]);
 	}
-	// Check  && argv[1][0] && argv[2][0] && argv[3][0] && argv[4][0])
-	// else if (access((argv[argc - 1]), F_OK) == -1)
-	// 	create the file
 }

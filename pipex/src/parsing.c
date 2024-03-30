@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 21:17:37 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 21:41:20 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	ft_concatinate(t_pipex_strt *data, int j)
 {
-	int	i;
-	char *tmp_cmd;
+	int		i;
+	char	*tmp_cmd;
 
 	i = 0;
 	tmp_cmd = NULL;
 	while (data->full_cmd[j]->path[i])
 	{
-		tmp_cmd = ft_strjoin(data->full_cmd[j]->path[i], data->full_cmd[j]->cmd);
+		tmp_cmd = ft_strjoin(data->full_cmd[j]->path[i],
+				data->full_cmd[j]->cmd);
 		if (!tmp_cmd)
 		{
 			free(tmp_cmd);
@@ -42,8 +43,8 @@ void	ft_concatinate(t_pipex_strt *data, int j)
 
 void	parse_input_cmd(char *argv, t_pipex_strt *data, int j)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (argv[0] == '\0')
 	{
@@ -76,7 +77,7 @@ void	parse_input_cmd(char *argv, t_pipex_strt *data, int j)
 
 int	parse_envp_path(char **envp, t_pipex_strt *data, int j)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (envp[i] == NULL)
@@ -111,13 +112,13 @@ void	parse_input(int argc, char **argv, char **envp, t_pipex_strt **data)
 {
 	int	i;
 	int	j;
-	
+
 	i = 2;
 	j = 0;
 	(*data)->full_cmd = malloc(sizeof(t_cmd_strt *) * (argc - i));
 	if (!(*data)->full_cmd)
 		pipex_exit(*data, NO_MEMORY, NULL);
-	while(i < argc - 1)
+	while (i < argc - 1)
 	{
 		cmd_strt_init(data, j);
 		if (argv[i][0] == '/') // handling absolute path

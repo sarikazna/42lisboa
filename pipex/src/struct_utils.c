@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 20:28:12 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 21:38:26 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	data_init(t_pipex_strt **data)
 void	free_cmd_strt(t_pipex_strt *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (data->full_cmd[i])
@@ -61,7 +61,7 @@ void	free_cmd_strt(t_pipex_strt *data)
 			while (data->full_cmd[i]->path[j])
 				free(data->full_cmd[i]->path[j++]);
 			free(data->full_cmd[i]->path);
-		}		
+		}
 		free(data->full_cmd[i]);
 		i++;
 	}
@@ -75,7 +75,7 @@ void	free_data(t_pipex_strt *data)
 {
 	if (data == NULL)
 		return ;
-	close(STDIN_FILENO); // learn this shit, is there a way to know if they are open?
+	close(STDIN_FILENO); // learn this shit
 	if (data->infile >= 0)
 		close(data->infile);
 	if (data->outfile >= 0)

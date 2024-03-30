@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 21:19:57 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 21:30:59 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
-# include <errno.h> // can I do that?
+// # include <errno.h> // can I do that?
 
 enum e_pipex_error
 {
@@ -50,7 +50,7 @@ typedef struct s_cmd_strt
 
 typedef struct s_pipex_strt
 {
-	t_cmd_strt 	**full_cmd;
+	t_cmd_strt	**full_cmd;
 	pid_t		pid1;
 	pid_t		pid2;
 	int			infile;
@@ -65,6 +65,6 @@ void	parse_input(int argc, char **argv, char **envp, t_pipex_strt **data);
 void	data_init(t_pipex_strt **data);
 void	cmd_strt_init(t_pipex_strt **data, int j);
 void	check_files(int argc, char **argv, t_pipex_strt **data);
-void 	check_input_cmd(t_pipex_strt *data, int j, int i, int argc);
+void	check_input_cmd(t_pipex_strt *data, int j, int i, int argc);
 
 #endif

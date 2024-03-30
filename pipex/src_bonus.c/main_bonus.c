@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srudman <srudman@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:08:04 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/25 22:25:33 by srudman          ###   ########.fr       */
+/*   Updated: 2024/03/30 21:41:04 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-    t_struct	*data;
-	
+	t_pipex_strt	*data;
+
 	data = NULL;
-	if (!(argc == 5 && argv[1][0] && argv[2][0] && argv[3][0] && argv[4][0]))
-		pipex_exit(data, INV_ARGS);
-	if (access((argv[1]), F_OK) == -1)
-		pipex_exit(data, NO_FILE);
-	if (access((argv[1]), R_OK) == -1)
-		pipex_exit(data, NO_PERM);
-    // Check if the output file is writable or can be created
 	data_init(&data);
+	if (!(argc == 5))
+		pipex_exit(data, INV_ARGS, argv[1]);
+	check_files(argc, argv, &data);
+	// Check if the output file exists, if not, how to create it
 	parse_input(argc, argv, envp, &data);
-    // Check if a pipe can be created
-	pipex_exit(data, END);
+	// pipex(&data);
+	// Check if a pipe can be created
+	pipex_exit(data, END, "Happy End\n");
 }
