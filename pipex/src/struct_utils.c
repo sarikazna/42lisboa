@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 21:38:26 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/07 20:46:55 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	data_init(t_pipex_strt **data)
 	(*data)->outfile = -1;
 	(*data)->infile_valid = true;
 	(*data)->outfile_valid = true;
+	(*data)->outfile_exists = true;
 }
 
 void	free_cmd_strt(t_pipex_strt *data)

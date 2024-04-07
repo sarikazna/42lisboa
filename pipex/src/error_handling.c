@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:26:57 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 21:39:54 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/07 20:46:22 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ void	check_files(int argc, char **argv, t_pipex_strt **data)
 	if (access((argv[1]), F_OK) == -1 || access((argv[1]), R_OK) == -1
 		|| !argv[1][0])
 		(*data)->infile_valid = false;
-	if (access((argv[argc - 1]), W_OK) == -1)
+	if (access((argv[argc - 1]), F_OK) == -1)
+		(*data)->outfile_exists = false;
+	else if (access((argv[argc - 1]), W_OK) == -1)
 	{
 		(*data)->outfile_valid = false;
 		put_error(NO_PERM, argv[argc - 1]);

@@ -6,16 +6,24 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 20:24:19 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 21:23:41 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/07 20:49:03 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
+void	open_files(t_pipex_strt *data)
+{
+	if (data->infile_valid == true)
+		(*data)->infile = open(O_WRONLY);
+	if (data->outfile_valid == false)
+		(*data)->infile = open( O_WRONLY | O_CREAT);
+	else if (data->outfile_valid == true)
+		(*data)->outfile = open(O_WRONLY);
+}
+
 void    pipex(t_pipex_strt **data)
 {
-	(*data)->infile = open();
-	(*data)->outfile = open();
 	pipe(int pipefd[2]);
 	(*data)->pid1 = fork(void);
 
