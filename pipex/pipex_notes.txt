@@ -2,7 +2,6 @@ PIPEX PROJECT INSTRUCTIONS: https://cdn.intra.42.fr/pdf/pdf/119143/en.subject.pd
 
 USEFUL RESOURCES:
 - Medium article: https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
-- Technical explanation: https://github.com/jdecorte-be/42-Pipex/blob/master/README.md
 - 2h video in Russian (left off at 40min): https://www.youtube.com/watch?v=7e_gExniT_Y
 - Creating and killing child processes: https://www.codequoi.com/en/creating-and-killing-child-processes-in-c/
 - Pipe: https://www.codequoi.com/en/pipe-an-inter-process-communication-method/
@@ -11,9 +10,9 @@ USEFUL RESOURCES:
 - Reactive article: https://reactive.so/post/42-a-comprehensive-guide-to-pipex
 - Video simulating pipe in C: https://www.youtube.com/watch?v=6xbLgZpOBi8
 - Video redirecting standerd output: https://www.youtube.com/watch?v=5fnVr-zH-SE
-- Chapter 1: https://medium.com/@lannur-s/pipex-42-chapter-1-metamorphosis-execve-1a4710ab8cb1
-- Chapter 2: https://medium.com/@lannur-s/what-is-a-fork-e0b74e4bb821
-- Chapter 3: https://medium.com/@lannur-s/pipex-42-chapter-3-mastering-execve-using-fork-f93906a79d7c
+- [done] Chapter 1: https://medium.com/@lannur-s/pipex-42-chapter-1-metamorphosis-execve-1a4710ab8cb1
+- [done] Chapter 2: https://medium.com/@lannur-s/what-is-a-fork-e0b74e4bb821
+- [done] Chapter 3: https://medium.com/@lannur-s/pipex-42-chapter-3-mastering-execve-using-fork-f93906a79d7c
 - Chapter 4: https://medium.com/@lannur-s/pipex-42-chapter-4-pipe-5b4afa4a37b7
 - Little overview (contains bonus part): https://gitlab.com/madebypixel02/pipex
 - Short explanation [really good]: https://techy.asia/posts/how-to-solve-pipex/
@@ -27,6 +26,9 @@ CODING PROCESS:
 2. Create a child process, everz child runts the command
 3. The pipe sends the output to the partner process. The parent waits for the child process to finish.
 4. Parent then redirects the rading end of the pipe back to the stin for th next command, closing unused file discriptors.
+
+The outfile needs to be opened with different permission depending on whether or not here_doc was used.
+Special edge cases: /dev/urandom and /dev/stdin
 
 POTENTIAL ISSUES:
 - leaving one file open longer than usual can really break things
@@ -47,6 +49,7 @@ fork() creates a new process by duplicating the calling process. The new process
 the child process. The calling process is referred to as the parent process.
 On success, the PID of the child process is returned in the parent, and 0 is returned in the child.
 On failure, -1 is returned in the parent, no child process is created, and errno is  set  appropriately.
+Also: fork() splits the process in two parallel, simultaneous processes, that happen at the same time.
 
 int pipe(int pipefd[2])
 pipefd[0] refers to the read end of the pipe.  pipefd[1] refers to the write end of the pipe. 

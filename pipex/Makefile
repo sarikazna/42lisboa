@@ -6,7 +6,7 @@
 #    By: srudman <srudman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:51:52 by srudman           #+#    #+#              #
-#    Updated: 2024/03/29 19:23:43 by srudman          ###   ########.fr        #
+#    Updated: 2024/04/12 15:52:55 by srudman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ OBJ_DIR_BONUS = obj_bonus
 LIBFT_DIR = ./libft
 PRINTF_DIR = ./ft_printf
 
-SRCS = 		src/main.c src/struct_utils.c src/parsing.c src/error_handling.c
+SRCS = 		src/main.c src/struct_utils.c src/parsing.c src/error_handling.c \
+			src/pipex.c
 SRCS_BONUS = 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRC_DIR_BONUS)/%.c=$(OBJ_DIR_BONUS)/%.o)

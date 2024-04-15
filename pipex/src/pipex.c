@@ -6,34 +6,69 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 20:24:19 by srudman           #+#    #+#             */
-/*   Updated: 2024/04/07 20:49:03 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/15 15:37:30 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-void	open_files(t_pipex_strt *data)
+int	execute(t_cmd_strt *full_cmd, char **envp)
 {
-	if (data->infile_valid == true)
-		(*data)->infile = open(O_WRONLY);
-	if (data->outfile_valid == false)
-		(*data)->infile = open( O_WRONLY | O_CREAT);
-	else if (data->outfile_valid == true)
-		(*data)->outfile = open(O_WRONLY);
+	return(execve(full_cmd->cmd, full_cmd->flag, envp));
 }
 
-void    pipex(t_pipex_strt **data)
+void	pipex(t_pipex_strt **data, char **envp)
 {
-	pipe(int pipefd[2]);
-	(*data)->pid1 = fork(void);
+	int pipefd[2];
+	int	status;
+	pid_t	pid;
 
-	// In child
-	dup2();
-	close end[0];
-	execve((*data)->full_cmd[i]->cmd);
-
-	// In parent
-	dup2();
-	close end[1];
-	execve((*data)->full_cmd[i]->cmd);
+	if (pipe(pipefd) == -1)
+		pipex_exit(*data, PIPE_ERR, "pipe");
+	pid = fork();
+	if (pid < 0)
+		pipex_exit(*data, FORK_ERR, "Fork failed");
+	if (!pid)
+	{
+		if ((*data)->infile_valid == true)
+		{
+			if (dup2((*data)->infile, STDIN_FILENO) < 0)
+			{
+				put_error(DUP_ERR, "dup2 failed");
+				// return ;
+			}
+			if (dup2(pipefd[1], STDOUT_FILENO) < 0)
+			{
+				put_error(DUP_ERR, "dup2 failed");
+				// return ;
+			}
+			close (pipefd[0]);
+			close ((*data)->infile);
+			status = execute((*data)->full_cmd[0], envp);
+			waitpid(pid, NULL, 0);
+		}
+	}
+	else
+	{
+		// waitpid(child pid to wait for (return value of fork), pointer to integer that stores child's exit status, 0);
+		if ((*data)->outfile_valid == true)
+		{
+			if (dup2((*data)->outfile, STDOUT_FILENO) < 0)
+			{
+				put_error(DUP_ERR, "dup2 failed");
+				// return ;
+			}
+			if (dup2(pipefd[0], STDIN_FILENO) < 0)
+			{
+				put_error(DUP_ERR, "dup2 failed");
+				// return ;
+			}
+			close (pipefd[1]);
+			close ((*data)->outfile);
+			execute((*data)->full_cmd[1], envp);
+			waitpid(pid, &status, 0);
+		}
+		// WHERE TO PUT WAITPID?
+		// HERE: https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
+	}
 }

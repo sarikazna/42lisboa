@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 20:13:13 by srudman           #+#    #+#             */
-/*   Updated: 2024/03/30 21:41:20 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/15 13:14:00 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,21 @@ void	parse_input_cmd(char *argv, t_pipex_strt *data, int j)
 		put_error(CMD_NOT_FOUND, argv);
 		data->full_cmd[j]->skip = true;
 	}
-	if (ft_strchr(argv, ' ') == NULL)
-		data->full_cmd[j]->cmd = ft_strjoin("/", argv);
-	else
+	data->full_cmd[j]->flag = ft_split(argv, ' ');
+	while (argv[i] && argv[i] != ' ')
+		i++;
+	data->full_cmd[j]->cmd = malloc(sizeof(char) * (i + 2));
+	if (!data->full_cmd[j]->cmd)
+		pipex_exit(data, NO_MEMORY, NULL);
+	i = 0;
+	data->full_cmd[j]->cmd[i] = '/';
+	while (argv[i] && argv[i] != ' ')
 	{
-		data->full_cmd[j]->flag = (ft_strchr(argv, ' ') + 1);
-		while (argv[i] && argv[i] != ' ')
-			i++;
-		data->full_cmd[j]->cmd = malloc(sizeof(char) * (i + 2));
-		if (!data->full_cmd[j]->cmd)
-			pipex_exit(data, NO_MEMORY, NULL);
-		i = 0;
-		data->full_cmd[j]->cmd[i] = '/';
-		while (argv[i] && argv[i] != ' ')
-		{
-			data->full_cmd[j]->cmd[i + 1] = argv[i];
-			// printf("Cmd[%i]: %c\n", i, data->full_cmd[j]->cmd[i]);
-			i++;
-		}
-		data->full_cmd[j]->cmd[i + 1] = '\0';
+		data->full_cmd[j]->cmd[i + 1] = argv[i];
+		i++;
 	}
+	data->full_cmd[j]->cmd[i + 1] = '\0';
 	ft_concatinate(data, j);
-	//printf("Cmd[%i]: %s\n", j, data->full_cmd[j]->cmd);
 }
 
 int	parse_envp_path(char **envp, t_pipex_strt *data, int j)
@@ -96,11 +89,6 @@ int	parse_envp_path(char **envp, t_pipex_strt *data, int j)
 	}
 	data->full_cmd[j]->path = ft_split(envp[i] + 5, ':');
 	i = 0;
-	while (data->full_cmd[j]->path[i])
-	{
-		// printf("Path[%i]: %s\n", i, data->full_cmd[j]->path[i]);
-		i++;
-	}
 	return (1);
 }
 

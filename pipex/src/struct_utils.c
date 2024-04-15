@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/04/07 20:46:55 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/15 14:45:46 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	cmd_strt_init(t_pipex_strt **data, int j)
 	(*data)->full_cmd[j]->skip = false;
 }
 
-/* I initialise my struct called 'data'. Most of it's variables I set to NULL or
-to an invalid file descriptor. This is to avoid undefined behaviour laer on. */
+/* I initialise my struct called 'data'. Most of it's variables I set to NULL
+or to an invalid file descriptor. This is to avoid undefined behaviour 
+later on. */
 
 void	data_init(t_pipex_strt **data)
 {
@@ -40,7 +41,6 @@ void	data_init(t_pipex_strt **data)
 	(*data)->outfile = -1;
 	(*data)->infile_valid = true;
 	(*data)->outfile_valid = true;
-	(*data)->outfile_exists = true;
 }
 
 void	free_cmd_strt(t_pipex_strt *data)
@@ -53,15 +53,19 @@ void	free_cmd_strt(t_pipex_strt *data)
 	{
 		if (data->full_cmd[i]->cmd != NULL)
 			free(data->full_cmd[i]->cmd);
-		// We never allocated memory so no need to free it
-		// if (data->full_cmd[i]->flag != NULL)
-		// 	free(data->full_cmd[i]->flag);
 		if (data->full_cmd[i]->path != NULL)
 		{
 			j = 0;
 			while (data->full_cmd[i]->path[j])
 				free(data->full_cmd[i]->path[j++]);
 			free(data->full_cmd[i]->path);
+		}
+		if (data->full_cmd[i]->flag != NULL)
+		{
+			j = 0;
+			while (data->full_cmd[i]->flag[j])
+				free(data->full_cmd[i]->flag[j++]);
+			free(data->full_cmd[i]->flag);
 		}
 		free(data->full_cmd[i]);
 		i++;
@@ -89,10 +93,10 @@ void	free_data(t_pipex_strt *data)
 	free(data);
 }
 
-void	pipex_exit(t_pipex_strt *data, int errno, char *argument)
+void	pipex_exit(t_pipex_strt *data, int err, char *argument)
 {
-	if (errno <= 1)
-		put_error(errno, argument);
+	if (err <= 1 || errno)
+		put_error(err, argument);
 	free_data(data);
 	exit(1);
 }

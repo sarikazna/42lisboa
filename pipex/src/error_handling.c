@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:26:57 by srudman           #+#    #+#             */
-/*   Updated: 2024/04/07 20:46:22 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/08 18:50:15 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,28 @@ void	put_error(int err, char *argument)
 		return ;
 	else
 		ft_putstr_fd("Error: ", 2);
-	if (err == INV_ARGS)
-		ft_putstr_fd("Invalid argument\n", 2);
-	if (err == CMD_NOT_FOUND)
-		ft_printf("%s: command not found\n", argument);
-	if (err == NO_FILE)
-	{
-		ft_printf("%s: No such file or directory\n", argument);
-		// perror("");
-	}
-	if (err == NO_PERM)
+	if (errno)
 	{
 		ft_printf("%s: ", argument);
 		perror("");
 	}
-	if (err == NO_MEMORY)
+	else if (err == INV_ARGS)
+		ft_putstr_fd("Invalid argument\n", 2);
+	else if (err == CMD_NOT_FOUND)
+		ft_printf("%s: command not found\n", argument);
+	else if (err == NO_FILE)
+		ft_printf("%s: No such file or directory\n", argument);
+	else if (err == NO_MEMORY)
 		ft_putstr_fd("Memory allocation failed\n", 2);
-	if (err == PIPE_ERR)
-		ft_putstr_fd("Pipe error\n", 2);
-	if (err == DUP_ERR)
+	else if (err == PIPE_ERR)
+		ft_putstr_fd("pipe: Too many open files\n", 2);
+	else if (err == DUP_ERR)
 		ft_putstr_fd("Dup error\n", 2);
-	if (err == FORK_ERR)
-		ft_putstr_fd("Fork error\n", 2);
-	if (err == NO_PATH)
+	else if (err == FORK_ERR)
+		ft_putstr_fd("Fork failed: Cannot allocate memory\n", 2);
+	else if (err == NO_PATH)
 		ft_printf("%s: PATH not found\n", argument);
-	if (err == CMD_FAIL)
+	else if (err == CMD_FAIL)
 		ft_putstr_fd("Command failed\n", 2);
 	// Restore the original stdout
 	fflush(stdout); // Flush stdout before redirecting
@@ -92,7 +89,7 @@ void	check_files(int argc, char **argv, t_pipex_strt **data)
 		|| !argv[1][0])
 		(*data)->infile_valid = false;
 	if (access((argv[argc - 1]), F_OK) == -1)
-		(*data)->outfile_exists = false;
+		return ;
 	else if (access((argv[argc - 1]), W_OK) == -1)
 	{
 		(*data)->outfile_valid = false;
