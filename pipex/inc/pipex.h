@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:54:40 by srudman           #+#    #+#             */
-/*   Updated: 2024/04/15 14:45:00 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/20 14:27:03 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void	data_init(t_pipex_strt **data);
 void	cmd_strt_init(t_pipex_strt **data, int j);
 void	check_files(int argc, char **argv, t_pipex_strt **data);
 void	check_input_cmd(t_pipex_strt *data, int j, int i, int argc);
-void	pipex(t_pipex_strt **data, char **envp);
+void	pipex(t_pipex_strt **data, char **envp, int cmd_nbr);
 
 #endif

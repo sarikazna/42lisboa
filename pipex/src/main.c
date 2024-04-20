@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:08:04 by srudman           #+#    #+#             */
-/*   Updated: 2024/04/13 15:45:55 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/20 16:28:59 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	open_files(t_pipex_strt **data, char *infile_argv, char *outfile_argv)
 	}
 	if ((*data)->outfile_valid == true)
 	{
-		(*data)->outfile = open(outfile_argv, O_WRONLY | O_CREAT, 0644);
+		(*data)->outfile = open(outfile_argv, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if ((*data)->outfile == -1)
 		{
 			(*data)->outfile_valid = false;
@@ -56,7 +56,7 @@ int	main(int argc, char **argv, char **envp)
 	check_files(argc, argv, &data);
 	parse_input(argc, argv, envp, &data);
 	open_files(&data, argv[1], argv[argc - 1]);
-	pipex(&data, envp);
+	pipex(&data, envp, argc - 3);
 	// Check if a pipe can be created
 	pipex_exit(data, END, "Happy End\n");
 }

@@ -6,7 +6,7 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:26:51 by srudman           #+#    #+#             */
-/*   Updated: 2024/04/15 14:45:46 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/20 17:42:34 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,16 @@ management as well. */
 
 void	free_data(t_pipex_strt *data)
 {
+	int	fd;
+	
+	fd = 0;
+	while (fd < 256) 
+	{
+		close(fd);
+		fd++;
+	}
 	if (data == NULL)
 		return ;
-	close(STDIN_FILENO); // learn this shit
 	if (data->infile >= 0)
 		close(data->infile);
 	if (data->outfile >= 0)

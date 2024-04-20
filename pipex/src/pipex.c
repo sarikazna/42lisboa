@@ -6,22 +6,46 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 20:24:19 by srudman           #+#    #+#             */
-/*   Updated: 2024/04/15 15:37:30 by srudman          ###   ########.fr       */
+/*   Updated: 2024/04/20 17:40:48 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-int	execute(t_cmd_strt *full_cmd, char **envp)
+int	execute(t_cmd_strt *full_cmd, /*int *fd,*/ char **envp)
 {
 	return(execve(full_cmd->cmd, full_cmd->flag, envp));
 }
 
-void	pipex(t_pipex_strt **data, char **envp)
+// void	pipex(t_pipex_strt **data, char **envp, int cmd_nbr)
+// {
+// 	int	pipefd[2];
+// 	int	status;
+// 	int	i;
+
+// 	i = 0;
+// 	while (i <= cmd_nbr)
+// 	{
+// 		if (pipe(pipefd) == -1)
+// 			pipex_exit(*data, PIPE_ERR, "pipe");
+// 		if (i != cmd_nbr - 1)
+// 			execute((*data)->full_cmd[i], (*data)->infile, envp);
+// 		else
+// 			execute((*data)->full_cmd[i], (*data)->outfile, envp);
+// 		close ((*data)->infile);
+		
+		
+// 	}
+// }
+
+
+void	pipex(t_pipex_strt **data, char **envp, int cmd_nbr)
 {
-	int pipefd[2];
-	int	status;
+	int		pipefd[2];
+	int		status;
 	pid_t	pid;
+	pid_t	pid2;
+	int		i;
 
 	if (pipe(pipefd) == -1)
 		pipex_exit(*data, PIPE_ERR, "pipe");
@@ -44,8 +68,7 @@ void	pipex(t_pipex_strt **data, char **envp)
 			}
 			close (pipefd[0]);
 			close ((*data)->infile);
-			status = execute((*data)->full_cmd[0], envp);
-			waitpid(pid, NULL, 0);
+			execute((*data)->full_cmd[0], envp);
 		}
 	}
 	else
@@ -65,10 +88,17 @@ void	pipex(t_pipex_strt **data, char **envp)
 			}
 			close (pipefd[1]);
 			close ((*data)->outfile);
-			execute((*data)->full_cmd[1], envp);
-			waitpid(pid, &status, 0);
+			pid2 = fork();
+			if (pid2 < 0)
+				pipex_exit(*data, FORK_ERR, "Fork failed");
+			if (!pid2)
+				execute((*data)->full_cmd[1], envp);
 		}
-		// WHERE TO PUT WAITPID?
-		// HERE: https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901
+	}
+	i = 0;
+	while (i <= cmd_nbr)
+	{
+		waitpid(-1, &status, 0);
+		i++;
 	}
 }
