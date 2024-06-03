@@ -6,11 +6,13 @@
 /*   By: srudman <srudman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 20:24:19 by srudman           #+#    #+#             */
-/*   Updated: 2024/06/03 15:26:55 by srudman          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:37:32 by srudman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
+
+// TO DO: norminette, n number of pipes, here_doc
 
 int	execute(t_cmd_strt *full_cmd, char **envp)
 {
